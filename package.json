@@ -1,0 +1,44 @@
+{
+    "name": "manager-system",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "pnpm --filter ./packages/manager-system dev",
+        "prettier": "prettier --write .",
+        "lint": "eslint --ext .ts packages/**/*.ts",
+        "lint:fix": "eslint --ext .ts packages/**/*.ts --fix",
+        "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@commitlint/cli": "^17.4.2",
+        "@commitlint/config-conventional": "^17.4.2",
+        "@manager-system/eslint-config": "workspace:*",
+        "eslint": "^8.33.0",
+        "husky": "^8.0.3",
+        "lint-staged": "^13.1.0",
+        "postcss-html": "^1.5.0",
+        "postcss-scss": "^4.0.6",
+        "prettier": "^2.8.3",
+        "sass": "^1.58.0",
+        "stylelint": "^14.16.1",
+        "stylelint-config-html": "^1.1.0",
+        "stylelint-config-prettier": "^9.0.4",
+        "stylelint-config-standard-vue": "^1.0.0",
+        "stylelint-order": "^6.0.1",
+        "stylelint-scss": "^4.3.0",
+        "typescript": "^4.9.5",
+        "unplugin-vue-define-options": "^1.2.1",
+        "vite": "^4.1.1",
+        "vue": "^3.2.47"
+    },
+    "lint-staged": {
+        "*.{js,jsx,vue,ts,tsx}": [
+            "eslint --ext .ts packages/**/*.ts",
+            "eslint --ext .ts packages/**/*.ts --fix"
+        ]
+    }
+}
