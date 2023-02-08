@@ -45,6 +45,9 @@ importers:
             vite: registry.npmmirror.com/vite/4.1.1_sass@1.58.0
             vue: registry.npmmirror.com/vue/3.2.47
 
+    packages/component:
+        specifiers: {}
+
     packages/eslint-config:
         specifiers:
             '@typescript-eslint/eslint-plugin': ^5.51.0

@@ -9,6 +9,15 @@ const routes: RouteRecordRaw[] = [
             transition: 'slide-fade'
         },
         alias: '/'
+    },
+    {
+        path: '/login',
+        component: () => import('@/views/login/index.vue'),
+        meta: {
+            title: '登录页',
+            transition: 'slide-fade'
+        },
+        alias: '/welcome'
     }
 ]
 

@@ -1,6 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HeaderNav from '@/components/headNav/index.vue'
+</script>
 
 <template>
+    <HeaderNav></HeaderNav>
     <RouterView v-slot="{ Component }">
         <KeepAlive>
             <Transition>
@@ -10,4 +13,4 @@
     </RouterView>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
