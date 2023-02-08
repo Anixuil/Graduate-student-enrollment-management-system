@@ -5,7 +5,11 @@
                 <img src="/swxy_xh.png" alt="" />
                 <div>
                     <span>中南林业科技大学涉外学院 | 研究生招生管理系统</span><br />
-                    <span>Swan College,Central South University of Forestry and Technology</span>
+                    <span
+                        ><em
+                            >Swan College,Central South University of Forestry and Technology</em
+                        ></span
+                    >
                 </div>
             </div>
             <ul class="header-nav-right">
@@ -29,6 +33,8 @@
     box-sizing: border-box;
     padding: 10px 0;
     position: relative;
+    background-color: white;
+    box-shadow: 0 2px 10px lightgray;
 
     .header-nav-container {
         width: 100%;
@@ -51,15 +57,17 @@
 
             div {
                 margin: 0 10px;
+                font-family: '仿宋', sans-serif;
 
                 span:nth-of-type(1) {
-                    font-size: 20px;
+                    font-size: 21px;
                     color: rgb(63 73 113);
                     font-weight: bold;
                 }
 
                 span:nth-of-type(2) {
-                    font-size: 14px;
+                    font-size: 12px;
+                    letter-spacing: 1.3px;
                 }
             }
 

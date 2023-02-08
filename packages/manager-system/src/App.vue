@@ -13,4 +13,14 @@ import HeaderNav from '@/components/headNav/index.vue'
     </RouterView>
 </template>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+html,
+body {
+    background-color: rgb(239 235 234);
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+</style>
