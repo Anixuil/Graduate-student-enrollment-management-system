@@ -15,7 +15,7 @@
             <ul class="header-nav-right">
                 <li>学校官网</li>
                 <li>研究生招生网</li>
-                <li>
+                <li @click="gotoLogin">
                     <span>个人中心</span>
                     <img src="swxy_xh.png" alt="" />
                 </li>
@@ -24,7 +24,12 @@
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const router = useRouter()
+const gotoLogin = () => {
+    router.push('/login')
+}
+</script>
 
 <style scoped lang="scss">
 .header-nav-box {
