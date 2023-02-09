@@ -4,9 +4,9 @@ import HeaderNav from '@/components/headNav/index.vue'
 
 <template>
     <HeaderNav></HeaderNav>
-    <RouterView v-slot="{ Component }">
+    <RouterView v-slot="{ Component, route }">
         <KeepAlive>
-            <Transition>
+            <Transition :name="(route.meta.transition as string)">
                 <component :is="Component" />
             </Transition>
         </KeepAlive>
