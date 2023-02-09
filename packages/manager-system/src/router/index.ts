@@ -32,8 +32,9 @@ const router = createRouter({
 })
 
 const store = usePageHeader(pinia)
-router.beforeEach((to, from) => {
-    if (to.name === 'login') {
+const pageHeaderArr = ['login', 'index']
+router.beforeEach(to => {
+    if (pageHeaderArr.findIndex(item => item === to.name) !== -1) {
         store.changePageHeaderStatus(false)
     } else {
         store.changePageHeaderStatus(true)

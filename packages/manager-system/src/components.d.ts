@@ -8,7 +8,11 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Banner: typeof import('./components/index/banner/index.vue')['default']
+    Container: typeof import('./components/index/container/index.vue')['default']
+    ElCard: typeof import('element-plus/es')['ElCard']
     ElPageHeader: typeof import('element-plus/es')['ElPageHeader']
+    ElTimeline: typeof import('element-plus/es')['ElTimeline']
+    ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     HeadNav: typeof import('./components/headNav/index.vue')['default']
     PageHeader: typeof import('./components/headNav/pageHeader/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

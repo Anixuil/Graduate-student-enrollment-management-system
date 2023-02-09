@@ -24,9 +24,11 @@
                 六、本校流程为 <span style="color: red">确认报名信息</span> 、
                 <span style="color: red">网上确认</span> 、
                 <span style="color: red">下载准考证</span> 、
+                <span style="color: red">初试</span> 、
                 <span style="color: red">公布初试成绩</span> 、
                 <span style="color: red">公布拟面试考生名单(需考生登录本系统进行面试确认)</span> 、
                 <span style="color: red">公布面试考生名单</span> 、
+                <span style="color: red">面试</span> 、
                 <span style="color: red">公布面试结果</span> 、
                 <span style="color: red">公布拟录取名单(需考生登录本系统进行确认)</span> 、
                 <span style="color: red">公布录取名单</span>。
@@ -39,6 +41,8 @@
                 <span>2022 年 10 月 29 日</span>
             </p>
         </div>
+
+        <slot> </slot>
     </div>
 </template>
 
@@ -46,6 +50,9 @@
 
 <style scoped lang="scss">
 .banner-box {
+    height: calc(100vh - 96px - 64px);
+    position: relative;
+
     .banner-title {
         font-size: 26px;
         font-weight: bold;
@@ -57,6 +64,8 @@
     }
 
     .banner-container {
+        overflow: hidden;
+
         & > span {
             font-size: 16px;
             display: inline-block;
