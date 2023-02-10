@@ -24,6 +24,7 @@ module.exports = {
         'no-empty-source': null,
         // 禁止缺少文件末尾的换行符
         'no-missing-end-of-source-newline': null,
+        //选择器匹配
         'selector-class-pattern': null
     }
 }

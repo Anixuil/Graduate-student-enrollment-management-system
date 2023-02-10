@@ -10,13 +10,16 @@ declare module '@vue/runtime-core' {
     Banner: typeof import('./components/index/banner/index.vue')['default']
     Container: typeof import('./components/index/container/index.vue')['default']
     ElCard: typeof import('element-plus/es')['ElCard']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElPageHeader: typeof import('element-plus/es')['ElPageHeader']
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     HeadNav: typeof import('./components/headNav/index.vue')['default']
     PageHeader: typeof import('./components/headNav/pageHeader/index.vue')['default']
-    Person: typeof import('./components/person/index.vue')['default']
+    Person: typeof import('./components/person/students.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Students: typeof import('./components/person/students.vue')['default']
+    Teachers: typeof import('./components/person/teachers.vue')['default']
   }
 }

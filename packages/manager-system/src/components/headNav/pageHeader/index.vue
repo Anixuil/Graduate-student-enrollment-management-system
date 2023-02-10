@@ -2,14 +2,25 @@
     <div class="page-header-box">
         <el-page-header @back="onBack" :icon="ArrowLeft">
             <template #content>
-                <span class="title"> {{ pageHeaderTitle }} </span>
+                <span class="title">
+                    <div
+                        v-for="(item, index) in pageHeaderArray"
+                        :key="index"
+                        :class="index === pageHeaderArray.length ? 'disabled' : ''"
+                    >
+                        <el-icon v-show="index != 0">
+                            <ArrowRight />
+                        </el-icon>
+                        <span @click="gotoPage(index)">{{ item }}</span>
+                    </div>
+                </span>
             </template>
         </el-page-header>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ArrowLeft } from '@element-plus/icons-vue'
+import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 import { usePageHeader } from '@/store'
 import { storeToRefs } from 'pinia'
 
@@ -20,7 +31,17 @@ const onBack = () => {
 }
 
 //动态切换页头标题
-const { pageHeaderTitle } = storeToRefs(usePageHeader())
+const { pageHeaderArray } = storeToRefs(usePageHeader())
+
+//跳转历史页面
+const gotoPage = (index: number): void => {
+    //如果点击得是第一个，就跳转首页
+    if (index === 0) {
+        router.push('/index')
+    } else if (index !== pageHeaderArray.value.length - 1) {
+        router.go(-index - 1)
+    }
+}
 </script>
 
 <style scoped lang="scss">
@@ -37,9 +58,23 @@ const { pageHeaderTitle } = storeToRefs(usePageHeader())
         font-size: 16px;
         color: gray;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
 
-        &:hover {
-            color: rgb(63 73 113);
+        div {
+            display: flex;
+            align-items: center;
+
+            span {
+                margin-left: 10px;
+                user-select: none;
+
+                &:hover {
+                    color: rgb(63 73 113);
+                }
+            }
         }
     }
 }

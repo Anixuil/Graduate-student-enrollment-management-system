@@ -15,10 +15,16 @@
                 <span>切换系统</span>
             </div>
         </div>
+
+        <Students></Students>
+        <Teachers></Teachers>
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Students from '@/components/person/students.vue'
+import Teachers from '@/components/person/teachers.vue'
+</script>
 
 <style scoped lang="scss">
 .person-box {
