@@ -23,6 +23,7 @@ module.exports = {
         // 禁止空源
         'no-empty-source': null,
         // 禁止缺少文件末尾的换行符
-        'no-missing-end-of-source-newline': null
+        'no-missing-end-of-source-newline': null,
+        'selector-class-pattern': null
     }
 }

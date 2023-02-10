@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import HeaderNav from '@/components/headNav/index.vue'
 import PageHeader from '@/components/headNav/pageHeader/index.vue'
-import { usePageHeader } from './store'
+import { usePageHeader } from '@/store'
 
 const store = usePageHeader()
 </script>
