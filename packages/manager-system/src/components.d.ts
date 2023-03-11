@@ -16,7 +16,6 @@ declare module '@vue/runtime-core' {
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     HeadNav: typeof import('./components/headNav/index.vue')['default']
     PageHeader: typeof import('./components/headNav/pageHeader/index.vue')['default']
-    Person: typeof import('./components/person/students.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Students: typeof import('./components/person/students.vue')['default']
