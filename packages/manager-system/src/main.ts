@@ -5,4 +5,15 @@ import 'element-plus/dist/index.css'
 import router from './router'
 import pinia from '@/store'
 
-createApp(App).use(router).use(pinia).mount('#app')
+import tab from '@/components/common/tab/index.vue'
+import infoDetail from '@/components/common/infoDetail/index.vue'
+
+const app = createApp(App)
+
+//全局注册组件
+app.component('tab', tab)
+app.component('infoDetail', infoDetail)
+
+app.use(router)
+app.use(pinia)
+app.mount('#app')

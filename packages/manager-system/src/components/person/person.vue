@@ -30,8 +30,6 @@
 import type { Ref } from 'vue'
 import { useUser } from '@/store/user/index'
 import { studentInterface, studentLabelInterface } from './ts/person'
-import tab from '../common/tab/index.vue'
-import infoDetail from '../common/infoDetail/index.vue'
 
 //从pinia中获取用户信息
 const store = useUser()

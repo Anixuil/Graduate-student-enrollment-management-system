@@ -83,7 +83,7 @@ router.beforeEach(to => {
     if (pageHeaderArr.findIndex(item => item === to.name) !== -1) {
         store.changePageHeaderStatus(false)
     } else {
-        store.changePageHeaderTitle(to.meta.title as string, to.meta.path as string)
+        store.changePageHeaderTitle(to.meta.title as string, to.path as string)
         store.changePageHeaderStatus(true)
     }
 })

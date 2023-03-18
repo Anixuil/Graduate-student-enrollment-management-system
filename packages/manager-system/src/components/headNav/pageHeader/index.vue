@@ -40,10 +40,10 @@ const gotoPage = (index: number): void => {
     //如果点击得是第一个，就跳转首页
     if (index === 0) {
         router.push('/index')
-        pageHeader.removePageHeaderArray(1)
+        pageHeader.removePageHeaderArray(0)
     } else if (index !== pageHeaderArray.value.length - 1) {
         // router.go(-index - 1)
-        router.push(pageHeaderPath.value[index - 1])
+        router.push(pageHeaderPath.value[index])
     }
 }
 </script>

@@ -33,8 +33,8 @@ export const usePageHeader = defineStore('pageHeader', {
             this.pageHeaderPath.push(path)
         },
         removePageHeaderArray(index: number): void {
-            this.pageHeaderArray.splice(index, this.pageHeaderArray.length - index)
-            this.pageHeaderPath.splice(index, this.pageHeaderPath.length - index)
+            this.pageHeaderArray.splice(index + 1, this.pageHeaderArray.length - index)
+            this.pageHeaderPath.splice(index + 1, this.pageHeaderPath.length - index)
         }
     }
 })
