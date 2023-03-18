@@ -11,19 +11,16 @@
                 </div>
             </div>
             <div class="person-control">
-                <span>编辑资料</span>
                 <span>切换系统</span>
             </div>
         </div>
 
         <Students></Students>
-        <Teachers></Teachers>
     </div>
 </template>
 
 <script setup lang="ts">
-import Students from '@/components/person/students.vue'
-import Teachers from '@/components/person/teachers.vue'
+import Students from '@/components/person/person.vue'
 </script>
 
 <style scoped lang="scss">

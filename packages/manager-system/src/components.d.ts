@@ -15,10 +15,13 @@ declare module '@vue/runtime-core' {
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     HeadNav: typeof import('./components/headNav/index.vue')['default']
+    InfoDetail: typeof import('./components/common/infoDetail/index.vue')['default']
     PageHeader: typeof import('./components/headNav/pageHeader/index.vue')['default']
+    Person: typeof import('./components/person/person.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Students: typeof import('./components/person/students.vue')['default']
+    Students: typeof import('./components/person/person.vue')['default']
+    Tab: typeof import('./components/common/tab/index.vue')['default']
     Teachers: typeof import('./components/person/teachers.vue')['default']
   }
 }
