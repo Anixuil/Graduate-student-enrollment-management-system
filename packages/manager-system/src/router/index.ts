@@ -32,6 +32,42 @@ const routes: RouteRecordRaw[] = [
             transition: 'slide-fade'
         },
         alias: '/my'
+    },
+    {
+        path: '/confirmInfo',
+        name: 'confirmInfo',
+        component: () => import('@/views/controller/confirmInfo/index.vue'),
+        meta: {
+            title: '确认报名信息',
+            transition: 'slide-fade'
+        }
+    },
+    {
+        path: '/confirmInter',
+        name: 'confirmInter',
+        component: () => import('@/views/controller/confirmInter/index.vue'),
+        meta: {
+            title: '网上确认',
+            transition: 'slide-fade'
+        }
+    },
+    {
+        path: '/ticket',
+        name: 'ticket',
+        component: () => import('@/views/controller/ticket/index.vue'),
+        meta: {
+            title: '准考证打印',
+            transition: 'slide-fade'
+        }
+    },
+    {
+        path: '/result',
+        name: 'result',
+        component: () => import('@/views/controller/result/index.vue'),
+        meta: {
+            title: '成绩查询',
+            transition: 'slide-fade'
+        }
     }
 ]
 
@@ -47,7 +83,7 @@ router.beforeEach(to => {
     if (pageHeaderArr.findIndex(item => item === to.name) !== -1) {
         store.changePageHeaderStatus(false)
     } else {
-        store.changePageHeaderTitle(to.meta.title as string)
+        store.changePageHeaderTitle(to.meta.title as string, to.meta.path as string)
         store.changePageHeaderStatus(true)
     }
 })

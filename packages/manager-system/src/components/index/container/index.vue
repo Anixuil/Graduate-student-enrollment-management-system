@@ -9,6 +9,7 @@
                 :timestamp="item.timestamp"
                 :placement="item.placement"
                 :key="item.id"
+                @click="handleClick(item.path)"
             >
                 <el-card>
                     <div class="card-item">
@@ -24,36 +25,49 @@
 </template>
 
 <script setup lang="ts">
+const router = useRouter()
+
 const timeArr = ref([
     {
         id: 1,
         title: '确认报名信息',
         intro: '点击右边按钮进入相应操作页面',
         placement: 'top',
-        timestamp: '2022/11/01'
+        timestamp: '2022/11/01',
+        path: '/confirmInfo'
     },
     {
         id: 2,
         title: '网上确认',
         intro: '点击右边按钮进入相应操作页面',
         placement: 'top',
-        timestamp: '2022/11/11'
+        timestamp: '2022/11/11',
+        path: '/confirmInter'
     },
     {
         id: 3,
         title: '下载准考证',
         intro: '点击右边按钮进入相应操作页面',
         placement: 'top',
-        timestamp: '2022/12/18'
+        timestamp: '2022/12/18',
+        path: '/ticket'
     },
     {
         id: 4,
         title: '初试',
         intro: '点击右边按钮进入相应操作页面',
         placement: 'top',
-        timestamp: '2022/12/28'
+        timestamp: '2022/12/28',
+        path: '#'
     }
 ])
+
+const handleClick = (path: string) => {
+    if (path === '#') {
+        return
+    }
+    router.push(path)
+}
 </script>
 
 <style scoped lang="scss">

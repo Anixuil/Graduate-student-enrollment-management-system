@@ -24,22 +24,26 @@ import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 import { usePageHeader } from '@/store'
 import { storeToRefs } from 'pinia'
 
+//动态切换页头标题
+const { pageHeaderArray, pageHeaderPath } = storeToRefs(usePageHeader())
+const pageHeader = usePageHeader()
+
 //返回上一个页面
 const router = useRouter()
 const onBack = () => {
     router.go(-1)
+    pageHeader.removePageHeaderArray(pageHeaderArray.value.length - 1)
 }
-
-//动态切换页头标题
-const { pageHeaderArray } = storeToRefs(usePageHeader())
 
 //跳转历史页面
 const gotoPage = (index: number): void => {
     //如果点击得是第一个，就跳转首页
     if (index === 0) {
         router.push('/index')
+        pageHeader.removePageHeaderArray(1)
     } else if (index !== pageHeaderArray.value.length - 1) {
-        router.go(-index - 1)
+        // router.go(-index - 1)
+        router.push(pageHeaderPath.value[index - 1])
     }
 }
 </script>
