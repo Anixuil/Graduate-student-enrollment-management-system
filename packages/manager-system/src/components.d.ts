@@ -21,8 +21,6 @@ declare module '@vue/runtime-core' {
     Person: typeof import('./components/person/person.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Students: typeof import('./components/person/person.vue')['default']
     Tab: typeof import('./components/common/tab/index.vue')['default']
-    Teachers: typeof import('./components/person/teachers.vue')['default']
   }
 }

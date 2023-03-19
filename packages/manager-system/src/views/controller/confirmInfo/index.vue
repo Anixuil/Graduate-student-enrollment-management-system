@@ -33,6 +33,7 @@ import { ConfirmInfoProps } from '.'
 import { useUser } from '@/store/user/index'
 import { register, login } from '@/api/user/index'
 import { ElMessage } from 'element-plus'
+
 const props = defineProps(ConfirmInfoProps)
 const store = useUser()
 
