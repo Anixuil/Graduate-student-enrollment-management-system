@@ -2,8 +2,9 @@
     <div class="students-form">
         <div class="students-form-item" v-for="(item, index) in listKeys" :key="index">
             <span class="students-form-label">{{ listLabel[item] }}</span>
-            <input type="text" v-model="listData[item]" />
+            <input type="text" v-model="listData[item]" :disabled="disabled" />
         </div>
+        <slot name="footer"></slot>
     </div>
 </template>
 

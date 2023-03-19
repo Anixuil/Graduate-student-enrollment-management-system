@@ -13,5 +13,10 @@ export const infoDetailProps = {
     listData: {
         type: Object,
         default: () => {}
+    },
+    //是否禁用输入
+    disabled: {
+        type: Boolean,
+        default: false
     }
 }

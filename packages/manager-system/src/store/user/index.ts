@@ -28,7 +28,7 @@ export const useUser = defineStore('user', {
                 teacherId: '教师编号',
                 studentId: '学生编号',
                 candidateId: '考生编号',
-                userRole: '用户角色',
+                userRole: '身份',
                 departName: '所属院系',
                 className: '所教课程'
             }
@@ -47,8 +47,8 @@ export const useUser = defineStore('user', {
         getCandidateInfo(): object {
             return {
                 candidateId: this.candidateId,
-                majorName: this.majorName,
-                userSchool: this.userSchool
+                userSchool: this.userSchool,
+                majorName: this.majorName
             }
         },
         //获取学生信息

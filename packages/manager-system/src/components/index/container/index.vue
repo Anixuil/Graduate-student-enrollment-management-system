@@ -31,7 +31,7 @@ const timeArr = ref([
     {
         id: 1,
         title: '确认报名信息',
-        intro: '点击右边按钮进入相应操作页面',
+        intro: '点击进入相应操作页面',
         placement: 'top',
         timestamp: '2022/11/01',
         path: '/confirmInfo'
@@ -39,7 +39,7 @@ const timeArr = ref([
     {
         id: 2,
         title: '网上确认',
-        intro: '点击右边按钮进入相应操作页面',
+        intro: '点击进入相应操作页面',
         placement: 'top',
         timestamp: '2022/11/11',
         path: '/confirmInter'
@@ -47,7 +47,7 @@ const timeArr = ref([
     {
         id: 3,
         title: '下载准考证',
-        intro: '点击右边按钮进入相应操作页面',
+        intro: '点击进入相应操作页面',
         placement: 'top',
         timestamp: '2022/12/18',
         path: '/ticket'
@@ -55,7 +55,7 @@ const timeArr = ref([
     {
         id: 4,
         title: '初试',
-        intro: '点击右边按钮进入相应操作页面',
+        intro: '点击进入相应操作页面',
         placement: 'top',
         timestamp: '2022/12/28',
         path: '#'
