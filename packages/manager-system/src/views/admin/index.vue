@@ -1,7 +1,7 @@
 <template>
     <div class="admin-wrapper">
         <side-nav></side-nav>
-        <div class="admin-container">
+        <div :class="sidebarStatus ? 'admin-container' : 'admin-container expand'">
             <router-view v-slot="{ Component, route }">
                 <keep-alive>
                     <transition :name="(route.meta.transition as string)">
@@ -15,6 +15,11 @@
 
 <script setup lang="ts">
 import sideNav from '@/components/common/sideNav/index.vue'
+import { useSidebar } from '@/store/sidebar'
+
+const sidebar = useSidebar()
+
+const sidebarStatus = computed(() => sidebar.sidebarStatus)
 </script>
 
 <style scoped lang="scss">
@@ -22,7 +27,6 @@ import sideNav from '@/components/common/sideNav/index.vue'
     width: 100%;
     margin: 5px auto;
     box-sizing: border-box;
-    padding: 20px;
     min-width: 1000px;
     position: relative;
     height: calc(100vh - 91px);
@@ -35,6 +39,11 @@ import sideNav from '@/components/common/sideNav/index.vue'
         width: 85%;
         min-width: 800px;
         background-color: white;
+        transition: all 0.3s ease;
+
+        &.expand {
+            width: 93%;
+        }
     }
 }
 

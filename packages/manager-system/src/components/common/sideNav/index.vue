@@ -1,27 +1,39 @@
 <template>
-    <div class="sidebar-wrapper">
-        <div class="expandAndFold">
+    <div :class="sidebarStatus ? 'sidebar-wrapper' : 'sidebar-wrapper hide'">
+        <div class="expandAndFold" @click="switchSidebarStatus">
             <el-icon :size="20">
-                <Fold />
+                <Fold v-show="sidebarStatus" />
+                <Expand v-show="!sidebarStatus" />
             </el-icon>
         </div>
         <i class="el-icon-s-home"></i>
-        <div class="sidebar-item" v-for="item in sidebarData" :key="item.path">
-            <div class="sidebar-one">
+        <div class="sidebar-item" v-for="(item, index) in sidebarData" :key="item.path">
+            <div class="sidebar-one" @click="openContainer(index)">
                 <div class="sidebar-icon">
                     <component :is="item.icon" style="width: 20px; height: 20px"></component>
                 </div>
-                <div class="sidebar-title">
-                    <span>{{ item.name }}</span>
-                </div>
+                <Transition>
+                    <div v-show="sidebarStatus" class="sidebar-title">
+                        <span>{{ item.name }}</span>
+                    </div>
+                </Transition>
             </div>
-            <div class="sidebar-container" v-if="item.children">
-                <div class="sidebar-two" v-for="item2 in item.children" :key="item2.path">
+            <div
+                :class="currentMenu == index ? 'sidebar-container active' : 'sidebar-container'"
+                v-show="sidebarStatus"
+                v-if="item.children"
+            >
+                <div
+                    class="sidebar-two"
+                    v-for="item2 in item.children"
+                    :key="item2.path"
+                    @click="gotoContainer(item2.path)"
+                >
                     <div class="sidebar-icon">
                         <component :is="item2.icon" style="width: 20px; height: 20px"></component>
                     </div>
                     <div class="sidebar-title">
-                        <router-link :to="item2.path">{{ item2.name }}</router-link>
+                        {{ item2.name }}
                     </div>
                 </div>
             </div>
@@ -30,11 +42,37 @@
 </template>
 
 <script setup lang="ts">
+import { Ref } from 'vue'
 import { useSidebar } from '@/store/sidebar'
 
 const sidebar = useSidebar()
 
 const sidebarData = sidebar.sidebarMenu
+
+const sidebarStatus = computed(() => sidebar.sidebarStatus)
+const currentMenu: Ref<number> = ref(-1)
+
+//侧边栏伸缩控制
+const switchSidebarStatus = () => {
+    sidebar.switchSidebarStatus()
+}
+
+//侧边栏二级菜单控制
+const openContainer = (index: number) => {
+    if (currentMenu.value == index) {
+        currentMenu.value = -1
+        return
+    }
+    currentMenu.value = index
+}
+
+//侧边栏跳转
+const router = useRouter()
+const gotoContainer = (path: string) => {
+    console.log(path)
+
+    router.push(path)
+}
 </script>
 
 <style scoped lang="scss">
@@ -47,6 +85,13 @@ const sidebarData = sidebar.sidebarMenu
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    transition: all 0.3s ease;
+
+    &.hide {
+        width: 5%;
+        min-width: 50px;
+    }
 
     .expandAndFold {
         width: 100%;
@@ -75,6 +120,7 @@ const sidebarData = sidebar.sidebarMenu
             cursor: pointer;
             transition: all 0.3s ease;
             gap: 10px;
+            user-select: none;
 
             a {
                 color: #000;
@@ -88,8 +134,14 @@ const sidebarData = sidebar.sidebarMenu
                 color: #404970;
             }
 
+            .sidebar-title {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+
             &:hover {
-                background-color: rgb(63 72 113);
+                background-color: rgb(63 72 113) !important;
                 color: white;
 
                 a {
@@ -103,9 +155,9 @@ const sidebarData = sidebar.sidebarMenu
         }
 
         .sidebar-container {
-            // height: 0;
+            height: 0;
             overflow: hidden;
-            transform: all 0.3s ease;
+            transition: all 0.3s ease;
 
             &.active {
                 height: 100%;
@@ -113,8 +165,19 @@ const sidebarData = sidebar.sidebarMenu
 
             .sidebar-two {
                 padding-left: 20px;
+                background-color: rgb(231 231 231);
             }
         }
     }
+}
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
 }
 </style>
