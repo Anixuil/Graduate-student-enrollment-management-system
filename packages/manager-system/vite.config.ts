@@ -11,6 +11,8 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 
+const pathSrc = path.resolve(__dirname, 'src')
+
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
@@ -18,12 +20,12 @@ export default defineConfig({
         DefineOptions(),
         AutoImport({
             imports: ['vue', 'vue-router'],
-            dts: 'src/auto-import.d.ts',
+            dts: path.resolve(pathSrc, 'auto-imports.d.ts'),
             resolvers: [ElementPlusResolver(), IconsResolver({ prefix: 'Icon' })]
         }),
         Components({
-            resolvers: [ElementPlusResolver(), IconsResolver({ enabledCollections: ['ep'] })],
-            dts: 'src/components.d.ts'
+            resolvers: [IconsResolver({ enabledCollections: ['ep'] }), ElementPlusResolver()],
+            dts: path.resolve(pathSrc, 'components.d.ts')
         }),
         Icons({
             autoInstall: true
@@ -36,7 +38,7 @@ export default defineConfig({
     //配置别名路径
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'src')
+            '@': pathSrc
         }
     }
 })

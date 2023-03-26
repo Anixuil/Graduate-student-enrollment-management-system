@@ -2,7 +2,7 @@
     <div class="index-box" ref="wrapper">
         <Banner>
             <div class="btn" @click="gotoMenu">
-                <span>进行信息登记</span>
+                <span>信息登记</span>
             </div>
         </Banner>
         <Container></Container>
@@ -51,9 +51,9 @@ const gotoMenu = () => {
         transition: all 0.3s ease;
         cursor: pointer;
         position: absolute;
-        bottom: 10%;
+        bottom: 0;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -140%);
         user-select: none;
 
         &:hover {

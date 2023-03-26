@@ -35,6 +35,16 @@ export const usePageHeader = defineStore('pageHeader', {
         removePageHeaderArray(index: number): void {
             this.pageHeaderArray.splice(index + 1, this.pageHeaderArray.length - index)
             this.pageHeaderPath.splice(index + 1, this.pageHeaderPath.length - index)
+        },
+        switchPageMode(mode: boolean): boolean {
+            if (mode) {
+                this.pageHeaderArray = ['首页']
+                this.pageHeaderPath = ['/']
+            } else {
+                this.pageHeaderArray = ['首页']
+                this.pageHeaderPath = ['/admin']
+            }
+            return mode
         }
     }
 })

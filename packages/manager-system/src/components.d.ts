@@ -16,11 +16,13 @@ declare module '@vue/runtime-core' {
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     HeadNav: typeof import('./components/headNav/index.vue')['default']
+    Index: typeof import('./components/admin/index/index.vue')['default']
     InfoDetail: typeof import('./components/common/infoDetail/index.vue')['default']
     PageHeader: typeof import('./components/headNav/pageHeader/index.vue')['default']
     Person: typeof import('./components/person/person.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideNav: typeof import('./components/common/sideNav/index.vue')['default']
     Tab: typeof import('./components/common/tab/index.vue')['default']
   }
 }

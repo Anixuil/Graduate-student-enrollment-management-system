@@ -2,14 +2,16 @@
 import HeaderNav from '@/components/headNav/index.vue'
 import PageHeader from '@/components/headNav/pageHeader/index.vue'
 import { usePageHeader } from '@/store'
+import { useSystem } from './store/system'
 
-const store = usePageHeader()
+const system = useSystem()
+const pageHeader = usePageHeader()
 </script>
 
 <template>
     <HeaderNav></HeaderNav>
     <Transition name="page-header">
-        <PageHeader v-show="store.pageHeaderStatus"></PageHeader>
+        <PageHeader v-show="pageHeader.pageHeaderStatus"></PageHeader>
     </Transition>
     <RouterView v-slot="{ Component, route }">
         <KeepAlive>

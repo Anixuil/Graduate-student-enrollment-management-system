@@ -39,7 +39,7 @@ const onBack = () => {
 const gotoPage = (index: number): void => {
     //如果点击得是第一个，就跳转首页
     if (index === 0) {
-        router.push('/index')
+        router.push(pageHeader.pageHeaderPath[0])
         pageHeader.removePageHeaderArray(0)
     } else if (index !== pageHeaderArray.value.length - 1) {
         // router.go(-index - 1)

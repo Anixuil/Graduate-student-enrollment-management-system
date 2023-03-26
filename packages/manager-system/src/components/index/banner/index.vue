@@ -41,7 +41,6 @@
                 <span>2022 年 10 月 29 日</span>
             </p>
         </div>
-
         <slot> </slot>
     </div>
 </template>
@@ -51,6 +50,7 @@
 <style scoped lang="scss">
 .banner-box {
     height: calc(100vh - 96px - 64px);
+    min-height: 800px;
     position: relative;
 
     .banner-title {
