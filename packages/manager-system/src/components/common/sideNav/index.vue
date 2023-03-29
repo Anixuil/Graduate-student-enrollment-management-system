@@ -69,8 +69,6 @@ const openContainer = (index: number) => {
 //侧边栏跳转
 const router = useRouter()
 const gotoContainer = (path: string) => {
-    console.log(path)
-
     router.push(path)
 }
 </script>

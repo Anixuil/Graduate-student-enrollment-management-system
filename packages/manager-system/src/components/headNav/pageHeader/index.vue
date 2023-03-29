@@ -1,26 +1,23 @@
 <template>
     <div class="page-header-box">
-        <el-page-header @back="onBack" :icon="ArrowLeft">
-            <template #content>
-                <span class="title">
-                    <div
-                        v-for="(item, index) in pageHeaderArray"
-                        :key="index"
-                        :class="index === pageHeaderArray.length ? 'disabled' : ''"
-                    >
-                        <el-icon v-show="index != 0">
-                            <ArrowRight />
-                        </el-icon>
-                        <span @click="gotoPage(index)">{{ item }}</span>
-                    </div>
-                </span>
-            </template>
-        </el-page-header>
+        <span class="title">
+            <div
+                :class="pageHeader.pageHeaderTitle == item ? 'active' : ''"
+                v-for="(item, index) in pageHeaderArray"
+                :key="index"
+                @click.stop="gotoPage(index)"
+            >
+                <span>{{ item }}</span>
+                <el-icon v-if="item != '首页'" @click.stop="removePage(index)">
+                    <Close />
+                </el-icon>
+                <span class="bottom-span"></span>
+            </div>
+        </span>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 import { usePageHeader } from '@/store'
 import { storeToRefs } from 'pinia'
 
@@ -30,21 +27,18 @@ const pageHeader = usePageHeader()
 
 //返回上一个页面
 const router = useRouter()
-const onBack = () => {
-    router.go(-1)
-    pageHeader.removePageHeaderArray(pageHeaderArray.value.length - 1)
-}
 
 //跳转历史页面
 const gotoPage = (index: number): void => {
-    //如果点击得是第一个，就跳转首页
-    if (index === 0) {
-        router.push(pageHeader.pageHeaderPath[0])
-        pageHeader.removePageHeaderArray(0)
-    } else if (index !== pageHeaderArray.value.length - 1) {
-        // router.go(-index - 1)
-        router.push(pageHeaderPath.value[index])
+    router.push(pageHeaderPath.value[index])
+}
+
+//删除历史界面
+const removePage = (index: number): void => {
+    if (pageHeader.pageHeaderTitle === pageHeaderArray.value[index]) {
+        router.push(pageHeaderPath.value[index - 1])
     }
+    pageHeader.removePageHeaderArray(index)
 }
 </script>
 
@@ -54,29 +48,51 @@ const gotoPage = (index: number): void => {
     margin: 10px auto;
     background-color: white;
     box-sizing: border-box;
-    padding: 20px;
     min-width: 1000px;
     max-width: 1600px;
 
     .title {
-        font-size: 16px;
+        font-size: 12px;
         color: gray;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: flex-start;
         gap: 10px;
+        box-sizing: border-box;
+        padding: 0 10px;
 
         div {
             display: flex;
             align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            padding: 10px;
+            position: relative;
+            animation: page-header-show 0.3s ease;
 
             span {
-                margin-left: 10px;
                 user-select: none;
+            }
 
-                &:hover {
-                    color: rgb(63 73 113);
+            &:hover {
+                color: rgb(63 73 113);
+            }
+
+            .bottom-span {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 0;
+                background-color: rgb(63 73 113);
+                transition: all 0.3s ease;
+            }
+
+            &.active {
+                // border-bottom: 3px solid rgb(63 73 113);
+                .bottom-span {
+                    height: 3px;
                 }
             }
         }
@@ -89,6 +105,28 @@ const gotoPage = (index: number): void => {
 
     &:hover {
         color: rgb(63 73 113);
+    }
+}
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+
+@keyframes page-header-show {
+    from {
+        opacity: 0;
+        transform: translate(-100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
     }
 }
 </style>

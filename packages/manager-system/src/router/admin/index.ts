@@ -13,7 +13,7 @@ const adminRoutes: RouteRecordRaw[] = [
                 name: 'adminIndex',
                 component: () => import('@/components/admin/index/index.vue'),
                 meta: {
-                    title: '信息管理',
+                    title: '首页',
                     transistion: 'slide-fade'
                 }
             },
@@ -24,7 +24,27 @@ const adminRoutes: RouteRecordRaw[] = [
                 meta: {
                     title: '用户管理',
                     transistion: 'slide-fade'
-                }
+                },
+                children: [
+                    {
+                        path: 'candidate',
+                        name: 'adminUserCandidate',
+                        component: () => import('@/views/admin/user/candidate/index.vue'),
+                        meta: { title: '考生管理', transistion: 'slide-fade' }
+                    },
+                    {
+                        path: 'student',
+                        name: 'adminUserStudent',
+                        component: () => import('@/views/admin/user/student/index.vue'),
+                        meta: { title: '学生管理', transistion: 'slide-fade' }
+                    },
+                    {
+                        path: 'teacher',
+                        name: 'adminUserTeacher',
+                        component: () => import('@/views/admin/user/teacher/index.vue'),
+                        meta: { title: '教师管理', transistion: 'slide-fade' }
+                    }
+                ]
             },
             {
                 path: 'school',

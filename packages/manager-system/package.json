@@ -9,6 +9,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@smallwei/avue": "^3.2.12",
         "@types/node": "^18.15.10",
         "vue": "^3.2.45"
     },

@@ -9,8 +9,12 @@ export const useSidebar = defineStore('sidebar', {
             {
                 name: '用户管理',
                 icon: 'UserFilled',
-                path: '/admin/user'
-                // children: []
+                path: '/admin/user',
+                children: [
+                    { name: '考生管理', icon: 'User', path: '/admin/user/candidate' },
+                    { name: '学生管理', icon: 'User', path: '/admin/user/student' },
+                    { name: '教师管理', icon: 'User', path: '/admin/user/teacher' }
+                ]
             },
             {
                 name: '学校管理',
