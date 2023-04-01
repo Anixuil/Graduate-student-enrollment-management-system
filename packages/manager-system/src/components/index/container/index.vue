@@ -73,7 +73,7 @@ const handleClick = (path: string) => {
 <style scoped lang="scss">
 .container-box {
     margin-top: 50px;
-    min-height: calc(100vh - 96px - 84px);
+    min-height: calc(100vh - 132px - 36px);
 
     .container-title {
         width: 100%;

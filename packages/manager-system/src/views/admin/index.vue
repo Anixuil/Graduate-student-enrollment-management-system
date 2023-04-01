@@ -32,7 +32,7 @@ const sidebarStatus = computed(() => sidebar.sidebarStatus)
     box-sizing: border-box;
     min-width: 1000px;
     position: relative;
-    height: calc(100vh - 91px);
+    height: calc(100vh - 106px);
     display: flex;
     justify-content: space-between;
     gap: 20px;

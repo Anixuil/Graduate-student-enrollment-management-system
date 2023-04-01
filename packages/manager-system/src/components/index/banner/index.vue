@@ -49,8 +49,8 @@
 
 <style scoped lang="scss">
 .banner-box {
-    height: calc(100vh - 96px - 64px);
-    min-height: 800px;
+    height: calc(100vh - 132px - 36px);
+    min-height: 600px;
     position: relative;
 
     .banner-title {

@@ -20,6 +20,7 @@ export const useSystem = defineStore('system', {
         //切换系统模式
         switchSystemMode(): boolean {
             this.systemMode = !this.systemMode
+            sessionStorage.setItem('systemMode', this.systemMode.toString())
             return this.systemMode
         }
     }

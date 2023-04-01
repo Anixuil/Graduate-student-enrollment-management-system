@@ -31,7 +31,7 @@ const gotoMenu = () => {
     min-width: 1000px;
     max-width: 1600px;
     background-color: white;
-    height: calc(100vh - 117px);
+    height: calc(100vh - 152px);
     overflow-y: auto;
     box-sizing: border-box;
     border: 10px solid white;
