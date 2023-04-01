@@ -4,13 +4,13 @@
         <div :class="sidebarStatus ? 'admin-container' : 'admin-container expand'">
             <!-- 引入tab -->
             <page-header class="admin-page-header"></page-header>
-            <router-view v-slot="{ Component, route }" class="admin-components">
-                <keep-alive>
-                    <transition :name="(route.meta.transition as string)">
+            <RouterView v-slot="{ Component, route }" class="admin-components">
+                <KeepAlive>
+                    <Transition :name="(route.meta.transition as string)">
                         <component :is="Component" />
-                    </transition>
-                </keep-alive>
-            </router-view>
+                    </Transition>
+                </KeepAlive>
+            </RouterView>
         </div>
     </div>
 </template>

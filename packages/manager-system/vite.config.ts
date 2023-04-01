@@ -21,10 +21,15 @@ export default defineConfig({
         AutoImport({
             imports: ['vue', 'vue-router'],
             dts: path.resolve(pathSrc, 'auto-imports.d.ts'),
-            resolvers: [ElementPlusResolver(), IconsResolver({ prefix: 'Icon' })]
+            // resolvers: [ElementPlusResolver(), IconsResolver({ prefix: 'Icon' })]
+            resolvers: [IconsResolver({ prefix: 'Icon' })]
         }),
         Components({
-            resolvers: [IconsResolver({ enabledCollections: ['ep'] }), ElementPlusResolver()],
+            resolvers: [
+                IconsResolver({ enabledCollections: ['ep'] }),
+                ElementPlusResolver({ importStyle: 'sass' })
+            ],
+            // resolvers:[IconsResolver({enabledCollections: ['ep'] })],
             dts: path.resolve(pathSrc, 'components.d.ts')
         }),
         Icons({
@@ -41,4 +46,12 @@ export default defineConfig({
             '@': pathSrc
         }
     }
+    //配置css
+    // css:{
+    //     preprocessorOptions:{
+    //         scss:{
+    //             // additionalData:`@use "@/styles/element/index.scss" as *;`,
+    //         }
+    //     }
+    // }
 })

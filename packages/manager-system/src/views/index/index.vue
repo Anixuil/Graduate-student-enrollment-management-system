@@ -31,10 +31,10 @@ const gotoMenu = () => {
     min-width: 1000px;
     max-width: 1600px;
     background-color: white;
-    height: calc(100vh - 96px);
+    height: calc(100vh - 117px);
     overflow-y: auto;
     box-sizing: border-box;
-    border: 40px solid white;
+    border: 10px solid white;
 
     &::-webkit-scrollbar {
         width: 0;
