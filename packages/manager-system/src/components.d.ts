@@ -9,12 +9,8 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Banner: typeof import('./components/index/banner/index.vue')['default']
     Container: typeof import('./components/index/container/index.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElMenu: typeof import('element-plus/es')['ElMenu']
-    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
-    ElPageHeader: typeof import('element-plus/es')['ElPageHeader']
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     HeadNav: typeof import('./components/headNav/index.vue')['default']

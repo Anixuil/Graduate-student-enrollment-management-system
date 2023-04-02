@@ -93,6 +93,7 @@ const menuList: any = ref([
                 router.currentRoute.value.meta.title as string,
                 router
             )
+            menuFlag.value = false
         }
     },
     {
@@ -101,12 +102,14 @@ const menuList: any = ref([
             pageHeader.removePageHeaderArrayExceptTitle(
                 router.currentRoute.value.meta.title as string
             )
+            menuFlag.value = false
         }
     },
     {
         name: '关闭所有页',
         click() {
             pageHeader.clearPageHeaderArray(router)
+            menuFlag.value = false
         }
     }
 ])
