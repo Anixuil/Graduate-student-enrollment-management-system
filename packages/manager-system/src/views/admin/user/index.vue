@@ -46,19 +46,6 @@ const option = {
 </script>
 
 <style scoped lang="scss">
-.index-wrapper {
-    // //滚动条样式
-    // &::-webkit-scrollbar {
-    //     width: 5px;
-    //     background-color: transparent;
-    // }
-
-    // &::-webkit-scrollbar-thumb {
-    //     background-color: #ccc;
-    //     border-radius: 10px;
-    // }
-}
-
 //页面跳转过渡效果
 .slide-fade-enter-active {
     transition: all 0.4s ease;

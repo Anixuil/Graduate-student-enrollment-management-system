@@ -51,6 +51,10 @@ const option = reactive({
 
 <style scoped lang="scss">
 :deep(.avue-data-display .count) {
-    color: rgb(64 73 112);
+    color: rgb(250 131 51);
+}
+
+:deep(.avue-data-display .title) {
+    color: rgb(83 111 114);
 }
 </style>

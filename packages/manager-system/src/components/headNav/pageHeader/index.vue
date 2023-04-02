@@ -129,7 +129,7 @@ const openMenu = (e: MouseEvent): void => {
     margin: 10px auto;
     background-color: white;
     box-sizing: border-box;
-    max-width: 1600px;
+    // max-width: 1600px;
     overflow-x: auto;
 
     //操作横向滚动条宽度

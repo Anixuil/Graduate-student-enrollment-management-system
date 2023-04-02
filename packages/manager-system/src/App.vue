@@ -11,7 +11,11 @@ const pageHeader = usePageHeader()
 <template>
     <HeaderNav></HeaderNav>
     <Transition name="page-header">
-        <PageHeader v-if="system.systemMode" v-show="pageHeader.pageHeaderStatus"></PageHeader>
+        <PageHeader
+            v-if="system.systemMode"
+            :style="{ maxWidth: system.systemMode ? '1600px' : 'none' }"
+            v-show="pageHeader.pageHeaderStatus"
+        ></PageHeader>
     </Transition>
     <RouterView v-slot="{ Component, route }">
         <KeepAlive>

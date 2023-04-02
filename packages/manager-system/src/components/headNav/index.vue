@@ -47,7 +47,7 @@ const gotoPerson = () => {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        max-width: 1600px;
+        // max-width: 1600px;
         min-width: 1000px;
         margin: 0 auto;
         font-size: 14px;
