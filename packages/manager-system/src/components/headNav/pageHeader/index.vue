@@ -77,10 +77,10 @@ const mouseScroll = (e: WheelEvent): void => {
 //鼠标点击其他地方关闭右键菜单
 document.addEventListener('click', e => {
     if (!menuFlag.value) return
-    let isSelf = pageHeaderWrapper.value.contains(e.target)
-    if (!isSelf) {
-        menuFlag.value = false
-    }
+    // let isSelf = pageHeaderWrapper.value.contains(e.target)
+    // if (!isSelf) {
+    menuFlag.value = false
+    // }
 })
 //鼠标右键菜单
 const menuFlag: Ref<boolean> = ref(false)
