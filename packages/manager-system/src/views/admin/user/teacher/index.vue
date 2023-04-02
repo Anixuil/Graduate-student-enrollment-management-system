@@ -1,52 +1,64 @@
 <template>
     <div>
-        <avue-crud
-            v-model="form"
-            :option="option"
-            @row-save="rowSave"
-            @row-update="rowUpdate"
-            @row-del="rowDel"
-            :data="data"
-        ></avue-crud>
+        <avue-crud :data="data" :option="option" v-model:page="page" @on-load="onLoad"></avue-crud>
     </div>
 </template>
 
 <script setup lang="ts">
-const option: any = ref(null)
-const data: any = ref(null)
-const form: any = ref({})
-option.value = {
-    index: true,
+import { ElMessage } from 'element-plus'
+
+const page = reactive({
+    pageSize: 20,
+    pagerCount: 5
+})
+const data: any = ref([])
+const option = reactive({
+    align: 'center',
+    menuAlign: 'center',
+    excelBtn: true,
     column: [
+        { label: '姓名', prop: 'name' },
+        { label: '年龄', prop: 'age' },
+        { label: '性别', prop: 'sex' }
+    ]
+})
+
+//表格加载
+const onLoad = (page: any) => {
+    page.total = 4
+    //模拟分页
+    data.value = [
         {
-            label: '姓名',
-            prop: 'name'
+            id: 1,
+            name: '张三',
+            sex: '男',
+            age: 18
         },
         {
-            label: '年龄',
-            prop: 'sex'
+            id: 2,
+            name: '李四',
+            sex: '女',
+            age: 18
+        },
+        {
+            id: 3,
+            name: '王五',
+            sex: '女',
+            age: 20
+        },
+        {
+            id: 4,
+            name: '赵六',
+            sex: '女',
+            age: 23
         }
     ]
 }
-data.value = [
-    {
-        name: '张三',
-        sex: 12
-    },
-    {
-        name: '李四',
-        sex: 13
-    }
-]
-function rowSave(row: any, done: any, loading: any) {
-    done(row)
-}
-function rowDel(row: any, index: any, done: any) {
-    done(row)
-}
-function rowUpdate(row: any, index: any, done: any, loading: any) {
-    done(row)
-}
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+:deep(.avue-dialog .el-dialog__body) {
+    border: 1px solid red;
+    overflow: hidden;
+}
+</style>
