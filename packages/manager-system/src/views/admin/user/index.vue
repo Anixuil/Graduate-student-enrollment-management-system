@@ -1,5 +1,6 @@
 <template>
     <div class="index-wrapper">
+        <avue-data-tabs :option="option"></avue-data-tabs>
         <RouterView v-slot="{ Component, route }">
             <KeepAlive>
                 <Transition :name="(route.meta.transition as string)">
@@ -11,10 +12,53 @@
 </template>
 
 <script setup lang="ts">
-import { KeepAlive } from 'vue'
+const option = {
+    data: [
+        {
+            title: '教师人数统计',
+            subtitle: '实时',
+            count: 7993,
+            allcount: 10222,
+            text: '当前分类总记录数',
+            color: 'rgb(27, 201, 142)',
+            key: 'Teacher'
+        },
+        {
+            title: '学生人数统计',
+            subtitle: '实时',
+            count: 3112,
+            allcount: 10222,
+            text: '当前上传的附件数',
+            color: 'rgb(230, 71, 88)',
+            key: 'Student'
+        },
+        {
+            title: '考生人数统计',
+            subtitle: '实时',
+            count: 908,
+            allcount: 10222,
+            text: '评论次数',
+            color: 'rgb(178, 159, 255)',
+            key: 'Examinee'
+        }
+    ]
+}
 </script>
 
 <style scoped lang="scss">
+.index-wrapper {
+    // //滚动条样式
+    // &::-webkit-scrollbar {
+    //     width: 5px;
+    //     background-color: transparent;
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //     background-color: #ccc;
+    //     border-radius: 10px;
+    // }
+}
+
 //页面跳转过渡效果
 .slide-fade-enter-active {
     transition: all 0.4s ease;

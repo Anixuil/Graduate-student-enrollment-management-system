@@ -1,12 +1,10 @@
 <template>
-    <div>
+    <div class="teacher-wrapper">
         <avue-crud :data="data" :option="option" v-model:page="page" @on-load="onLoad"></avue-crud>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from 'element-plus'
-
 const page = reactive({
     pageSize: 20,
     pagerCount: 5
@@ -57,8 +55,8 @@ const onLoad = (page: any) => {
 </script>
 
 <style scoped lang="scss">
-:deep(.avue-dialog .el-dialog__body) {
-    border: 1px solid red;
-    overflow: hidden;
+.teacher-wrapper {
+    width: 100%;
+    height: 100%;
 }
 </style>

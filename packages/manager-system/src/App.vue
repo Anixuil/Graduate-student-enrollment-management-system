@@ -59,4 +59,17 @@ body::-webkit-scrollbar {
     transform: translateY(20px);
     opacity: 0;
 }
+
+* {
+    //滚动条样式
+    &::-webkit-scrollbar {
+        width: 5px;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 10px;
+    }
+}
 </style>
