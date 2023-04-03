@@ -6,3 +6,5 @@ declare module '*.vue' {
 }
 
 declare module '@smallwei/avue'
+
+declare module 'element-plus/dist/locale/zh-cn.mjs'

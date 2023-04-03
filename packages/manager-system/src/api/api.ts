@@ -1,5 +1,3 @@
-import request from './request'
-
 //接口返回数据类型
 interface ItypeApi<T> {
     data: T

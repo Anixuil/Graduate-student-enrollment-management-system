@@ -29,12 +29,12 @@
 </template>
 
 <script setup lang="ts">
-import { ConfirmInfoProps } from '.'
+// import { ConfirmInfoProps } from '.'
 import { useUser } from '@/store/user/index'
-import { register, login } from '@/api/user/index'
+import { login } from '@/api/user/index'
 import { ElMessage } from 'element-plus'
 
-const props = defineProps(ConfirmInfoProps)
+// const props = defineProps(ConfirmInfoProps)
 const store = useUser()
 
 //从pinia中获取数据 拿到用户的基本信息和考生信息并进行对象合并
@@ -56,11 +56,12 @@ const modifyInfo = () => {
 
 const handleClickEmit = async () => {
     try {
-        let res = await login({
+        let res: any = await login({
             userName: 'anixuil',
             userPassword: 'l20010207'
         })
         ElMessage.success(res.msg as string)
+        localStorage.setItem('token', res.data.token)
     } catch (e: any) {
         console.log(e)
     }

@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import './styles/reset.css'
 import App from './App.vue'
 import './styles/element/index.scss'
-// import 'element-plus/dist/index.css'
+
 import router from './router'
 import pinia from '@/store'
 import Avue from '@smallwei/avue'
@@ -12,6 +12,7 @@ import tab from '@/components/common/tab/index.vue'
 import infoDetail from '@/components/common/infoDetail/index.vue'
 
 import ElementPlus from 'element-plus'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 const app = createApp(App)
@@ -25,6 +26,8 @@ app.component('infoDetail', infoDetail)
 
 app.use(router)
 app.use(pinia)
-app.use(ElementPlus)
+app.use(ElementPlus, {
+    locale: zhCn
+})
 app.use(Avue)
 app.mount('#app')
