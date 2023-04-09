@@ -11,9 +11,9 @@ export const useSidebar = defineStore('sidebar', {
                 icon: 'UserFilled',
                 path: '/admin/user',
                 children: [
-                    { name: '考生管理', icon: 'User', path: '/admin/user/candidate' },
-                    { name: '学生管理', icon: 'User', path: '/admin/user/student' },
-                    { name: '教师管理', icon: 'User', path: '/admin/user/teacher' }
+                    { name: '考生模块', icon: 'User', path: '/admin/user/candidate' },
+                    { name: '学生模块', icon: 'User', path: '/admin/user/student' },
+                    { name: '教师模块', icon: 'User', path: '/admin/user/teacher' }
                 ]
             },
             {
@@ -21,33 +21,34 @@ export const useSidebar = defineStore('sidebar', {
                 icon: 'School',
                 path: '/admin/school',
                 children: [
-                    { name: '院系管理', icon: 'School', path: '/admin/school/department' },
-                    { name: '专业管理', icon: 'School', path: '/admin/school/major' },
-                    { name: '课程管理', icon: 'School', path: '/admin/school/class' },
-                    { name: '考试科目管理', icon: 'School', path: '/admin/school/exam' },
-                    { name: '招生计划管理', icon: 'School', path: '/admin/school/plan' }
+                    { name: '院系模块', icon: 'School', path: '/admin/school/department' },
+                    { name: '专业模块', icon: 'School', path: '/admin/school/major' },
+                    { name: '课程模块', icon: 'School', path: '/admin/school/class' },
+                    { name: '考试模块', icon: 'School', path: '/admin/school/exam' },
+                    { name: '招生模块', icon: 'School', path: '/admin/school/plan' }
                 ]
             },
             {
-                name: '公共管理',
+                name: '信息管理',
                 icon: 'SetUp',
                 path: '/admin/info',
                 children: [
-                    { name: '轮播管理', icon: 'DataBoard', path: '/admin/info/banner' },
-                    { name: '公告管理', icon: 'Document', path: '/admin/info/notice' }
+                    { name: '轮播模块', icon: 'DataBoard', path: '/admin/info/banner' },
+                    { name: '公告模块', icon: 'Document', path: '/admin/info/notice' }
                 ]
-            },
-            {
-                name: '流程管理',
-                icon: 'Calendar',
-                path: '/admin/process'
-                // children: []
             },
             {
                 name: '操作管理',
                 icon: 'Tools',
-                path: '/admin/operation',
-                children: [{ name: '操作日志', icon: 'Operation', path: '/admin/operation/log' }]
+                path: '/admin/system',
+                children: [
+                    {
+                        name: '流程管理',
+                        icon: 'Calendar',
+                        path: '/admin/system/process'
+                    },
+                    { name: '操作日志', icon: 'Operation', path: '/admin/system/log' }
+                ]
             }
         ]
     }),
