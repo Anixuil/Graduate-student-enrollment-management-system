@@ -28,10 +28,11 @@
 </template>
 
 <script setup lang="ts">
-import { getDepartList, deleteDepart, addDepart } from '@/api/depart'
+import { getDepartList, deleteDepart, addDepart, updateDepart } from '@/api/depart'
 import { importExcel } from '@/api/upload'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Ref } from 'vue'
+import { departTableOption } from '.'
 
 const page = reactive({
     currentPage: 1,
@@ -40,18 +41,7 @@ const page = reactive({
     total: 0
 })
 const data: any = ref([])
-const option = reactive({
-    align: 'center',
-    menuAlign: 'center',
-    excelBtn: true,
-    height: 'calc(100vh - 400px)',
-    column: [
-        { label: '序号', prop: 'index', width: 70, disabled: true },
-        { label: '院名', prop: 'departName' },
-        { label: '介绍', prop: 'departIntro' },
-        { label: '创建时间', prop: 'createDate', disabled: true }
-    ]
-})
+const option = reactive(departTableOption)
 
 //表格加载
 const tableLoading: Ref<boolean> = ref(false)
@@ -95,7 +85,7 @@ const uploadFile = async (file: any) => {
 
 //新增
 const rowSave = async (form: any, done: Function) => {
-    console.log(form)
+    // console.log(form)
     try {
         await addDepart(form)
         ElMessage.success('新增成功')
@@ -110,8 +100,19 @@ const rowSave = async (form: any, done: Function) => {
 // const rowEdit = (form: any, index: number, done: Function, loading: Function) => {
 //     console.log(form)
 // }
-const rowEdit = (form: any) => {
-    console.log(form)
+const rowEdit = async (form: any, index: number, done: Function) => {
+    try {
+        await updateDepart({
+            departUuid: form.departUuid,
+            departName: form.departName,
+            departIntro: form.departIntro
+        })
+        ElMessage.success('修改成功')
+        refreshChange()
+        done()
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 //删除

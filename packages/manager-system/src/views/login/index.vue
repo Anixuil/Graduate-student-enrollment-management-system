@@ -1,13 +1,18 @@
 <template>
     <div class="login-page-box" ref="page">
-        <div class="login-form-box">
+        <div class="login-form-box" @keydown.enter="loginClick">
             <div class="input-item">
-                <input type="text" name="user_name" required />
+                <input type="text" v-model="userInfo.userName" name="user_name" required />
                 <span class="input-name">用户名</span>
                 <i></i>
             </div>
             <div class="input-item">
-                <input type="password" name="user_password" required />
+                <input
+                    type="password"
+                    v-model="userInfo.userPassword"
+                    name="user_password"
+                    required
+                />
                 <span class="input-name">密码</span>
                 <i></i>
             </div>
@@ -17,13 +22,34 @@
 </template>
 
 <script setup lang="ts">
+import { login } from '@/api/user'
 import { BgImageAuto } from '@/utils/utils'
+import { ElNotification } from 'element-plus'
 
 let router = useRouter()
 
 //登录
-const loginClick = () => {
-    router.push('index')
+const userInfo = reactive({
+    userName: '',
+    userPassword: ''
+})
+const loginClick = async () => {
+    try {
+        let res: any = await login(userInfo)
+        ElNotification({
+            title: '登录成功',
+            message: `${res.data.userInfo.userName}，欢迎回来！`,
+            type: 'success',
+            position: 'bottom-right',
+            duration: 5000
+        })
+        localStorage.setItem('token', res.data.token)
+        setTimeout(() => {
+            router.push('index')
+        }, 1000)
+    } catch (e: any) {
+        console.log(e)
+    }
 }
 
 const page = ref()
