@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
 //创建axios实例
-const request = axios.create({
+export const request = axios.create({
     baseURL: 'http://localhost:8080/anixuil', //请求地址
     timeout: 5000, //超时时间
     withCredentials: true //跨域请求时是否需要使用凭证

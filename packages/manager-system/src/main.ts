@@ -5,6 +5,7 @@ import './styles/element/index.scss'
 
 import router from './router'
 import pinia from '@/store'
+import axios from 'axios'
 import Avue from '@smallwei/avue'
 import '@smallwei/avue/lib/index.css'
 
@@ -29,5 +30,7 @@ app.use(pinia)
 app.use(ElementPlus, {
     locale: zhCn
 })
-app.use(Avue)
+app.use(Avue, {
+    axios
+})
 app.mount('#app')

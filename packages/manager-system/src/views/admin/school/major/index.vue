@@ -34,6 +34,8 @@
                     {{ row[item.prop] }}
                 </div>
             </template>
+            <!-- 弹出框 -->
+            <template #departName></template>
         </avue-crud>
     </div>
 </template>
@@ -59,8 +61,6 @@ const onLoad = async (page: any) => {
     tableLoading.value = true
     try {
         let res: any = await getMajorList({ pageNum: page.currentPage, pageSize: page.pageSize })
-        console.log(res)
-
         data.value = res.data.records
         page.total = res.data.total
         page.currentPage = res.data.currentPage
