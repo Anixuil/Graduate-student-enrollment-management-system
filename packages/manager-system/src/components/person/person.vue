@@ -16,13 +16,6 @@
             :listLabel="listLabel"
             :listData="student"
         ></infoDetail>
-        <tab v-if="user.userRole == 'teacher'">教师信息</tab>
-        <infoDetail
-            v-if="user.userRole == 'teacher'"
-            :listKeys="teacherKeys"
-            :listLabel="listLabel"
-            :listData="teacher"
-        ></infoDetail>
     </div>
 </template>
 
@@ -46,10 +39,6 @@ const candidateKeys: Ref<string[]> = ref(Object.keys(candidate.value))
 //学生信息
 const student = computed(() => store.getStudentInfo as studentInterface)
 const studentKeys: Ref<string[]> = ref(Object.keys(student.value))
-
-//教师信息
-const teacher = computed(() => store.getTeacherInfo as studentInterface)
-const teacherKeys: Ref<string[]> = ref(Object.keys(teacher.value))
 </script>
 
 <style scoped lang="scss">

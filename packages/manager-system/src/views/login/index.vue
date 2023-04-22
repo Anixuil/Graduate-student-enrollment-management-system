@@ -16,7 +16,7 @@
                 <span class="input-name">密码</span>
                 <i></i>
             </div>
-            <div class="input-item btn" @click="loginClick">登录</div>
+            <div class="input-item btn" @click="loginClick" v-loading="loading">登录</div>
         </div>
     </div>
 </template>
@@ -26,46 +26,68 @@ import { login } from '@/api/user'
 import { BgImageAuto } from '@/utils/utils'
 import { ElNotification } from 'element-plus'
 import { useUser } from '@/store/user'
+import { useSystem } from '@/store/system'
+import { usePageHeader } from '@/store/pageHeader/pageHeader'
 
-let router = useRouter()
+const router = useRouter()
 const user = useUser()
+const system = useSystem()
+const pageHeader = usePageHeader()
 
 //登录
 const userInfo = reactive({
     userName: '',
     userPassword: ''
 })
+const loading = ref(false)
 const loginClick = async () => {
     try {
+        loading.value = true
         let res: any = await login(userInfo)
+        const admin = ['admin', 'teacher']
         localStorage.setItem('token', res.data.token)
-        user.initUserInfo()
-        // console.log(res)
+        if (!user.initUserInfo())
+            return ElNotification({
+                title: '登录失败',
+                message: `用户信息初始化失败！`,
+                type: 'error',
+                position: 'bottom-right',
+                duration: 5000
+            })
+        //切换系统模式
+        const mode = admin.includes(res.data.userInfo)
+        system.switchSystemMode(mode)
+        pageHeader.switchPageMode(mode)
         ElNotification({
             title: '登录成功',
-            message: `${user.userName}欢迎回来！`,
+            message: `${userInfo.userName}欢迎回来！`,
             type: 'success',
             position: 'bottom-right',
             duration: 5000
         })
         setTimeout(() => {
+            loading.value = false
             if (user.userRole === 'admin') router.push('admin')
             else if (user.userRole === 'teacher') router.push('admin')
             else router.push('index')
         }, 1000)
     } catch (e: any) {
         console.log(e)
+        loading.value = false
     }
 }
 
 const page = ref()
-nextTick(() => {
-    const img = new BgImageAuto('login-bg', '/bg1.jpg', page.value)
-    window.onresize = () => {
-        return () => {
-            img.controlImage()
+onMounted(() => {
+    nextTick(() => {
+        const img = new BgImageAuto('login-bg', '/bg1.jpg', page.value)
+        img.controlImage()
+        window.onresize = () => {
+            return () => {
+                img.controlImage()
+            }
         }
-    }
+    })
 })
 </script>
 
@@ -166,6 +188,7 @@ nextTick(() => {
                 color: white;
                 transition: all 0.3s ease;
                 user-select: none;
+                overflow: hidden;
 
                 &:hover {
                     background-color: rgb(51 58 90);

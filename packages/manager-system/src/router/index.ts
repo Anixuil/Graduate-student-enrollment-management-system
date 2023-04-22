@@ -38,6 +38,9 @@ router.beforeEach(to => {
     }
     //如果当前角色不符合权限，就提示没有权限并不放行
     if (to.meta.roles && !to.meta.roles.includes(userStore.userRole)) {
+        console.log(to.meta.roles)
+        console.log(to)
+        console.log(userStore.userRole)
         ElNotification({
             title: '提示',
             message: '权限不足，无法访问，跳转至当前权限首页',

@@ -12,8 +12,14 @@ const pageHeader = usePageHeader()
 pageHeader.getSessionStorage()
 
 const user = useUser()
+const admin = ['admin', 'teacher']
+const mode = admin.includes(user.userRole)
+system.switchSystemMode(mode)
+pageHeader.switchPageMode(mode)
 onMounted(() => {
-    user.initUserInfo()
+    nextTick(async () => {
+        await user.initUserInfo()
+    })
 })
 </script>
 
@@ -25,7 +31,6 @@ onMounted(() => {
             :style="{ maxWidth: system.systemMode ? '1600px' : 'none' }"
             v-show="pageHeader.pageHeaderStatus"
         >
-            {{ system.systemMode }}
         </PageHeader>
     </Transition>
     <RouterView v-slot="{ Component, route }">

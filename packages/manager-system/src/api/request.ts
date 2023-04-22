@@ -1,17 +1,20 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
+import nprogress from 'nprogress' //进度条
+import 'nprogress/nprogress.css' //进度条样式
 
 //创建axios实例
 export const request = axios.create({
     baseURL: 'http://localhost:8080/anixuil', //请求地址
-    timeout: 5000, //超时时间
+    timeout: 36000, //超时时间
     withCredentials: true //跨域请求时是否需要使用凭证
 })
 
 //请求拦截器
 request.interceptors.request.use(
     config => {
+        nprogress.start()
         //如果请求的地址是登录，就不需要携带token
         const arr: string[] = ['/user/login', '/user/register']
         const index = arr.findIndex(item => {
@@ -32,6 +35,7 @@ request.interceptors.request.use(
 //响应拦截器
 request.interceptors.response.use(
     response => {
+        nprogress.done()
         //对响应数据做点什么
         const res = response.data
         if (res.code !== 200) {
@@ -43,11 +47,12 @@ request.interceptors.response.use(
         }
     },
     error => {
+        nprogress.done()
         //对响应错误做点什么
         ElMessage.error(error.message)
-        console.log(error.response.status)
         if (error.response.status === 403) {
             localStorage.removeItem('token')
+            useRouter().push('login')
         }
         return Promise.reject(error)
     }

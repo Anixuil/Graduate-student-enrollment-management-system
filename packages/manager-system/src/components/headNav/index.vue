@@ -30,7 +30,6 @@ import { useSystem } from '@/store/system'
 const system = useSystem()
 const router = useRouter()
 const gotoPerson = () => {
-    console.log(system.systemMode)
     if (!system.systemMode) return router.push('/admin/person')
     router.push('/person')
 }

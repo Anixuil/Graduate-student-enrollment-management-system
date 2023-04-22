@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { getUserInfo } from '@/api/user'
+import { useRouter } from 'vue-router'
 
 export const useUser = defineStore('user', {
     state: () => ({
@@ -83,12 +84,13 @@ export const useUser = defineStore('user', {
             }
         },
         //初始化用户信息
-        initUserInfo(): void {
+        async initUserInfo(): boolean {
             if (sessionStorage.getItem('userInfo') === null) {
                 if (localStorage.getItem('token')) {
-                    this.getUserInfoFromServer()
+                    await this.getUserInfoFromServer()
                 } else {
-                    return this.$router.push('/login')
+                    // return this.$router.push('/login')
+                    return false
                 }
             }
             //从sessionStorage中获取用户信息
@@ -96,6 +98,13 @@ export const useUser = defineStore('user', {
             if (userInfo) {
                 Object.assign(this, JSON.parse(userInfo))
             }
+            return true
+        },
+        //退出登录
+        logout(): boolean {
+            sessionStorage.clear()
+            localStorage.clear()
+            return true
         }
     }
 })

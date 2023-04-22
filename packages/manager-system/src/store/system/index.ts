@@ -18,8 +18,8 @@ export const useSystem = defineStore('system', {
     },
     actions: {
         //切换系统模式
-        switchSystemMode(): boolean {
-            this.systemMode = !this.systemMode
+        switchSystemMode(mode: boolean): boolean {
+            this.systemMode = mode
             sessionStorage.setItem('systemMode', this.systemMode.toString())
             return this.systemMode
         },

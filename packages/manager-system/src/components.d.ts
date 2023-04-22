@@ -28,4 +28,7 @@ declare module '@vue/runtime-core' {
     SideNav: typeof import('./components/common/sideNav/index.vue')['default']
     Tab: typeof import('./components/common/tab/index.vue')['default']
   }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+  }
 }
