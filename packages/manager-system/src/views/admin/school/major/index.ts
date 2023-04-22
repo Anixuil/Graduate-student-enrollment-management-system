@@ -24,11 +24,13 @@ export const majorTableOption = {
         {
             label: '专业名',
             prop: 'majorName',
-            rules: {
-                required: true,
-                message: '请输入专业名',
-                trigger: ['blur', 'change']
-            }
+            rules: [
+                {
+                    required: true,
+                    message: '请输入专业名',
+                    trigger: ['blur', 'change']
+                }
+            ]
         },
         {
             label: '所属院系',
@@ -41,11 +43,13 @@ export const majorTableOption = {
                 value: 'departUuid'
             },
             hide: true,
-            rules: {
-                required: true,
-                message: '请选择所属院系',
-                trigger: ['blur', 'change']
-            }
+            rules: [
+                {
+                    required: true,
+                    message: '请选择所属院系',
+                    trigger: ['blur', 'change']
+                }
+            ]
         },
         {
             label: '所属院系',

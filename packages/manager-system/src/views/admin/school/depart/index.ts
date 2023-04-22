@@ -16,11 +16,13 @@ export const departTableOption = {
         {
             label: '院名',
             prop: 'departName',
-            rules: {
-                required: true,
-                message: '请输入院名',
-                trigger: ['blur', 'change']
-            }
+            rules: [
+                {
+                    required: true,
+                    message: '请输入院名',
+                    trigger: ['blur', 'change']
+                }
+            ]
         },
         {
             label: '介绍',
