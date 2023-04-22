@@ -18,6 +18,7 @@ export const getMajorList = (params: MajorAllParams): Res<any[]> => {
 //添加专业
 export interface AddParams {
     majorName: string
+    departUuid: number
     majorIntro: string
 }
 

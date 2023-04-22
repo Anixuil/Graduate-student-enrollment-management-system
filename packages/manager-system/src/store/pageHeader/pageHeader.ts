@@ -26,11 +26,17 @@ export const usePageHeader = defineStore('pageHeader', {
         addPageHeaderArray(title: string, path: string): void {
             this.pageHeaderArray.push(title)
             this.pageHeaderPath.push(path)
+            //存入sessionStorage
+            setSessionStorage('pageHeaderArray', this.pageHeaderArray)
+            setSessionStorage('pageHeaderPath', this.pageHeaderPath)
         },
         //删除页头标签
         removePageHeaderArray(index: number): void {
             this.pageHeaderArray.splice(index, 1)
             this.pageHeaderPath.splice(index, 1)
+            //存入sessionStorage
+            setSessionStorage('pageHeaderArray', this.pageHeaderArray)
+            setSessionStorage('pageHeaderPath', this.pageHeaderPath)
         },
         //切换页头模式
         switchPageMode(mode: boolean): boolean {
@@ -53,6 +59,9 @@ export const usePageHeader = defineStore('pageHeader', {
                 router.push('/admin')
                 this.pageHeaderPath = ['/admin']
             }
+            //存入sessionStorage
+            setSessionStorage('pageHeaderArray', this.pageHeaderArray)
+            setSessionStorage('pageHeaderPath', this.pageHeaderPath)
         },
         //删除当前title为参数的标签
         removePageHeaderArrayByTitle(title: string, router: any): void {
@@ -62,6 +71,9 @@ export const usePageHeader = defineStore('pageHeader', {
                 this.removePageHeaderArray(index)
                 router.push(this.pageHeaderPath[index - 1])
             }
+            //存入sessionStorage
+            setSessionStorage('pageHeaderArray', this.pageHeaderArray)
+            setSessionStorage('pageHeaderPath', this.pageHeaderPath)
         },
         //删除除当前title之外的标签
         removePageHeaderArrayExceptTitle(title: string): void {
@@ -76,6 +88,25 @@ export const usePageHeader = defineStore('pageHeader', {
                     this.pageHeaderPath = ['/admin', this.pageHeaderPath[index]]
                 }
             }
+            //存入sessionStorage
+            setSessionStorage('pageHeaderArray', this.pageHeaderArray)
+            setSessionStorage('pageHeaderPath', this.pageHeaderPath)
+        },
+        //获取sessionStorage中的数据
+        getSessionStorage(): void {
+            if (sessionStorage.getItem('pageHeaderArray')) {
+                this.pageHeaderArray = JSON.parse(
+                    sessionStorage.getItem('pageHeaderArray') as string
+                )
+            }
+            if (sessionStorage.getItem('pageHeaderPath')) {
+                this.pageHeaderPath = JSON.parse(sessionStorage.getItem('pageHeaderPath') as string)
+            }
         }
     }
 })
+
+//封装一个存入sessionStorage的方法
+function setSessionStorage(key: string, value: any): void {
+    sessionStorage.setItem(key, JSON.stringify(value))
+}

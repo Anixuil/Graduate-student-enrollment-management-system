@@ -1,19 +1,22 @@
 import { defineStore } from 'pinia'
+import { getUserInfo } from '@/api/user'
 
 export const useUser = defineStore('user', {
     state: () => ({
-        userName: '刘昕',
-        userAge: 22,
-        userSchool: '中南林业科技大学涉外学院',
-        majorName: '计算机科学与技术',
-        userPhone: '17607381041',
-        userEmail: '1140040227@qq.com',
-        userRole: 'student',
-        teacherId: 'T0001',
-        studentId: 'S0001',
-        candidateId: 'C0001',
-        departName: '信息工程学院',
-        className: '计算机科学与技术'
+        userName: '',
+        userAge: null,
+        userSchool: '',
+        majorName: '',
+        userPhone: '',
+        userEmail: '',
+        userRole: '',
+        teacherId: '',
+        studentId: '',
+        candidateId: '',
+        departName: '',
+        className: '',
+        createDate: '',
+        updateDate: ''
     }),
     getters: {
         //获取信息字段名
@@ -71,21 +74,28 @@ export const useUser = defineStore('user', {
     actions: {
         //从后端获取用户信息
         async getUserInfoFromServer(): Promise<void> {
-            // const res = await getUserInfo()
-            // if (res.code === 200) {
-            //     this.userName = res.data.userName
-            //     this.userAge = res.data.userAge
-            //     this.userSchool = res.data.userSchool
-            //     this.majorName = res.data.majorName
-            //     this.userPhone = res.data.userPhone
-            //     this.userEmail = res.data.userEmail
-            //     this.userRole = res.data.userRole
-            //     this.teacherId = res.data.teacherId
-            //     this.studentId = res.data.studentId
-            //     this.candidateId = res.data.candidateId
-            //     this.departName = res.data.departName
-            //     this.className=res.data.className
-            // }
+            try {
+                const res: ItypeApi<String> = await getUserInfo()
+                Object.assign(this, res.data.userInfo)
+                sessionStorage.setItem('userInfo', JSON.stringify(res.data.userInfo))
+            } catch (err) {
+                console.log(err)
+            }
+        },
+        //初始化用户信息
+        initUserInfo(): void {
+            if (sessionStorage.getItem('userInfo') === null) {
+                if (localStorage.getItem('token')) {
+                    this.getUserInfoFromServer()
+                } else {
+                    return this.$router.push('/login')
+                }
+            }
+            //从sessionStorage中获取用户信息
+            const userInfo = sessionStorage.getItem('userInfo')
+            if (userInfo) {
+                Object.assign(this, JSON.parse(userInfo))
+            }
         }
     }
 })

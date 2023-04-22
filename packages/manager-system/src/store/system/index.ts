@@ -22,6 +22,13 @@ export const useSystem = defineStore('system', {
             this.systemMode = !this.systemMode
             sessionStorage.setItem('systemMode', this.systemMode.toString())
             return this.systemMode
+        },
+        //初始化系统模式
+        initSystemMode(): boolean {
+            //从sessionStorage中获取系统模式 如果没有则默认 true 用户模式
+            const systemMode = sessionStorage.getItem('systemMode') || 'true'
+            this.systemMode = systemMode == 'true'
+            return this.systemMode
         }
     }
 })

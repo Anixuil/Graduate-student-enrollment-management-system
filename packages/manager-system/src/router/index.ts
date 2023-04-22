@@ -1,4 +1,5 @@
 import { usePageHeader } from '@/store'
+import { useUser } from '@/store/user'
 import pinia from '@/store'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import indexRoutes from './common'
@@ -17,18 +18,36 @@ const router = createRouter({
 
 const store = usePageHeader(pinia)
 const pageHeaderArr = ['login']
+const freeRouterArr: string[] = ['login', 'register']
+//获取用户信息
+const userStore = useUser(pinia)
+
 router.beforeEach(to => {
-    //判断是否登录
-    if (to.name !== 'login' && !localStorage.getItem('token')) {
+    //如果是跳转的可以自由访问的页面，就不需要判断是否登录
+    if (freeRouterArr.includes(to.name as string)) {
+        return true
+    }
+    //如果没有登录，就跳转到登录页面
+    if (!localStorage.getItem('token')) {
         ElNotification({
-            title: '未授权',
-            message: '检测到您尚未登录，请先登录！',
-            type: 'warning',
-            position: 'bottom-right',
-            duration: 5000
+            title: '提示',
+            message: '请先登录',
+            type: 'warning'
         })
         return { name: 'login' }
     }
+    //如果当前角色不符合权限，就提示没有权限并不放行
+    if (to.meta.roles && !to.meta.roles.includes(userStore.userRole)) {
+        ElNotification({
+            title: '提示',
+            message: '权限不足，无法访问，跳转至当前权限首页',
+            type: 'warning'
+        })
+        if (userStore.userRole === 'admin' || userStore.userRole === 'teacher')
+            return { name: 'adminIndex' }
+        return { name: 'index' }
+    }
+
     //判断是否需要显示页面头部
     isPageHeader(to)
 })

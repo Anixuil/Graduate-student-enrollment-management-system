@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
 
 //创建axios实例
 export const request = axios.create({
@@ -11,8 +12,15 @@ export const request = axios.create({
 //请求拦截器
 request.interceptors.request.use(
     config => {
+        //如果请求的地址是登录，就不需要携带token
+        const arr: string[] = ['/user/login', '/user/register']
+        const index = arr.findIndex(item => {
+            return item === config.url
+        })
+        if (index === -1) {
+            config.headers['token'] = localStorage.getItem('token') || ''
+        }
         //在发送请求之前做些什么
-        config.headers['token'] = localStorage.getItem('token') || ''
         return config
     },
     error => {
@@ -27,6 +35,7 @@ request.interceptors.response.use(
         //对响应数据做点什么
         const res = response.data
         if (res.code !== 200) {
+            console.log(res)
             ElMessage.error(res.msg || 'Error')
             return Promise.reject(new Error(res.msg || 'Error'))
         } else {
@@ -36,6 +45,10 @@ request.interceptors.response.use(
     error => {
         //对响应错误做点什么
         ElMessage.error(error.message)
+        console.log(error.response.status)
+        if (error.response.status === 403) {
+            localStorage.removeItem('token')
+        }
         return Promise.reject(error)
     }
 )

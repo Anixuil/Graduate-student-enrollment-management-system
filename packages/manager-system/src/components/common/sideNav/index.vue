@@ -18,25 +18,30 @@
                     </div>
                 </Transition>
             </div>
-            <div
-                :class="currentMenu == index ? 'sidebar-container active' : 'sidebar-container'"
-                v-show="sidebarStatus"
-                v-if="item.children"
-            >
+            <Transition>
                 <div
-                    class="sidebar-two"
-                    v-for="item2 in item.children"
-                    :key="item2.path"
-                    @click="gotoContainer(item2.path)"
+                    :class="currentMenu == index ? 'sidebar-container active' : 'sidebar-container'"
+                    v-show="sidebarStatus"
+                    v-if="item.children"
                 >
-                    <div class="sidebar-icon">
-                        <component :is="item2.icon" style="width: 20px; height: 20px"></component>
-                    </div>
-                    <div class="sidebar-title">
-                        {{ item2.name }}
+                    <div
+                        class="sidebar-two"
+                        v-for="item2 in item.children"
+                        :key="item2.path"
+                        @click="gotoContainer(item2.path)"
+                    >
+                        <div class="sidebar-icon">
+                            <component
+                                :is="item2.icon"
+                                style="width: 20px; height: 20px"
+                            ></component>
+                        </div>
+                        <div class="sidebar-title">
+                            {{ item2.name }}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Transition>
         </div>
     </div>
 </template>

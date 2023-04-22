@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="person-control">
-                <span @click="switchSystemMode">切换系统</span>
+                <!--                <span @click="switchSystemMode">切换系统</span>-->
             </div>
         </div>
 

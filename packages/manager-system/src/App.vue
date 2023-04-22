@@ -3,9 +3,18 @@ import HeaderNav from '@/components/headNav/index.vue'
 import PageHeader from '@/components/headNav/pageHeader/index.vue'
 import { usePageHeader } from '@/store'
 import { useSystem } from './store/system'
+import { useUser } from './store/user'
 
 const system = useSystem()
+system.initSystemMode()
 const pageHeader = usePageHeader()
+// 从sessionStorage中获取数据
+pageHeader.getSessionStorage()
+
+const user = useUser()
+onMounted(() => {
+    user.initUserInfo()
+})
 </script>
 
 <template>
@@ -15,7 +24,9 @@ const pageHeader = usePageHeader()
             v-if="system.systemMode"
             :style="{ maxWidth: system.systemMode ? '1600px' : 'none' }"
             v-show="pageHeader.pageHeaderStatus"
-        ></PageHeader>
+        >
+            {{ system.systemMode }}
+        </PageHeader>
     </Transition>
     <RouterView v-slot="{ Component, route }">
         <KeepAlive>

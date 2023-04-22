@@ -25,8 +25,10 @@
 import { login } from '@/api/user'
 import { BgImageAuto } from '@/utils/utils'
 import { ElNotification } from 'element-plus'
+import { useUser } from '@/store/user'
 
 let router = useRouter()
+const user = useUser()
 
 //登录
 const userInfo = reactive({
@@ -36,16 +38,20 @@ const userInfo = reactive({
 const loginClick = async () => {
     try {
         let res: any = await login(userInfo)
+        localStorage.setItem('token', res.data.token)
+        user.initUserInfo()
+        // console.log(res)
         ElNotification({
             title: '登录成功',
-            message: `${res.data.userInfo.userName}，欢迎回来！`,
+            message: `${user.userName}欢迎回来！`,
             type: 'success',
             position: 'bottom-right',
             duration: 5000
         })
-        localStorage.setItem('token', res.data.token)
         setTimeout(() => {
-            router.push('index')
+            if (user.userRole === 'admin') router.push('admin')
+            else if (user.userRole === 'teacher') router.push('admin')
+            else router.push('index')
         }, 1000)
     } catch (e: any) {
         console.log(e)

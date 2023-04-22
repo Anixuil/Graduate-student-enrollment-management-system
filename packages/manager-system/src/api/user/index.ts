@@ -28,3 +28,10 @@ export const login = (data: LoginParams): Res<string> => {
         data
     })
 }
+
+export const getUserInfo = (): Res<string> => {
+    return request({
+        url: '/user/getUserInfo',
+        method: 'get'
+    })
+}

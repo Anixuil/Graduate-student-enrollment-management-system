@@ -30,6 +30,25 @@ app.use(pinia)
 app.use(ElementPlus, {
     locale: zhCn
 })
+
+axios.interceptors.request.use(
+    config => {
+        //如果请求的地址是登录，就不需要携带token
+        const arr: string[] = ['/user/login', '/user/register']
+        const index = arr.findIndex(item => {
+            return item === config.url
+        })
+        if (index === -1) {
+            config.headers['token'] = localStorage.getItem('token') || ''
+        }
+        //在发送请求之前做些什么
+        return config
+    },
+    error => {
+        //对请求错误做些什么
+        return Promise.reject(error)
+    }
+)
 app.use(Avue, {
     axios
 })

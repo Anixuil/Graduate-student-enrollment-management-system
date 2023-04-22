@@ -39,6 +39,13 @@ export default defineConfig({
     //配置服务器
     server: {
         port: 8081
+        // proxy: {
+        //     '/api': {
+        //         target: 'http://localhost:8080/anixuil',
+        //         changeOrigin: true,
+        //         rewrite: path => path.replace(/^\/api/, '')
+        //     }
+        // }
     },
     //配置别名路径
     resolve: {

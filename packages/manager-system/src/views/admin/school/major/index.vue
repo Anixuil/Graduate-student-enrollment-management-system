@@ -35,13 +35,15 @@
                 </div>
             </template>
             <!-- 弹出框 -->
-            <template #departName></template>
+            <!-- <template v-slot:departUuidForm="{row}">
+                {{ row }}
+            </template> -->
         </avue-crud>
     </div>
 </template>
 
 <script setup lang="ts">
-import { majorTableOption } from '.'
+import { majorTableOption } from './index'
 import { Ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getMajorList, deleteMajor, addMajor, updateMajor } from '@/api/major'

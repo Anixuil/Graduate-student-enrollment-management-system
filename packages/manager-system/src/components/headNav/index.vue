@@ -17,7 +17,7 @@
                 <li>研究生招生网</li>
                 <li @click="gotoPerson">
                     <span>个人中心</span>
-                    <img src="swxy_xh.png" alt="" />
+                    <!--                    <img src="swxy_xh.png" alt="" />-->
                 </li>
             </ul>
         </div>
@@ -25,8 +25,13 @@
 </template>
 
 <script setup lang="ts">
+import { useSystem } from '@/store/system'
+
+const system = useSystem()
 const router = useRouter()
 const gotoPerson = () => {
+    console.log(system.systemMode)
+    if (!system.systemMode) return router.push('/admin/person')
     router.push('/person')
 }
 </script>

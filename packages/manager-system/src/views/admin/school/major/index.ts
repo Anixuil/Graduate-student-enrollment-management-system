@@ -23,20 +23,29 @@ export const majorTableOption = {
         },
         {
             label: '专业名',
-            prop: 'majorName'
+            prop: 'majorName',
+            rules: {
+                required: true,
+                message: '请输入专业名',
+                trigger: ['blur', 'change']
+            }
         },
         {
             label: '所属院系',
             prop: 'departUuid',
             type: 'select',
-            dicUrl: `${baseUrl}/dict/depart`,
-            display: false,
+            dicUrl: `${baseUrl}/dict/item?dictType=table&dictName=depart`,
             viewDisplay: false,
             props: {
                 label: 'departName',
                 value: 'departUuid'
             },
-            hide: true
+            hide: true,
+            rules: {
+                required: true,
+                message: '请选择所属院系',
+                trigger: ['blur', 'change']
+            }
         },
         {
             label: '所属院系',

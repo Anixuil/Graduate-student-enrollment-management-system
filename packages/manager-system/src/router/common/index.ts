@@ -9,7 +9,8 @@ const indexRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/index/index.vue'),
         meta: {
             title: '首页',
-            transition: 'slide-fade'
+            transition: 'slide-fade',
+            roles: ['student']
         },
         alias: '/'
     },
@@ -19,7 +20,8 @@ const indexRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/login/index.vue'),
         meta: {
             title: '登录页',
-            transition: 'slide-fade'
+            transition: 'slide-fade',
+            roles: ['student', 'teacher', 'admin']
         },
         alias: '/welcome'
     },
@@ -29,7 +31,8 @@ const indexRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/person/index.vue'),
         meta: {
             title: '个人主页',
-            transition: 'slide-fade'
+            transition: 'slide-fade',
+            roles: ['student']
         },
         alias: '/my'
     },
@@ -39,7 +42,8 @@ const indexRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/controller/confirmInfo/index.vue'),
         meta: {
             title: '确认报名信息',
-            transition: 'slide-fade'
+            transition: 'slide-fade',
+            roles: ['student']
         }
     },
     {
@@ -48,7 +52,8 @@ const indexRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/controller/confirmInter/index.vue'),
         meta: {
             title: '网上确认',
-            transition: 'slide-fade'
+            transition: 'slide-fade',
+            roles: ['student']
         }
     },
     {
@@ -57,7 +62,8 @@ const indexRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/controller/ticket/index.vue'),
         meta: {
             title: '准考证打印',
-            transition: 'slide-fade'
+            transition: 'slide-fade',
+            roles: ['student']
         }
     },
     {
@@ -66,7 +72,8 @@ const indexRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/controller/result/index.vue'),
         meta: {
             title: '成绩查询',
-            transition: 'slide-fade'
+            transition: 'slide-fade',
+            roles: ['student']
         }
     }
 ]
