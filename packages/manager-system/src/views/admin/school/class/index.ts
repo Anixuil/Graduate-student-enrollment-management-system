@@ -1,6 +1,6 @@
 const baseUrl = 'http://localhost:8080/anixuil'
 
-export const majorTableOption = {
+export const classTableOption = {
     align: 'center',
     menuAlign: 'center',
     excelBtn: true,
@@ -15,54 +15,47 @@ export const majorTableOption = {
         },
         {
             label: 'UUID',
-            prop: 'majorUuid',
+            prop: 'classUuid',
             addDisplay: false,
             addDisabled: true,
             editDisabled: true,
             hide: true
         },
         {
-            label: '专业名',
-            prop: 'majorName',
+            label: '课程名',
+            prop: 'className',
             rules: [
                 {
                     required: true,
-                    message: '请输入专业名',
+                    message: '请输入课程名',
                     trigger: ['blur', 'change']
                 }
             ]
         },
         {
-            label: '所属院系',
-            prop: 'departUuid',
+            label: '所属专业',
+            prop: 'majorUuid',
             type: 'select',
-            dicUrl: `${baseUrl}/dict/item?dictType=table&dictName=depart`,
+            dicUrl: `${baseUrl}/dict/item?dictType=table&dictName=major`,
             viewDisplay: false,
             props: {
-                label: 'departName',
-                value: 'departUuid'
+                label: 'majorName',
+                value: 'majorUuid'
             },
             hide: true,
             rules: [
                 {
                     required: true,
-                    message: '请选择所属院系',
+                    message: '请选择所属专业',
                     trigger: ['blur', 'change']
                 }
             ]
         },
         {
-            label: '所属院系',
-            prop: 'departName',
+            label: '所属专业',
+            prop: 'majorName',
             addDisplay: false,
             editDisplay: false
-        },
-        {
-            label: '专业人数',
-            prop: 'studentCount',
-            addDisplay: false,
-            editDisabled: true,
-            hide: true
         },
         {
             label: '创建时间',
@@ -77,8 +70,8 @@ export const majorTableOption = {
             editDisabled: true
         },
         {
-            label: '介绍',
-            prop: 'majorIntro',
+            label: '课程介绍',
+            prop: 'classIntro',
             type: 'textarea',
             span: 24,
             minRows: 3

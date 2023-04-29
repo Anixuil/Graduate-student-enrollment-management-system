@@ -115,7 +115,8 @@ const rowEdit = async (form: any, index: number, done: Function) => {
         await updateMajor({
             majorUuid: form.majorUuid,
             majorName: form.majorName,
-            majorIntro: form.majorIntro
+            majorIntro: form.majorIntro,
+            departUuid: form.departUuid
         })
         ElMessage.success('修改成功')
         refreshChange()

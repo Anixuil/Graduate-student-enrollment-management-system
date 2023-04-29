@@ -35,6 +35,7 @@ export interface UpdateParams {
     majorUuid: number
     majorName: string
     majorIntro: string
+    departUuid: number
 }
 
 export const updateMajor = (data: UpdateParams): Res<string> => {
