@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import nprogress from 'nprogress' //进度条
 import 'nprogress/nprogress.css' //进度条样式
 
@@ -52,7 +54,8 @@ request.interceptors.response.use(
         ElMessage.error(error.message)
         if (error.response.status === 403) {
             localStorage.removeItem('token')
-            useRouter().push('login')
+            // useRouter().push('login')
+            location.href = '/login'
         }
         return Promise.reject(error)
     }

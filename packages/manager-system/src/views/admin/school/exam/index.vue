@@ -1,62 +1,26 @@
 <template>
     <div class="exam-wrapper">
-        <avue-crud :data="data" :option="option" v-model:page="page" @on-load="onLoad"></avue-crud>
+        <el-tabs v-model="activeName">
+            <el-tab-pane label="初试模块" name="first">
+                <FirstExam />
+            </el-tab-pane>
+            <el-tab-pane label="复试模块" name="second"> </el-tab-pane>
+            <el-tab-pane label="调剂模块" name="third"> </el-tab-pane>
+        </el-tabs>
     </div>
 </template>
 
 <script setup lang="ts">
-const page = reactive({
-    pageSize: 20,
-    pagerCount: 5
-})
-const data: any = ref([])
-const option = reactive({
-    align: 'center',
-    menuAlign: 'center',
-    excelBtn: true,
-    column: [
-        { label: '姓名', prop: 'name' },
-        { label: '年龄', prop: 'age' },
-        { label: '性别', prop: 'sex' }
-    ]
-})
-
-//表格加载
-const onLoad = (page: any) => {
-    page.total = 4
-    //模拟分页
-    data.value = [
-        {
-            id: 1,
-            name: '张三',
-            sex: '男',
-            age: 18
-        },
-        {
-            id: 2,
-            name: '李四',
-            sex: '女',
-            age: 18
-        },
-        {
-            id: 3,
-            name: '王五',
-            sex: '女',
-            age: 20
-        },
-        {
-            id: 4,
-            name: '赵六',
-            sex: '女',
-            age: 23
-        }
-    ]
-}
+import { Ref } from 'vue'
+import FirstExam from '@/components/admin/exam/firstExam.vue'
+const activeName: Ref<string> = ref('first')
 </script>
 
 <style scoped lang="scss">
 .exam-wrapper {
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
 }
 </style>
