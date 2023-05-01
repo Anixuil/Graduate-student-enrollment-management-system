@@ -4,7 +4,7 @@ export const enroPlanTableOption = {
     menuAlign: 'center',
     excelBtn: true,
     viewBtn: true,
-    height: 'calc(100vh - 400px)',
+    height: 'calc(100vh - 340px)',
     searchMenuSpan: 4,
     column: [
         {

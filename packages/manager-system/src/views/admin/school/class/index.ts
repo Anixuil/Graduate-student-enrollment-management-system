@@ -5,7 +5,7 @@ export const classTableOption = {
     menuAlign: 'center',
     excelBtn: true,
     viewBtn: true,
-    height: 'calc(100vh - 400px)',
+    height: 'calc(100vh - 300px)',
     column: [
         {
             label: '序号',

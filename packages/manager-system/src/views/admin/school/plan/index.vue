@@ -1,5 +1,5 @@
 <template>
-    <div enroPlan="enroPlan-wrapper">
+    <div class="enroPlan-wrapper">
         <avue-crud
             :data="data"
             :option="option"
@@ -40,7 +40,6 @@ import { enroPlanTableOption } from './index'
 import { Ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getEnroPlanList, deleteEnroPlan, addEnroPlan, updateEnroPlan } from '@/api/enroPlan'
-import { importExcel } from '@/api/upload'
 const page = reactive({
     currentPage: 1,
     pageSize: 10,
@@ -70,24 +69,6 @@ const sizeChange = () => {
 }
 const refreshChange = () => {
     onLoad(page)
-}
-
-//下载模板
-const downloadTemplate = () => {
-    window.open('http://localhost:8080/anixuil/public/2023-04-02 22_57_14.xlsx')
-}
-
-//导入
-const uploadFile = async (file: any) => {
-    const formData = new FormData()
-    formData.append('file', file.file)
-    try {
-        await importExcel(formData)
-        refreshChange()
-        ElMessage.success('导入成功')
-    } catch (e) {
-        console.log(e)
-    }
 }
 
 //新增
@@ -162,6 +143,8 @@ const searchChange = async (params: any, done: Function) => {
 .enroPlan-wrapper {
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+    padding: 0 0 50px;
 }
 
 :deep(.avue-crud__left) {
