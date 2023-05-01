@@ -1,6 +1,11 @@
 <template>
     <div class="school-wrapper">
-        <avue-data-display :option="option"></avue-data-display>
+        <Transition name="slide-fade">
+            <avue-data-display
+                :option="option"
+                v-if="!router.currentRoute.value.path.includes('/exam')"
+            ></avue-data-display>
+        </Transition>
         <RouterView v-slot="{ Component, route }">
             <KeepAlive>
                 <Transition :name="(route.meta.transition as string)">
@@ -12,6 +17,7 @@
 </template>
 
 <script setup lang="ts">
+const router = useRouter()
 const option = reactive({
     span: 4,
     data: [

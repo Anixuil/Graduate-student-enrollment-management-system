@@ -1,5 +1,7 @@
 <template>
-    <div class="frist-exam"></div>
+    <div class="frist-exam">
+        <tab :tabHeight="10">确认报名信息</tab>
+    </div>
 </template>
 
 <script setup lang="ts"></script>
