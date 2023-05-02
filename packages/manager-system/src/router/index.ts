@@ -37,10 +37,9 @@ router.beforeEach(to => {
         return { name: 'login' }
     }
     //如果当前角色不符合权限，就提示没有权限并不放行
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     if (to.meta.roles && !to.meta.roles.includes(userStore.userRole)) {
-        console.log(to.meta.roles)
-        console.log(to)
-        console.log(userStore.userRole)
         ElNotification({
             title: '提示',
             message: '权限不足，无法访问，跳转至当前权限首页',

@@ -42,11 +42,13 @@ const userInfo = reactive({
 const loading = ref(false)
 const loginClick = async () => {
     try {
+        //登录前清空用户信息
+        user.logout()
         loading.value = true
         let res: any = await login(userInfo)
         const admin = ['admin', 'teacher']
         localStorage.setItem('token', res.data.token)
-        if (!user.initUserInfo())
+        if (!(await user.initUserInfo()))
             return ElNotification({
                 title: '登录失败',
                 message: `用户信息初始化失败！`,
@@ -67,6 +69,7 @@ const loginClick = async () => {
         })
         setTimeout(() => {
             loading.value = false
+            console.log(user.userRole)
             if (user.userRole === 'admin') router.push('admin')
             else if (user.userRole === 'teacher') router.push('admin')
             else router.push('index')

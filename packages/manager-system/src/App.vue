@@ -10,15 +10,14 @@ system.initSystemMode()
 const pageHeader = usePageHeader()
 // 从sessionStorage中获取数据
 pageHeader.getSessionStorage()
-
-const user = useUser()
-const admin = ['admin', 'teacher']
-const mode = admin.includes(user.userRole)
-system.switchSystemMode(mode)
-pageHeader.switchPageMode(mode)
 onMounted(() => {
-    nextTick(async () => {
-        await user.initUserInfo()
+    nextTick(() => {
+        const user = useUser()
+        user.initUserInfo()
+        const admin = ['admin', 'teacher']
+        const mode = !admin.includes(user.userRole)
+        system.switchSystemMode(mode)
+        pageHeader.switchPageMode(mode)
     })
 })
 </script>

@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { getUserInfo } from '@/api/user'
-import { useRouter } from 'vue-router'
 
 export const useUser = defineStore('user', {
     state: () => ({
@@ -76,7 +75,7 @@ export const useUser = defineStore('user', {
         //从后端获取用户信息
         async getUserInfoFromServer(): Promise<void> {
             try {
-                const res: ItypeApi<String> = await getUserInfo()
+                const res: any = await getUserInfo()
                 Object.assign(this, res.data.userInfo)
                 sessionStorage.setItem('userInfo', JSON.stringify(res.data.userInfo))
             } catch (err) {
@@ -84,12 +83,13 @@ export const useUser = defineStore('user', {
             }
         },
         //初始化用户信息
-        async initUserInfo(): boolean {
+        async initUserInfo(): Promise<boolean> {
             if (sessionStorage.getItem('userInfo') === null) {
                 if (localStorage.getItem('token')) {
                     await this.getUserInfoFromServer()
                 } else {
                     // return this.$router.push('/login')
+                    location.href = '/login'
                     return false
                 }
             }

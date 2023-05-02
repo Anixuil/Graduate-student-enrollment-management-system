@@ -57,6 +57,7 @@ const ruleForm = reactive({
 const contentChange = (val: string) => {
     ruleForm.emailContent = JSON.stringify(val)
 }
+//邮箱表单验证
 const rules = reactive<FormRules>({
     emailTitle: [
         { required: true, message: '请输入邮件标题', trigger: ['blur', 'change'] },
@@ -68,6 +69,7 @@ const rules = reactive<FormRules>({
         { min: 30, message: '长度在 30 个字符', trigger: ['blur', 'change'] }
     ]
 })
+//发送邮件
 const submitForm = () => {
     ruleFormRef.value?.validate(async valid => {
         if (valid) {
@@ -84,6 +86,7 @@ const submitForm = () => {
         }
     })
 }
+//重置表单
 const resetForm = (formEl: FormInstance | undefined) => {
     if (!formEl) return
     formEl.resetFields()

@@ -42,6 +42,7 @@ declare module '@vue/runtime-core' {
     PrepareExam: typeof import('./components/admin/exam/prepareExam.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SecondExam: typeof import('./components/admin/exam/secondExam.vue')['default']
     SideNav: typeof import('./components/common/sideNav/index.vue')['default']
     Tab: typeof import('./components/common/tab/index.vue')['default']
   }

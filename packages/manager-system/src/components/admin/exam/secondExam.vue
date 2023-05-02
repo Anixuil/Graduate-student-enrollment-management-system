@@ -1,6 +1,6 @@
 <template>
-    <div class="frist-exam">
-        <tab :tabHeight="10">确认报名信息</tab>
+    <div class="second-wrapper">
+        <tab :tabHeight="10">复试确认</tab>
         <div class="enter-wrapper">
             <el-tooltip content="如需调整请前往操作管理中的流程管理" placement="top">
                 <el-form-item label="模块开启状态">
@@ -17,30 +17,7 @@
                 placement="top"
             >
                 <el-form-item>
-                    <el-button type="primary" @click="emailDrawerOpen('确认报名信息邮件通知配置')"
-                        >邮件提醒通知</el-button
-                    >
-                </el-form-item>
-            </el-tooltip>
-        </div>
-        <tab :tabHeight="10">网上确认</tab>
-        <div class="internet-wrapper">
-            <el-tooltip content="如需调整请前往操作管理中的流程管理" placement="top">
-                <el-form-item label="模块开启状态">
-                    <el-switch
-                        v-model="enterStatus"
-                        :disabled="true"
-                        active-color="#13ce66"
-                        inactive-color="#ff4949"
-                    />
-                </el-form-item>
-            </el-tooltip>
-            <el-tooltip
-                content="这个按钮将会给每一个初试状态的考生发送一封电子邮件"
-                placement="top"
-            >
-                <el-form-item>
-                    <el-button type="primary" @click="emailDrawerOpen('网上确认邮件通知配置')"
+                    <el-button type="primary" @click="emailDrawerOpen('复试确认信息邮件通知配置')"
                         >邮件提醒通知</el-button
                     >
                 </el-form-item>
@@ -78,7 +55,6 @@
 <script setup lang="ts">
 import EmailForm from '@/components/common/Email/index.vue'
 
-//确认报名信息状态
 const enterStatus = ref(true)
 
 //发送邮箱通知抽屉
@@ -91,14 +67,13 @@ const emailDrawerOpen = (title: string) => {
 </script>
 
 <style scoped lang="scss">
-.frist-exam {
+.second-wrapper {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
     padding: 10px 0 50px;
 
     .enter-wrapper,
-    .internet-wrapper,
     .downLoad-wrapper {
         display: flex;
         justify-content: flex-start;

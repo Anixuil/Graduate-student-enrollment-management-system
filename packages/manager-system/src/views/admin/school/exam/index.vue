@@ -13,7 +13,7 @@
             </el-tab-pane>
             <el-tab-pane label="复试" name="third">
                 <Transition>
-                    <prepareExam v-show="activeName == 'third'" />
+                    <second-exam v-show="activeName == 'third'" />
                 </Transition>
             </el-tab-pane>
             <el-tab-pane label="调剂" name="four">
@@ -34,6 +34,7 @@
 import { Ref } from 'vue'
 import PrepareExam from '@/components/admin/exam/prepareExam.vue'
 import FirstExam from '@/components/admin/exam/firstExam.vue'
+import SecondExam from '@/components/admin/exam/secondExam.vue'
 const activeName: Ref<string> = ref('first')
 </script>
 

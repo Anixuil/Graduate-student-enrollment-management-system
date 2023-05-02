@@ -13,6 +13,9 @@
 import Banner from '@/components/index/banner/index.vue'
 import Container from '@/components/index/container/index.vue'
 import gsap from 'gsap'
+import { usePageHeader } from '@/store'
+import { useSystem } from '@/store/system'
+import { useUser } from '@/store/user'
 const wrapper = ref()
 const gotoMenu = () => {
     nextTick(() => {
@@ -23,6 +26,18 @@ const gotoMenu = () => {
         })
     })
 }
+const system = useSystem()
+const pageHeader = usePageHeader()
+onMounted(() => {
+    nextTick(() => {
+        const user = useUser()
+        user.initUserInfo()
+        const admin = ['admin', 'teacher']
+        const mode = !admin.includes(user.userRole)
+        system.switchSystemMode(mode)
+        pageHeader.switchPageMode(mode)
+    })
+})
 </script>
 
 <style scoped lang="scss">

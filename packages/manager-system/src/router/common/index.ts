@@ -10,7 +10,7 @@ const indexRoutes: RouteRecordRaw[] = [
         meta: {
             title: '首页',
             transition: 'slide-fade',
-            roles: ['student']
+            roles: ['student', 'candidate']
         },
         alias: '/'
     },
@@ -21,7 +21,7 @@ const indexRoutes: RouteRecordRaw[] = [
         meta: {
             title: '登录页',
             transition: 'slide-fade',
-            roles: ['student', 'teacher', 'admin']
+            roles: ['student', 'candidate', 'teacher', 'admin']
         },
         alias: '/welcome'
     },
@@ -32,7 +32,7 @@ const indexRoutes: RouteRecordRaw[] = [
         meta: {
             title: '个人主页',
             transition: 'slide-fade',
-            roles: ['student']
+            roles: ['student', 'candidate']
         },
         alias: '/my'
     },
@@ -43,7 +43,7 @@ const indexRoutes: RouteRecordRaw[] = [
         meta: {
             title: '确认报名信息',
             transition: 'slide-fade',
-            roles: ['student']
+            roles: ['student', 'candidate']
         }
     },
     {
@@ -53,7 +53,7 @@ const indexRoutes: RouteRecordRaw[] = [
         meta: {
             title: '网上确认',
             transition: 'slide-fade',
-            roles: ['student']
+            roles: ['student', 'candidate']
         }
     },
     {
@@ -63,7 +63,7 @@ const indexRoutes: RouteRecordRaw[] = [
         meta: {
             title: '准考证打印',
             transition: 'slide-fade',
-            roles: ['student']
+            roles: ['student', 'candidate']
         }
     },
     {
@@ -73,7 +73,7 @@ const indexRoutes: RouteRecordRaw[] = [
         meta: {
             title: '成绩查询',
             transition: 'slide-fade',
-            roles: ['student']
+            roles: ['student', 'candidate']
         }
     }
 ]
