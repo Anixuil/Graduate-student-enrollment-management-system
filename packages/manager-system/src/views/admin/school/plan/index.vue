@@ -27,10 +27,6 @@
                     {{ row[item.prop] }}
                 </div>
             </template>
-            <!-- 弹出框 -->
-            <!-- <template v-slot:departUuidForm="{row}">
-                {{ row }}
-            </template> -->
         </avue-crud>
     </div>
 </template>

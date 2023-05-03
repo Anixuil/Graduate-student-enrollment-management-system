@@ -54,18 +54,18 @@ const modifyInfo = () => {
     disabled.value = !disabled.value
 }
 
-// const handleClickEmit = async () => {
-//     try {
-//         let res: any = await login({
-//             userName: 'anixuil',
-//             userPassword: 'l20010207'
-//         })
-//         ElMessage.success(res.msg as string)
-//         localStorage.setItem('token', res.data.token)
-//     } catch (e: any) {
-//         console.log(e)
-//     }
-// }
+const handleClickEmit = async () => {
+    try {
+        let res: any = await login({
+            userName: 'anixuil',
+            userPassword: 'l20010207'
+        })
+        ElMessage.success(res.msg as string)
+        localStorage.setItem('token', res.data.token)
+    } catch (e: any) {
+        console.log(e)
+    }
+}
 </script>
 
 <style scoped lang="scss">
