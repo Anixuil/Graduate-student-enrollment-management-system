@@ -69,7 +69,6 @@ const loginClick = async () => {
         })
         setTimeout(() => {
             loading.value = false
-            console.log(user.userRole)
             if (user.userRole === 'admin') router.push('admin')
             else if (user.userRole === 'teacher') router.push('admin')
             else router.push('index')

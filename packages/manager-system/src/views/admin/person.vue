@@ -9,12 +9,6 @@
             :listLabel="listLabel"
             :listData="teacher"
         ></infoDetail>
-        <!--        <infoDetail-->
-        <!--            v-if="user.userRole == 'admin'"-->
-        <!--            :listKeys="adminKeys"-->
-        <!--            :listLabel="listLabel"-->
-        <!--            :listData="admin"-->
-        <!--        ></infoDetail>-->
         <div class="person-control">
             <el-button type="primary" v-loading="loading" @click="logout">退出登录</el-button>
         </div>

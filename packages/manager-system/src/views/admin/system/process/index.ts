@@ -5,8 +5,7 @@ export const workFlowTableOption = {
     menuAlign: 'center',
     excelBtn: true,
     viewBtn: true,
-    height: 'calc(100vh - 370px)',
-    searchMenuSpan: 6,
+    height: 'calc(100vh - 400px)',
     column: [
         {
             label: '序号',
@@ -20,8 +19,7 @@ export const workFlowTableOption = {
             addDisplay: false,
             addDisabled: true,
             editDisabled: true,
-            hide: true,
-            search: true
+            hide: true
         },
         {
             label: '流程名',

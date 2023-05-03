@@ -6,14 +6,22 @@ interface LoginParams {
     userPassword: string
 }
 
-interface registerParams {
+export const register = (data: {
     userName: string
     userPassword: string
     userPhone: string
     userAge: string
-}
-
-export const register = (data: registerParams): Res<string> => {
+    userEmail: string
+    userGender: string
+    userRole: string
+    majorUuid?: string
+    departUuid?: string
+    classUuid?: string
+    entryDate?: string
+    graduationDate?: string
+    teacherId?: string
+    teacherIntro?: string
+}): Res<string> => {
     return request({
         url: '/user/register',
         method: 'post',
@@ -33,5 +41,14 @@ export const getUserInfo = (): Res<string> => {
     return request({
         url: '/user/getUserInfo',
         method: 'get'
+    })
+}
+
+//删除用户
+export const deleteUser = (data: { userUuid: string }): Res<boolean> => {
+    return request({
+        url: '/user/deleteUser',
+        method: 'delete',
+        data
     })
 }
