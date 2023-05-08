@@ -5,6 +5,7 @@ export const candidateTableOption = {
     excelBtn: true,
     viewBtn: true,
     height: 'calc(100vh - 445px)',
+    searchMenuPosition: 'center',
     column: [
         {
             label: '序号',

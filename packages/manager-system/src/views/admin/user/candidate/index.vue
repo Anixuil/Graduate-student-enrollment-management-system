@@ -92,6 +92,7 @@ const rowSave = async (form: any, done: Function) => {
 const rowEdit = async (form: any, index: number, done: Function) => {
     try {
         await updateCandidate({
+            userName: form.userName,
             userUuid: form.userUuid,
             candidateUuid: form.candidateUuid,
             candidateStatus: form.candidateStatus,

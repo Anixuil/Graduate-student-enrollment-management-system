@@ -4,6 +4,7 @@
         :style="{ '--editor-height': isNaN(<number>height) ? height : height + 'px' }"
     >
         <Toolbar
+            v-if="!disabled"
             style="border-bottom: 1px solid #ccc"
             :editor="editorRef"
             :defaultConfig="toolbarConfig"
@@ -29,7 +30,7 @@ import { defineOptions } from 'unplugin-vue-define-options/macros'
 defineOptions({
     name: 'LxEditor'
 })
-const emits = defineEmits(['change'])
+const emits = defineEmits(['change', 'update:modelValue'])
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
@@ -40,10 +41,16 @@ const props = defineProps({
     mode: {
         type: String,
         default: 'default'
+    },
+    disabled: {
+        type: Boolean,
+        default: false
+    },
+    modelValue: {
+        type: String,
+        default: ''
     }
 })
-// const mode = computed(() => props.mode)
-
 //富文本编辑器配置属性
 const editorConfig: Partial<IEditorConfig> = {
     MENU_CONF: {
@@ -54,13 +61,36 @@ const editorConfig: Partial<IEditorConfig> = {
             headers: {
                 token: localStorage.getItem('token')
             }
+        },
+        //修改上传视频菜单配置
+        uploadVideo: {
+            server: 'http://localhost:8080/anixuil/publicfile/editorVideoUpload',
+            fieldName: 'file',
+            headers: {
+                token: localStorage.getItem('token')
+            },
+            maxFileSize: 100 * 1024 * 1024
         }
     },
     placeholder: '请输入内容...'
 }
+onMounted(() => {
+    console.log(props.disabled)
+})
+watch(
+    () => props.disabled,
+    val => {
+        if (val) {
+            editorConfig.readOnly = true
+        } else {
+            editorConfig.readOnly = false
+        }
+    },
+    { immediate: true }
+)
 
 const editorRef = shallowRef()
-const valueHtml = ref('<p>在这里输入所发送邮件的内容</p>')
+const valueHtml = ref(props.modelValue)
 // onMounted(() => {
 //     setTimeout(() => {
 //         valueHtml.value = '<p>模拟 Ajax 异步设置内容</p>'
@@ -77,6 +107,7 @@ const handleCreated = (editor: any) => {
 }
 const handleChange = (editor: IDomEditor) => {
     // editor.children
+    emits('update:modelValue', editor.getHtml())
     emits('change', editor.getHtml())
 }
 

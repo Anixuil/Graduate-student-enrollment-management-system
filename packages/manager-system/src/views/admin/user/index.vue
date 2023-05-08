@@ -12,7 +12,8 @@
 </template>
 
 <script setup lang="ts">
-const option = {
+import { getUserCount } from '@/api/data'
+const option = reactive({
     data: [
         {
             title: '教师人数统计',
@@ -42,7 +43,24 @@ const option = {
             key: 'Examinee'
         }
     ]
+})
+//获取用户人数
+const getUserCountData = async () => {
+    try {
+        let res: any = await getUserCount()
+        option.data[0].count = res.data.teacherCount
+        option.data[1].count = res.data.studentCount
+        option.data[2].count = res.data.candidateCount
+        option.data.forEach((item: any) => {
+            item.allcount = res.data.userCount
+        })
+    } catch (e: any) {
+        console.log(e)
+    }
 }
+onMounted(() => {
+    getUserCountData()
+})
 </script>
 
 <style scoped lang="scss">

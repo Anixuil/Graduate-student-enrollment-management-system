@@ -19,8 +19,6 @@ const router = createRouter({
 const store = usePageHeader(pinia)
 const pageHeaderArr = ['login']
 const freeRouterArr: string[] = ['login', 'register']
-//获取用户信息
-const userStore = useUser(pinia)
 
 router.beforeEach(to => {
     //如果是跳转的可以自由访问的页面，就不需要判断是否登录
@@ -36,6 +34,8 @@ router.beforeEach(to => {
         })
         return { name: 'login' }
     }
+    //获取用户信息
+    const userStore = useUser(pinia)
     //如果当前角色不符合权限，就提示没有权限并不放行
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore

@@ -17,41 +17,35 @@
 </template>
 
 <script setup lang="ts">
+import { getDepartCount } from '@/api/data'
 const router = useRouter()
 const option = reactive({
     span: 4,
     data: [
         {
-            count: '23032',
-            title: '学校总人数',
-            target: '_blank'
-        },
-        {
-            count: '9349',
-            title: '信息与工程学院',
-            target: '_blank'
-        },
-        {
-            count: '7532',
-            title: '经济管理学院',
-            target: '_blank'
-        },
-        {
-            count: '5999',
-            title: '文学与传媒学院',
-            target: '_blank'
-        },
-        {
-            count: '0',
-            title: '国际学院',
-            target: '_blank'
-        },
-        {
-            count: '151',
-            title: '教职工',
+            count: 0,
+            title: '',
             target: '_blank'
         }
     ]
+})
+const getDepartCountData = async () => {
+    try {
+        const res = await getDepartCount()
+        option.data = []
+        res.data.forEach((item: { departName: string; userCount: number }) => {
+            option.data.push({
+                count: item.userCount,
+                title: item.departName,
+                target: '_blank'
+            })
+        })
+    } catch (e: any) {
+        console.log(e)
+    }
+}
+onMounted(() => {
+    getDepartCountData()
 })
 </script>
 

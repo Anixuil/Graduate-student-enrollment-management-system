@@ -13,6 +13,9 @@
             @row-update="rowEdit"
             @search-change="searchChange"
         >
+            <template #index="{ index }">
+                <el-tag>{{ index + 1 }}</el-tag>
+            </template>
         </avue-crud>
     </div>
 </template>

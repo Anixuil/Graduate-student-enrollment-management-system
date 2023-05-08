@@ -88,8 +88,6 @@ export const useUser = defineStore('user', {
                 if (localStorage.getItem('token')) {
                     await this.getUserInfoFromServer()
                 } else {
-                    // return this.$router.push('/login')
-                    location.href = '/login'
                     return false
                 }
             }
