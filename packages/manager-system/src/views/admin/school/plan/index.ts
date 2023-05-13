@@ -22,7 +22,7 @@ export const enroPlanTableOption = {
             hide: true
         },
         {
-            label: '所属专业',
+            label: '专业',
             prop: 'majorUuid',
             type: 'select',
             dicUrl: `${baseUrl}/dict/item?dictType=table&dictName=major`,
@@ -35,14 +35,14 @@ export const enroPlanTableOption = {
             rules: [
                 {
                     required: true,
-                    message: '请选择所属专业',
+                    message: '请选择专业',
                     trigger: ['blur', 'change']
                 }
             ],
             search: true
         },
         {
-            label: '所属专业',
+            label: '专业',
             prop: 'majorName',
             addDisplay: false,
             editDisplay: false

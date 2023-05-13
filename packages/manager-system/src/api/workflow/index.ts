@@ -8,6 +8,7 @@ export const getWorkFlowList = (params: {
     pageSize?: number
     workFlowDesc?: string
     workFlowUuid?: string
+    workFlowType?: string
 }): Res<any> => {
     return request({
         url: '/workFlow/getWorkFlowList',
@@ -20,6 +21,7 @@ export const addWorkFlow = (data: {
     workFlowTitle: string
     workFlowDesc: string
     workFlowIndex: number
+    workFlowType: string
 }): Res<boolean> => {
     return request({
         url: '/workFlow/addWorkFlow',
@@ -34,6 +36,7 @@ export const updateWorkFlow = (data: {
     workFlowDesc: string
     workFlowIndex: number
     workFlowStatus: number
+    workFlowType: string
 }): Res<boolean> => {
     return request({
         url: '/workFlow/updateWorkFlow',

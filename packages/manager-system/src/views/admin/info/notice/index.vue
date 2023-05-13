@@ -1,5 +1,5 @@
 <template>
-    <div class="banner-wrapper">
+    <div class="notice-wrapper">
         <avue-crud
             :data="data"
             :option="option"
@@ -178,7 +178,7 @@ const searchChange = async (params: any, done: Function) => {
 </script>
 
 <style scoped lang="scss">
-.banner-wrapper {
+.notice-wrapper {
     width: 100%;
     height: 100%;
     box-sizing: border-box;

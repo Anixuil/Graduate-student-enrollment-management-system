@@ -23,17 +23,13 @@
                 </el-tag>
                 <el-tag v-else-if="item.prop === 'index'">{{ index + 1 }}</el-tag>
                 <el-tag v-else-if="item.prop === 'majorName'">{{ row[item.prop] }}</el-tag>
-                <el-tag v-else-if="item.prop === 'examType'" type="danger">
-                    {{ row[item.prop] == 0 ? '初试' : row[item.prop] == 1 ? '复试' : '调剂' }}
+                <el-tag v-else-if="item.prop === 'examType'" :type="typeArr[row[item.prop]].type">
+                    {{ typeArr[row[item.prop]].value }}
                 </el-tag>
                 <div v-else>
                     {{ row[item.prop] }}
                 </div>
             </template>
-            <!-- 弹出框 -->
-            <!-- <template v-slot:departUuidForm="{row}">
-                {{ row }}
-            </template> -->
         </avue-crud>
     </div>
 </template>
@@ -43,6 +39,11 @@ import { examClassTableOption } from './examClass'
 import { Ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getExamClassList, deleteExamClass, addExamClass, updateExamClass } from '@/api/examClass'
+const typeArr = ref([
+    { type: 'info', value: '初试' },
+    { type: 'primary', value: '复试' },
+    { type: 'warning', value: '调剂' }
+])
 const page = reactive({
     currentPage: 1,
     pageSize: 10,

@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import router from '@/router/index'
+import router from '@/router'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import nprogress from 'nprogress' //进度条
 import 'nprogress/nprogress.css' //进度条样式
+import { Res } from './api'
 
 //创建axios实例
 export const request = axios.create({
@@ -35,11 +36,25 @@ request.interceptors.request.use(
 )
 
 //响应拦截器
+const urlNoLog = ['/user/login', '/user/register', '/log/addLog']
 request.interceptors.response.use(
-    response => {
+    async response => {
         nprogress.done()
         //对响应数据做点什么
         const res = response.data
+        //存日志
+        if (response.config.method != 'get' && !urlNoLog.includes(response.config.url as string)) {
+            const logContent = {
+                url: `${response.config.baseURL}${response.config.url}` || '',
+                method: response.config.method,
+                content: response.data.data || ''
+            }
+            await addLog({
+                logTitle: response.data.msg,
+                logContent: JSON.stringify(logContent),
+                logStatus: response.data.code
+            })
+        }
         if (res.code !== 200) {
             console.log(res)
             ElMessage.error(res.msg || 'Error')
@@ -54,10 +69,23 @@ request.interceptors.response.use(
         ElMessage.error(error.message)
         if (error.response.status === 403) {
             localStorage.removeItem('token')
-            router.push('/login')
+            router.push({ name: 'login' })
         }
         return Promise.reject(error)
     }
 )
+
+//存日志
+const addLog = (data: {
+    logTitle: string
+    logContent: string
+    logStatus: string
+}): Res<boolean> => {
+    return request({
+        url: '/log/addLog',
+        method: 'post',
+        data
+    })
+}
 
 export default request

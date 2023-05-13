@@ -31,7 +31,7 @@ export const teacherTableOption = {
                     trigger: ['blur', 'change']
                 }
             ],
-            width: 70,
+            width: 100,
             search: true
         },
         {

@@ -98,7 +98,7 @@ const rowEdit = async (form: any, index: number, done: Function) => {
 
 //删除
 const rowDel = (form: any) => {
-    ElMessageBox.confirm('是否删除该课程?', '提示', {
+    ElMessageBox.confirm('是否删除该计划?', '提示', {
         type: 'warning',
         confirmButtonText: '确定',
         cancelButtonText: '取消'

@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Banner: typeof import('./components/index/banner/index.vue')['default']
     Container: typeof import('./components/index/container/index.vue')['default']
+    CustomExam: typeof import('./components/admin/exam/CustomExam.vue')['default']
     Editor: typeof import('./components/common/Editor/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']

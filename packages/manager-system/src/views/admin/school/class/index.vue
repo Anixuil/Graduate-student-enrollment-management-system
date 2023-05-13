@@ -81,13 +81,14 @@ const refreshChange = () => {
 
 //下载模板
 const downloadTemplate = () => {
-    window.open('http://localhost:8080/anixuil/public/2023-04-02 22_57_14.xlsx')
+    window.open('http://localhost:8080/anixuil/file/download/院系专业课程导入模板.xlsx')
 }
 
 //导入
 const uploadFile = async (file: any) => {
     const formData = new FormData()
     formData.append('file', file.file)
+    formData.append('className', 'DepartTable')
     try {
         await importExcel(formData)
         refreshChange()

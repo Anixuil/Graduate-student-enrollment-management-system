@@ -194,7 +194,12 @@ const adminRoutes: RouteRecordRaw[] = [
                         path: 'log',
                         name: 'adminOperationLog',
                         component: () => import('@/views/admin/system/log/index.vue'),
-                        meta: { title: '日志模块', transition: 'slide-fade', roles: ['admin'] }
+                        meta: {
+                            title: '日志模块',
+                            transition: 'slide-fade',
+                            roles: ['admin', 'teacher']
+                        },
+                        alias: 'operationLog'
                     }
                 ]
             }

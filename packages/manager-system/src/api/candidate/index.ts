@@ -31,9 +31,6 @@ export const updateCandidate = (data: {
     userGender?: string
     userRole?: string
     candidateId?: string
-    firstScore?: number
-    secondScore?: number
-    thirdScore?: number
 }): Res<boolean> => {
     return request({
         url: '/user/updateCandidate',

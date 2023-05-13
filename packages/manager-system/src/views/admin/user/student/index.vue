@@ -13,6 +13,14 @@
             @size-change="sizeChange"
             @search-change="searchChange"
         >
+            <template #menu-left="{ size }">
+                <el-upload :auto-upload="true" :show-file-list="false" :http-request="uploadFile">
+                    <el-button type="primary" link :size="size">批量导入</el-button>
+                </el-upload>
+                <el-button type="primary" @click="downloadTemplate" :size="size" link
+                    >下载模板</el-button
+                >
+            </template>
             <template
                 v-for="item in option.column"
                 :key="item.prop"
@@ -42,6 +50,27 @@ import { Ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getStudentList, updateStudent } from '@/api/student'
 import { deleteUser, register } from '@/api/user'
+import { importExcel } from '@/api/upload'
+
+//下载模板
+const downloadTemplate = () => {
+    window.open('http://localhost:8080/anixuil/file/download/用户导入模板.xlsx')
+}
+
+//导入
+const uploadFile = async (file: any) => {
+    const formData = new FormData()
+    formData.append('file', file.file)
+    formData.append('className', 'UserTable')
+    try {
+        await importExcel(formData)
+        refreshChange()
+        ElMessage.success('导入成功')
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 const page = reactive({
     currentPage: 1,
     pageSize: 10,
@@ -113,7 +142,7 @@ const rowEdit = async (form: any, index: number, done: Function) => {
 
 //删除
 const rowDel = (form: any) => {
-    ElMessageBox.confirm('是否删除该课程?', '提示', {
+    ElMessageBox.confirm('是否删除该学生?', '提示', {
         type: 'warning',
         confirmButtonText: '确定',
         cancelButtonText: '取消'
@@ -154,5 +183,11 @@ const searchChange = async (params: any, done: Function) => {
 .student-wrapper {
     width: 100%;
     height: 100%;
+}
+
+:deep(.avue-crud__left) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 </style>

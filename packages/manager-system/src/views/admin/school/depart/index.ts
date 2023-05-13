@@ -26,7 +26,8 @@ export const departTableOption = {
         },
         {
             label: '介绍',
-            prop: 'departIntro'
+            prop: 'departIntro',
+            overHidden: true
         },
         {
             label: '创建时间',

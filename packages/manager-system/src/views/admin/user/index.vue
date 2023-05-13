@@ -17,28 +17,28 @@ const option = reactive({
     data: [
         {
             title: '教师人数统计',
-            subtitle: '实时',
+            subtitle: '最近系统刷新时',
             count: 7993,
             allcount: 10222,
-            text: '当前分类总记录数',
+            text: '当前系统的用户总数',
             color: 'rgb(27, 201, 142)',
             key: 'Teacher'
         },
         {
             title: '学生人数统计',
-            subtitle: '实时',
+            subtitle: '最近系统刷新时',
             count: 3112,
             allcount: 10222,
-            text: '当前上传的附件数',
+            text: '当前系统的用户总数',
             color: 'rgb(230, 71, 88)',
             key: 'Student'
         },
         {
             title: '考生人数统计',
-            subtitle: '实时',
+            subtitle: '最近系统刷新时',
             count: 908,
             allcount: 10222,
-            text: '评论次数',
+            text: '当前系统的用户总数',
             color: 'rgb(178, 159, 255)',
             key: 'Examinee'
         }

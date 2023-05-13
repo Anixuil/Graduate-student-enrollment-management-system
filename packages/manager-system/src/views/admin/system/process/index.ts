@@ -31,7 +31,9 @@ export const workFlowTableOption = {
                     trigger: ['blur', 'change']
                 }
             ],
-            search: true
+            search: true,
+            overHidden: true,
+            width: 200
         },
         {
             label: '步骤序号',
@@ -44,7 +46,8 @@ export const workFlowTableOption = {
                     message: '请输入步骤序号',
                     trigger: ['blur', 'change']
                 }
-            ]
+            ],
+            width: 100
         },
         {
             label: '流程描述',
@@ -57,22 +60,37 @@ export const workFlowTableOption = {
                     trigger: ['blur', 'change']
                 }
             ],
+            overHidden: true,
             span: 24,
             minRows: 3,
             search: true
         },
         {
-            label: '是否启用',
-            prop: 'workFlowStatus',
-            type: 'switch',
-            slot: true,
+            label: '流程类型',
+            prop: 'workFlowType',
+            type: 'select',
+            dicUrl: `${baseUrl}/dict/item?dictType=aln&dictName=candidate_status`,
+            props: {
+                label: 'dictFieldLabel',
+                value: 'dictFieldValue'
+            },
             rules: [
                 {
                     required: true,
-                    message: '请选择是否启用',
+                    message: '请选择流程类型',
                     trigger: ['blur', 'change']
                 }
-            ]
+            ],
+            search: true,
+            width: 100
+        },
+        {
+            label: '是否启用',
+            prop: 'workFlowStatus',
+            type: 'switch',
+            value: false,
+            slot: true,
+            width: 100
         },
         {
             label: '流程图片',
@@ -97,13 +115,17 @@ export const workFlowTableOption = {
             label: '创建时间',
             prop: 'createDate',
             addDisplay: false,
-            editDisabled: true
+            editDisabled: true,
+            width: 160,
+            overHidden: true
         },
         {
             label: '更新时间',
             prop: 'updateDate',
             addDisplay: false,
-            editDisabled: true
+            editDisabled: true,
+            width: 160,
+            overHidden: true
         }
     ]
 }

@@ -13,6 +13,17 @@
             @size-change="sizeChange"
             @search-change="searchChange"
         >
+            <template #menu-left="{ size }">
+                <el-button type="primary" @click="downloadTemplate" :size="size" link>
+                    下载模板
+                </el-button>
+                <el-upload :auto-upload="true" :show-file-list="false" :http-request="uploadFile">
+                    <el-button type="primary" link :size="size">批量导入</el-button>
+                </el-upload>
+                <el-upload :auto-upload="true" :show-file-list="false" :http-request="updateScore">
+                    <el-button type="primary" link :size="size">导入成绩</el-button>
+                </el-upload>
+            </template>
             <template
                 v-for="item in option.column"
                 :key="item.prop"
@@ -42,6 +53,40 @@ import { Ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getCandidateList, updateCandidate } from '@/api/candidate'
 import { deleteUser, register } from '@/api/user'
+import { importExcel } from '@/api/upload'
+
+//下载模板
+const downloadTemplate = () => {
+    window.open('http://localhost:8080/anixuil/file/download/用户导入模板.xlsx')
+}
+
+//导入考生
+const uploadFile = async (file: any) => {
+    const formData = new FormData()
+    formData.append('file', file.file)
+    formData.append('className', 'UserTable')
+    try {
+        await importExcel(formData)
+        refreshChange()
+        ElMessage.success('导入成功')
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+//导入成绩
+const updateScore = async (file: any) => {
+    const formData = new FormData()
+    formData.append('file', file.file)
+    formData.append('className', 'ExamScoreTable')
+    try {
+        await importExcel(formData)
+        refreshChange()
+        ElMessage.success('导入成绩成功')
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 const page = reactive({
     currentPage: 1,
@@ -102,10 +147,7 @@ const rowEdit = async (form: any, index: number, done: Function) => {
             majorUuid: form.majorUuid,
             userGender: form.userGender,
             userRole: form.userRole,
-            candidateId: form.candidateId,
-            firstScore: form.firstScore,
-            secondScore: form.secondScore,
-            thirdScore: form.thirdScore
+            candidateId: form.candidateId
         })
         ElMessage.success('修改成功')
         refreshChange()
@@ -117,7 +159,7 @@ const rowEdit = async (form: any, index: number, done: Function) => {
 
 //删除
 const rowDel = (form: any) => {
-    ElMessageBox.confirm('是否删除该课程?', '提示', {
+    ElMessageBox.confirm('是否删除该考生?', '提示', {
         type: 'warning',
         confirmButtonText: '确定',
         cancelButtonText: '取消'
@@ -160,5 +202,11 @@ const searchChange = async (params: any, done: Function) => {
     height: 100%;
     box-sizing: border-box;
     padding: 10px 0 50px;
+}
+
+:deep(.avue-crud__left) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 </style>

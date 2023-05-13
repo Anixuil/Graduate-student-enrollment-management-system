@@ -32,7 +32,7 @@ export const candidateTableOption = {
                     trigger: ['blur', 'change']
                 }
             ],
-            width: 70,
+            width: 100,
             search: true
         },
         {
@@ -170,10 +170,7 @@ export const candidateTableOption = {
             span: 12,
             width: 70,
             addDisplay: false,
-            placeholder: '请输入初试成绩',
-            editDisabled: !(
-                JSON.parse(sessionStorage.getItem('userInfo') as string).userRole === 'admin'
-            )
+            editDisabled: true
         },
         {
             label: '复试',
@@ -184,9 +181,7 @@ export const candidateTableOption = {
             width: 70,
             addDisplay: false,
             placeholder: '请输入复试成绩',
-            editDisabled: !(
-                JSON.parse(sessionStorage.getItem('userInfo') as string).userRole === 'admin'
-            )
+            editDisabled: true
         },
         {
             label: '调剂',
@@ -197,9 +192,7 @@ export const candidateTableOption = {
             width: 70,
             addDisplay: false,
             placeholder: '请输入调剂成绩',
-            editDisabled: !(
-                JSON.parse(sessionStorage.getItem('userInfo') as string).userRole === 'admin'
-            )
+            editDisabled: true
         },
         {
             label: '创建时间',

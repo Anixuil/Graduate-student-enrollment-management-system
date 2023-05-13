@@ -16,9 +16,9 @@
                 <el-upload :auto-upload="true" :show-file-list="false" :http-request="uploadFile">
                     <el-button type="primary" link :size="size">批量导入</el-button>
                 </el-upload>
-                <el-button type="primary" @click="downloadTemplate" :size="size" link
-                    >下载模板</el-button
-                >
+                <el-button type="primary" @click="downloadTemplate" :size="size" link>
+                    下载模板
+                </el-button>
             </template>
             <template #index="{ index }">
                 <el-tag>{{ index + 1 }}</el-tag>
@@ -67,13 +67,14 @@ const refreshChange = () => {
 
 //下载模板
 const downloadTemplate = () => {
-    window.open('http://localhost:8080/anixuil/public/2023-04-02 22_57_14.xlsx')
+    window.open('http://localhost:8080/anixuil/file/download/院系专业课程导入模板.xlsx')
 }
 
 //导入
 const uploadFile = async (file: any) => {
     const formData = new FormData()
     formData.append('file', file.file)
+    formData.append('className', 'DepartTable')
     try {
         await importExcel(formData)
         refreshChange()
@@ -97,9 +98,6 @@ const rowSave = async (form: any, done: Function) => {
 }
 
 //修改
-// const rowEdit = (form: any, index: number, done: Function, loading: Function) => {
-//     console.log(form)
-// }
 const rowEdit = async (form: any, index: number, done: Function) => {
     try {
         await updateDepart({

@@ -23,9 +23,14 @@
                 </el-tag>
                 <el-tag v-else-if="item.prop === 'index'">{{ index + 1 }}</el-tag>
                 <div v-else-if="item.prop === 'workFlowStatus'">
-                    <el-tag v-if="row[item.prop] == 1" type="success">启用</el-tag>
-                    <el-tag v-else-if="row[item.prop] == 0" type="danger">禁用</el-tag>
+                    <el-tag v-if="row[item.prop] == true" type="success">启用</el-tag>
+                    <el-tag v-else-if="row[item.prop] == false" type="danger">禁用</el-tag>
                 </div>
+                <el-tag
+                    v-else-if="item.prop === 'workFlowType'"
+                    :type="typeArr[row[item.prop]].type"
+                    >{{ typeArr[row[item.prop]].value }}</el-tag
+                >
                 <div v-else>
                     {{ row[item.prop] }}
                 </div>
@@ -39,6 +44,13 @@ import { workFlowTableOption } from './index'
 import { Ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getWorkFlowList, deleteWorkFlow, addWorkFlow, updateWorkFlow } from '@/api/workflow'
+const typeArr = ref([
+    { type: 'info', value: '初试' },
+    { type: '', value: '复试' },
+    { type: 'warning', value: '调剂' },
+    { type: 'success', value: '已录取' },
+    { type: 'danger', value: '未录取' }
+])
 const page = reactive({
     currentPage: 1,
     pageSize: 10,
@@ -90,7 +102,8 @@ const rowEdit = async (form: any, index: number, done: Function) => {
             workFlowTitle: form.workFlowTitle,
             workFlowDesc: form.workFlowDesc,
             workFlowIndex: form.workFlowIndex,
-            workFlowStatus: form.workFlowStatus
+            workFlowStatus: form.workFlowStatus,
+            workFlowType: form.workFlowType
         })
         ElMessage.success('修改成功')
         refreshChange()
@@ -102,7 +115,7 @@ const rowEdit = async (form: any, index: number, done: Function) => {
 
 //删除
 const rowDel = (form: any) => {
-    ElMessageBox.confirm('是否删除该院系?', '提示', {
+    ElMessageBox.confirm('是否删除该流程?', '提示', {
         type: 'warning',
         confirmButtonText: '确定',
         cancelButtonText: '取消'

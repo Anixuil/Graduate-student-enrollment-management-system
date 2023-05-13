@@ -2,16 +2,17 @@ import request from '../request'
 import { Res } from '../api'
 
 //获取考试科目列表
-export const getExamClassList = (data: {
+export const getExamClassList = (params: {
     pageNum: number
     pageSize: number
     majorUuid?: string
     examClassName?: string
+    examType?: string
 }): Res<any[]> => {
     return request({
         url: '/examClass/getExamClassList',
-        method: 'post',
-        data
+        method: 'get',
+        params
     })
 }
 

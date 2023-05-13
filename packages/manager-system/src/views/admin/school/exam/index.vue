@@ -6,24 +6,17 @@
                     <prepareExam v-show="activeName == 'first'" />
                 </Transition>
             </el-tab-pane>
-            <el-tab-pane label="初试" name="second">
+            <el-tab-pane
+                :label="item.type"
+                :name="item.index"
+                v-for="item in workFlowData"
+                :key="item.workFlowUuid"
+            >
                 <Transition>
-                    <first-exam v-show="activeName == 'second'" />
-                </Transition>
-            </el-tab-pane>
-            <el-tab-pane label="复试" name="third">
-                <Transition>
-                    <second-exam v-show="activeName == 'third'" />
-                </Transition>
-            </el-tab-pane>
-            <el-tab-pane label="调剂" name="four">
-                <Transition>
-                    <prepareExam v-show="activeName == 'four'" />
-                </Transition>
-            </el-tab-pane>
-            <el-tab-pane label="录取" name="five">
-                <Transition>
-                    <prepareExam v-show="activeName == 'five'" />
+                    <custom-exam
+                        v-show="activeName == item.index"
+                        :work-flow-list="item.workFlowList"
+                    />
                 </Transition>
             </el-tab-pane>
         </el-tabs>
@@ -33,9 +26,43 @@
 <script setup lang="ts">
 import { Ref } from 'vue'
 import PrepareExam from '@/components/admin/exam/prepareExam.vue'
-import FirstExam from '@/components/admin/exam/firstExam.vue'
-import SecondExam from '@/components/admin/exam/secondExam.vue'
+import CustomExam from '@/components/admin/exam/CustomExam.vue'
+import { getWorkFlowList as workFlowList } from '@/api/workflow'
+
 const activeName: Ref<string> = ref('first')
+
+//存储流程列表容器
+const workFlowData: Ref<any[]> = ref([])
+
+//请求流程列表
+const getWorkFlowList = async (type: string): Promise<any> => {
+    let res: any = await workFlowList({ pageNum: 1, pageSize: 50, workFlowType: type })
+    return res.data.records
+}
+
+const typeArr = ['初试', '复试', '调剂', '录取']
+//请求各个不同招生状态的流程列表
+onMounted(() => {
+    new Promise<void>(resolve => {
+        ;['0', '1', '2', '3'].forEach(async (item: string) => {
+            workFlowData.value.push(
+                Object.assign(
+                    { index: Number(item), type: typeArr[Number(item)] },
+                    { workFlowList: await getWorkFlowList(item) }
+                )
+            )
+            if (workFlowData.value.length === 4) resolve()
+        })
+    }).then(() => {
+        //对流程列表进行排序
+        workFlowData.value.sort((a: any, b: any) => {
+            return a.index - b.index
+        })
+    })
+})
+
+//监听workFlowData
+watch(workFlowData, () => {})
 </script>
 
 <style scoped lang="scss">

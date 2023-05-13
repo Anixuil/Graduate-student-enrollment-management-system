@@ -11,9 +11,10 @@
             <el-row>
                 <el-form-item label="收信对象" prop="emailType">
                     <el-radio-group v-model="ruleForm.emailType">
-                        <el-radio label="1">初试状态</el-radio>
-                        <el-radio label="2">复试状态</el-radio>
-                        <el-radio label="3">调剂状态</el-radio>
+                        <el-radio label="0">初试状态</el-radio>
+                        <el-radio label="1">复试状态</el-radio>
+                        <el-radio label="2">调剂状态</el-radio>
+                        <el-radio label="3">未录取状态</el-radio>
                         <el-radio label="4">录取状态</el-radio>
                     </el-radio-group>
                 </el-form-item>
@@ -42,6 +43,7 @@ import LxEditor from '@/components/common/Editor/index.vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { defineOptions } from 'unplugin-vue-define-options/macros'
 import { sendEmail } from '@/api/email/index'
+import { ElMessage, ElMessageBox } from 'element-plus'
 defineOptions({
     name: 'emailForm'
 })
@@ -73,12 +75,22 @@ const rules = reactive<FormRules>({
 const submitForm = () => {
     ruleFormRef.value?.validate(async valid => {
         if (valid) {
-            console.log(ruleForm)
+            ElMessage.warning('正在发送邮件')
+            const obj = {
+                emailTitle: ruleForm.emailTitle,
+                emailType: ruleForm.emailType,
+                emailContent: ruleForm.emailContent
+            }
             try {
-                let res = await sendEmail(ruleForm)
-                console.log(res)
+                let res: any = await sendEmail(obj)
+                if (res.code != 200) {
+                    ElMessage.error('发送失败')
+                } else {
+                    ElMessage.success(res.data.msg)
+                }
             } catch (e) {
                 console.log(e)
+                ElMessage.error('发送异常:' + e)
             }
         } else {
             console.log('error submit!!')

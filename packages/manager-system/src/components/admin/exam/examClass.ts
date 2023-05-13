@@ -43,7 +43,8 @@ export const examClassTableOption = {
                 }
             ],
             search: true,
-            hide: true
+            hide: true,
+            viewDisplay: false
         },
         {
             label: '所属专业',
@@ -66,7 +67,8 @@ export const examClassTableOption = {
                     message: '请选择考试类型',
                     trigger: ['blur', 'change']
                 }
-            ]
+            ],
+            search: true
         },
         {
             label: '科目描述',
