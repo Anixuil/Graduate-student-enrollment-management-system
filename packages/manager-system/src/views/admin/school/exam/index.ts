@@ -1,11 +1,18 @@
 const baseUrl = 'http://localhost:8080/anixuil'
-export const candidateTableOption = {
+
+export const examTableOption = {
     align: 'center',
     menuAlign: 'center',
     excelBtn: true,
     viewBtn: true,
     height: 'calc(100vh - 445px)',
     searchMenuPosition: 'center',
+    addBtn: false,
+    editBtn: false,
+    delBtn: false,
+    searchBtnText: '筛选',
+    selection: true,
+    filterBtn: true,
     column: [
         {
             label: '序号',
@@ -19,8 +26,7 @@ export const candidateTableOption = {
             addDisplay: false,
             addDisabled: true,
             editDisabled: true,
-            hide: true,
-            search: true
+            hide: true
         },
         {
             label: '姓名',
@@ -32,8 +38,7 @@ export const candidateTableOption = {
                     trigger: ['blur', 'change']
                 }
             ],
-            width: 100,
-            search: true
+            width: 100
         },
         {
             label: '性别',
@@ -64,7 +69,6 @@ export const candidateTableOption = {
                 }
             ],
             width: 120,
-            search: true,
             hide: true
         },
         {
@@ -78,7 +82,6 @@ export const candidateTableOption = {
                 }
             ],
             width: 120,
-            search: true,
             hide: true
         },
         {
@@ -129,7 +132,7 @@ export const candidateTableOption = {
             viewDisplay: false,
             hide: true,
             span: 12,
-            overHidden: true
+            searchSpan: 6
         },
         {
             label: '报考专业',
@@ -147,7 +150,6 @@ export const candidateTableOption = {
                 label: 'dictFieldLabel',
                 value: 'dictFieldValue'
             },
-            search: true,
             rules: [
                 {
                     required: true,
@@ -172,7 +174,8 @@ export const candidateTableOption = {
             span: 12,
             width: 70,
             addDisplay: false,
-            editDisabled: true
+            editDisabled: true,
+            defaultSort: 'ascending'
         },
         {
             label: '复试',
@@ -209,6 +212,29 @@ export const candidateTableOption = {
             addDisplay: false,
             editDisabled: true,
             overHidden: true
+        },
+        {
+            label: '国家线',
+            prop: 'countryLine',
+            type: 'number',
+            dataType: 'number',
+            hide: true,
+            search: true,
+            display: false,
+            min: 200,
+            searchSpan: 6
+        },
+        {
+            label: '录取人数',
+            prop: 'admissionNumber',
+            type: 'number',
+            dataType: 'number',
+            hide: true,
+            search: true,
+            display: false,
+            min: 0,
+            searchSpan: 6,
+            filters: true
         }
     ]
 }

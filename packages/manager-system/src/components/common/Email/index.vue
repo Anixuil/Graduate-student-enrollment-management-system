@@ -42,8 +42,8 @@
 import LxEditor from '@/components/common/Editor/index.vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { defineOptions } from 'unplugin-vue-define-options/macros'
-import { sendEmail } from '@/api/email/index'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { sendEmail } from '@/api/email'
+import { ElMessage } from 'element-plus'
 defineOptions({
     name: 'emailForm'
 })
@@ -57,7 +57,7 @@ const ruleForm = reactive({
 })
 //邮箱内容
 const contentChange = (val: string) => {
-    ruleForm.emailContent = JSON.stringify(val)
+    ruleForm.emailContent = val
 }
 //邮箱表单验证
 const rules = reactive<FormRules>({

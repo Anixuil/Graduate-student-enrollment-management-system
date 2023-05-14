@@ -25,6 +25,8 @@
                 </el-tooltip>
             </div>
         </template>
+        <!--        插槽 用来放置自定义的内容-->
+        <slot name="custom"></slot>
         <el-drawer v-model="emailDrawerVisible" :title="emailDrawerTitle" size="80%">
             <email-form />
         </el-drawer>

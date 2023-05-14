@@ -58,6 +58,14 @@ export const classTableOption = {
             editDisplay: false
         },
         {
+            label: '课程介绍',
+            prop: 'classIntro',
+            type: 'textarea',
+            span: 24,
+            minRows: 3,
+            overHidden: true
+        },
+        {
             label: '创建时间',
             prop: 'createDate',
             addDisplay: false,
@@ -68,13 +76,6 @@ export const classTableOption = {
             prop: 'updateDate',
             addDisplay: false,
             editDisabled: true
-        },
-        {
-            label: '课程介绍',
-            prop: 'classIntro',
-            type: 'textarea',
-            span: 24,
-            minRows: 3
         }
     ]
 }
