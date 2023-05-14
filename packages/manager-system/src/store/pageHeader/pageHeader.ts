@@ -47,6 +47,9 @@ export const usePageHeader = defineStore('pageHeader', {
                 this.pageHeaderArray = ['首页']
                 this.pageHeaderPath = ['/admin']
             }
+            //存入sessionStorage
+            setSessionStorage('pageHeaderArray', this.pageHeaderArray)
+            setSessionStorage('pageHeaderPath', this.pageHeaderPath)
             return mode
         },
         //清空页头标签

@@ -2,16 +2,16 @@
     <div class="students-box">
         <tab>基本信息</tab>
         <infoDetail :listKeys="userKeys" :listLabel="listLabel" :listData="user"></infoDetail>
-        <tab v-if="user.userRole == 'candidate'">考生信息</tab>
+        <tab v-if="user.userRole == '考生'">考生信息</tab>
         <infoDetail
-            v-if="user.userRole == 'candidate'"
+            v-if="user.userRole == '考生'"
             :listKeys="candidateKeys"
             :listLabel="listLabel"
             :listData="candidate"
         ></infoDetail>
-        <tab v-if="user.userRole == 'student'">学生信息</tab>
+        <tab v-if="user.userRole == '学生'">学生信息</tab>
         <infoDetail
-            v-if="user.userRole == 'student'"
+            v-if="user.userRole == '学生'"
             :listKeys="studentKeys"
             :listLabel="listLabel"
             :listData="student"

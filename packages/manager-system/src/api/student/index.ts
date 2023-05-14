@@ -9,6 +9,7 @@ export const getStudentList = (params: {
     userPhone?: string
     studentId?: string
     majorUuid?: string
+    undergraduateSchool?: string
 }): Res<any> => {
     return request({
         url: '/user/getStudentList',
@@ -30,6 +31,9 @@ export const updateStudent = (data: {
     entryDate?: string
     graduationDate?: string
     userAge?: string
+    undergraduateSchool?: string
+    userHeadimg?: string
+    userAddress?: string
 }): Res<boolean> => {
     return request({
         url: '/user/updateStudent',

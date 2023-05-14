@@ -112,6 +112,12 @@ export const workFlowTableOption = {
             accept: 'image/jpeg,image/png'
         },
         {
+            label: '流程路径',
+            prop: 'workFlowPath',
+            type: 'input',
+            hide: true
+        },
+        {
             label: '创建时间',
             prop: 'createDate',
             addDisplay: false,

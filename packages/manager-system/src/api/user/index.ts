@@ -21,6 +21,9 @@ export const register = (data: {
     graduationDate?: string
     teacherId?: string
     teacherIntro?: string
+    undergraduateSchool?: string
+    userHeadimg?: string
+    userAddress?: string
 }): Res<string> => {
     return request({
         url: '/user/register',

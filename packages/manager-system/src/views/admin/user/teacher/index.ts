@@ -22,6 +22,32 @@ export const teacherTableOption = {
             search: true
         },
         {
+            label: '照片',
+            prop: 'userHeadimg',
+            type: 'upload',
+            listType: 'picture-img',
+            imgWidth: 50,
+            imgFullscreen: true,
+            action: `${baseUrl}/file/upload`,
+            tip: '只能上传jpg/png文件，且不超过500kb',
+            propsHttp: {
+                res: 'data',
+                url: 'url'
+            },
+            loadText: '正在上传...',
+            span: 24,
+            row: true,
+            rules: [
+                {
+                    required: true,
+                    message: '请上传照片',
+                    trigger: ['blur', 'change']
+                }
+            ],
+            accept: 'image/jpeg,image/png',
+            hide: true
+        },
+        {
             label: '姓名',
             prop: 'userName',
             rules: [
@@ -107,6 +133,31 @@ export const teacherTableOption = {
             ],
             viewDisplay: false,
             editDisplay: false
+        },
+        {
+            label: '地址',
+            prop: 'userAddress',
+            hide: true,
+            rules: [
+                {
+                    required: true,
+                    message: '请输入地址',
+                    trigger: ['blur', 'change']
+                }
+            ]
+        },
+        {
+            label: '本科院校',
+            prop: 'undergraduateSchool',
+            hide: true,
+            rules: [
+                {
+                    required: true,
+                    message: '请输入本科院校',
+                    trigger: ['blur', 'change']
+                }
+            ],
+            overHidden: true
         },
         {
             label: '所属院系',

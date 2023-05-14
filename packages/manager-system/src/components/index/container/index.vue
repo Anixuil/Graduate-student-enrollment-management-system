@@ -25,40 +25,37 @@
 </template>
 
 <script setup lang="ts">
+import { getWorkFlowList } from '@/api/workflow'
 const router = useRouter()
+
+//获取流程
+onMounted(() => {
+    getWorkFlow()
+})
+const getWorkFlow = async () => {
+    const res = await getWorkFlowList({ pageNum: 1, pageSize: 100, workFlowStatus: true })
+    if (res.code === 200) {
+        timeArr.value = res.data.records.map((item: any) => {
+            return {
+                id: item.workFlowUuid,
+                title: item.workFlowTitle,
+                intro: item.workFlowDesc,
+                placement: 'top',
+                timestamp: item.updateDate,
+                path: item.workFlowPath
+            }
+        })
+    }
+}
 
 const timeArr = ref([
     {
-        id: 1,
-        title: '确认报名信息',
-        intro: '点击进入相应操作页面',
+        id: null,
+        title: '',
+        intro: '',
         placement: 'top',
-        timestamp: '2022/11/01',
-        path: '/confirmInfo'
-    },
-    {
-        id: 2,
-        title: '网上确认',
-        intro: '点击进入相应操作页面',
-        placement: 'top',
-        timestamp: '2022/11/11',
-        path: '/confirmInter'
-    },
-    {
-        id: 3,
-        title: '下载准考证',
-        intro: '点击进入相应操作页面',
-        placement: 'top',
-        timestamp: '2022/12/18',
-        path: '/ticket'
-    },
-    {
-        id: 4,
-        title: '初试',
-        intro: '点击进入相应操作页面',
-        placement: 'top',
-        timestamp: '2022/12/28',
-        path: '#'
+        timestamp: '',
+        path: ''
     }
 ])
 

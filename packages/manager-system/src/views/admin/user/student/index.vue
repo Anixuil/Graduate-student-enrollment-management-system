@@ -130,7 +130,9 @@ const rowEdit = async (form: any, index: number, done: Function) => {
             majorUuid: form.majorUuid,
             entryDate: form.entryDate,
             graduationDate: form.graduationDate,
-            userName: form.userName
+            userName: form.userName,
+            userHeadimg: form.userHeadimg,
+            userAddress: form.userAddress
         })
         ElMessage.success('修改成功')
         refreshChange()

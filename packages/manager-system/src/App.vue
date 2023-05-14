@@ -8,11 +8,10 @@ import { useUser } from './store/user'
 const system = useSystem()
 system.initSystemMode()
 const pageHeader = usePageHeader()
-// 从sessionStorage中获取数据
-pageHeader.getSessionStorage()
 onMounted(() => {
     nextTick(() => {
         const user = useUser()
+        user.getUserInfoFromServer()
         user.initUserInfo()
         const admin = ['admin', 'teacher']
         const mode = !admin.includes(user.userRole)
@@ -20,13 +19,17 @@ onMounted(() => {
         pageHeader.switchPageMode(mode)
     })
 })
+const mode = computed(() => system.systemMode)
+watch(mode, val => {
+    pageHeader.switchPageMode(val)
+})
 </script>
 
 <template>
     <HeaderNav></HeaderNav>
     <Transition name="page-header">
         <PageHeader
-            v-if="system.systemMode"
+            v-if="mode"
             :style="{ maxWidth: system.systemMode ? '1600px' : 'none' }"
             v-show="pageHeader.pageHeaderStatus"
         >

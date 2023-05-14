@@ -74,6 +74,7 @@ importers:
             nprogress: ^0.2.0
             pinia: ^2.0.30
             pinia-plugin-persist: ^1.0.0
+            print-js: ^1.6.0
             script-loader: ^0.7.2
             typescript: ^4.9.3
             unplugin-auto-import: ^0.13.0
@@ -103,6 +104,7 @@ importers:
             nprogress: 0.2.0
             pinia: 2.0.30_hmuptsblhheur2tugfgucj7gc4
             pinia-plugin-persist: 1.0.0_pinia@2.0.30+vue@3.2.47
+            print-js: 1.6.0
             script-loader: 0.7.2
             typescript: 4.9.5
             unplugin-auto-import: 0.13.0
@@ -6308,6 +6310,13 @@ packages:
             }
         engines: { node: '>=10.13.0' }
         hasBin: true
+        dev: true
+
+    /print-js/1.6.0:
+        resolution:
+            {
+                integrity: sha512-BfnOIzSKbqGRtO4o0rnj/K3681BSd2QUrsIZy/+WdCIugjIswjmx3lDEZpXB2ruGf9d4b3YNINri81+J0FsBWg==
+            }
         dev: true
 
     /prismjs/1.29.0:

@@ -47,16 +47,6 @@ const indexRoutes: RouteRecordRaw[] = [
         }
     },
     {
-        path: '/confirmInter',
-        name: 'confirmInter',
-        component: () => import('@/views/controller/confirmInter/index.vue'),
-        meta: {
-            title: '网上确认',
-            transition: 'slide-fade',
-            roles: ['student', 'candidate']
-        }
-    },
-    {
         path: '/ticket',
         name: 'ticket',
         component: () => import('@/views/controller/ticket/index.vue'),

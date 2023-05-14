@@ -3,7 +3,7 @@ import { Res } from '../api'
 
 export const getWorkFlowList = (params: {
     workFlowTitle?: string
-    workFlowStatus?: number
+    workFlowStatus?: boolean
     pageNum?: number
     pageSize?: number
     workFlowDesc?: string
@@ -22,6 +22,8 @@ export const addWorkFlow = (data: {
     workFlowDesc: string
     workFlowIndex: number
     workFlowType: string
+    workFlowStatus: boolean
+    workFlowPath: string
 }): Res<boolean> => {
     return request({
         url: '/workFlow/addWorkFlow',
@@ -35,8 +37,9 @@ export const updateWorkFlow = (data: {
     workFlowTitle: string
     workFlowDesc: string
     workFlowIndex: number
-    workFlowStatus: number
+    workFlowStatus: boolean
     workFlowType: string
+    workFlowPath: string
 }): Res<boolean> => {
     return request({
         url: '/workFlow/updateWorkFlow',

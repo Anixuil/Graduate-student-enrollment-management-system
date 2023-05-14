@@ -5,8 +5,8 @@ export const useUser = defineStore('user', {
     state: () => ({
         userName: '',
         userAge: null,
-        userSchool: '',
         majorName: '',
+        majorUuid: '',
         userPhone: '',
         userEmail: '',
         userRole: '',
@@ -16,7 +16,24 @@ export const useUser = defineStore('user', {
         departName: '',
         className: '',
         createDate: '',
-        updateDate: ''
+        updateDate: '',
+        undergraduateSchool: '',
+        entryDate: '',
+        graduationDate: '',
+        teacherIntro: '',
+        candidateStatus: '',
+        firstScore: null,
+        secondScore: null,
+        thirdScore: null,
+        userGender: '',
+        userUuid: '',
+        candidateUuid: '',
+        informationStatus: '',
+        teacherUuid: '',
+        studentUuid: '',
+        userHeadimg: '',
+        userAddress: '',
+        examDate: ''
     }),
     getters: {
         //获取信息字段名
@@ -24,7 +41,6 @@ export const useUser = defineStore('user', {
             return {
                 userName: '姓名',
                 userAge: '年龄',
-                userSchool: '本科院校',
                 majorName: '报考专业',
                 userPhone: '联系方式',
                 userEmail: '电子邮箱',
@@ -33,25 +49,50 @@ export const useUser = defineStore('user', {
                 candidateId: '考生编号',
                 userRole: '身份',
                 departName: '所属院系',
-                className: '所教课程'
+                className: '所教课程',
+                undergraduateSchool: '本科院校',
+                entryDate: '入学时间',
+                graduationDate: '毕业时间',
+                teacherIntro: '教师简介',
+                candidateStatus: '考生状态',
+                firstScore: '初试成绩',
+                secondScore: '复试成绩',
+                thirdScore: '调剂成绩',
+                informationStatus: '信息状态',
+                userGender: '性别',
+                userHeadimg: '照片',
+                userAddress: '地址',
+                examDate: '考试日期'
             }
         },
         //获取用户基本信息
         getUserInfo(): object {
             return {
+                userUuid: this.userUuid,
                 userName: this.userName,
                 userAge: this.userAge,
                 userPhone: this.userPhone,
                 userEmail: this.userEmail,
-                userRole: this.userRole
+                userGender: this.userGender,
+                userRole: this.userRole,
+                undergraduateSchool: this.undergraduateSchool,
+                userAddress: this.userAddress,
+                userHeadimg: this.userHeadimg
             }
         },
         //获取考生信息
         getCandidateInfo(): object {
             return {
+                candidateUuid: this.candidateUuid,
                 candidateId: this.candidateId,
-                userSchool: this.userSchool,
-                majorName: this.majorName
+                majorUuid: this.majorUuid,
+                majorName: this.majorName,
+                candidateStatus: this.candidateStatus,
+                firstScore: this.firstScore,
+                secondScore: this.secondScore,
+                thirdScore: this.thirdScore,
+                informationStatus: this.informationStatus,
+                examDate: this.examDate
             }
         },
         //获取学生信息
@@ -106,3 +147,11 @@ export const useUser = defineStore('user', {
         }
     }
 })
+
+const typeArr = ['初试', '复试', '调剂', '录取', '未录取']
+const roleArr = [
+    { label: '考生', value: 'candidate' },
+    { label: '学生', value: 'student' },
+    { label: '教师', value: 'teacher' },
+    { label: '管理员', value: 'admin' }
+]

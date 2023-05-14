@@ -103,7 +103,8 @@ const rowEdit = async (form: any, index: number, done: Function) => {
             workFlowDesc: form.workFlowDesc,
             workFlowIndex: form.workFlowIndex,
             workFlowStatus: form.workFlowStatus,
-            workFlowType: form.workFlowType
+            workFlowType: form.workFlowType,
+            workFlowPath: form.workFlowPath
         })
         ElMessage.success('修改成功')
         refreshChange()

@@ -11,6 +11,7 @@ export const getTeacherList = (params: {
     classUuid?: string
     teacherId?: string
     teacherIntro?: string
+    undergraduateSchool?: string
 }): Res<any> => {
     return request({
         url: '/user/getTeacherList',
@@ -31,6 +32,9 @@ export const updateTeacher = (data: {
     teacherIntro?: string
     departUuid?: string
     classUuid?: string
+    undergraduateSchool?: string
+    userHeadimg?: string
+    userAddress?: string
 }): Res<boolean> => {
     return request({
         url: '/user/updateTeacher',

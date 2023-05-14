@@ -11,6 +11,7 @@ export const getCandidateList = (params: {
     majorUuid?: string
     candidateId?: string
     examPlace?: string
+    undergraduateSchool?: string
 }): Res<any> => {
     return request({
         url: '/user/getCandidateList',
@@ -31,6 +32,11 @@ export const updateCandidate = (data: {
     userGender?: string
     userRole?: string
     candidateId?: string
+    undergraduateSchool?: string
+    informationStatus?: string
+    userHeadimg?: string
+    userAddress?: string
+    examDate?: string
 }): Res<boolean> => {
     return request({
         url: '/user/updateCandidate',

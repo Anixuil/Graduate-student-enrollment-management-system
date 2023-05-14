@@ -21,20 +21,6 @@
 
 <script setup lang="ts">
 import Students from '@/components/person/person.vue'
-import { useSystem } from '@/store/system'
-import { usePageHeader } from '@/store'
-
-const system = useSystem()
-const pageHeader = usePageHeader()
-const router = useRouter()
-
-const switchSystemMode = () => {
-    if (pageHeader.switchPageMode(system.switchSystemMode())) {
-        router.push('/index')
-    } else {
-        router.push('/admin')
-    }
-}
 </script>
 
 <style scoped lang="scss">
