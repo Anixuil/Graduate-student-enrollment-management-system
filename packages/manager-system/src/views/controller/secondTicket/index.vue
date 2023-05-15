@@ -1,6 +1,6 @@
 <template>
     <div class="ticket-wrapper">
-        <tab>初试准考证</tab>
+        <tab>复试准考证</tab>
         <div class="control-wrapper">
             <el-button type="primary" :icon="Download" @click="downloadPDF" :loading="loading"
                 >下载</el-button
@@ -9,7 +9,7 @@
         <div class="pdf-wrapper" ref="pdf" id="pdf">
             <table style="width: 750px">
                 <caption style="font-size: 26px">
-                    中南林业科技大学涉外学院研究生招生考试初试准考证
+                    中南林业科技大学涉外学院研究生招生考试复试准考证
                 </caption>
                 <tr style="height: 41px">
                     <td>考生号</td>

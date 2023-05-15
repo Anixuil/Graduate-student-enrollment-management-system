@@ -36,7 +36,7 @@ request.interceptors.request.use(
 )
 
 //响应拦截器
-const urlNoLog = ['/user/login', '/user/register', '/log/addLog']
+const urlNoLog = ['/user/login', '/log/addLog']
 request.interceptors.response.use(
     async response => {
         nprogress.done()

@@ -62,7 +62,10 @@ export const useUser = defineStore('user', {
                 userGender: '性别',
                 userHeadimg: '照片',
                 userAddress: '地址',
-                examDate: '考试日期'
+                examDate: '考试日期',
+                userUuid: '用户UUID',
+                candidateUuid: '考生UUID',
+                teacherUuid: '教师UUID'
             }
         },
         //获取用户基本信息

@@ -57,6 +57,46 @@ const indexRoutes: RouteRecordRaw[] = [
         }
     },
     {
+        path: '/secondInterview',
+        name: 'secondInterview',
+        component: () => import('@/views/controller/secondEnter/index.vue'),
+        meta: {
+            title: '复试确认',
+            transition: 'slide-fade',
+            roles: ['student', 'candidate']
+        }
+    },
+    {
+        path: '/secondTicket',
+        name: 'secondTicket',
+        component: () => import('@/views/controller/secondTicket/index.vue'),
+        meta: {
+            title: '复试准考证打印',
+            transition: 'slide-fade',
+            roles: ['student', 'candidate']
+        }
+    },
+    {
+        path: '/dispense',
+        name: 'dispense',
+        component: () => import('@/views/controller/dispense/index.vue'),
+        meta: {
+            title: '申请调剂',
+            transition: 'slide-fade',
+            roles: ['student', 'candidate']
+        }
+    },
+    {
+        path: '/admission',
+        name: 'admission',
+        component: () => import('@/views/controller/admission/index.vue'),
+        meta: {
+            title: '录取确认',
+            transition: 'slide-fade',
+            roles: ['student', 'candidate']
+        }
+    },
+    {
         path: '/result',
         name: 'result',
         component: () => import('@/views/controller/result/index.vue'),
