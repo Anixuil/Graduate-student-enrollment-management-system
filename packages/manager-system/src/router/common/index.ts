@@ -97,6 +97,16 @@ const indexRoutes: RouteRecordRaw[] = [
         }
     },
     {
+        path: '/offer',
+        name: 'offer',
+        component: () => import('@/views/controller/offer/index.vue'),
+        meta: {
+            title: '录取通知书',
+            transition: 'slide-fade',
+            roles: ['student', 'candidate']
+        }
+    },
+    {
         path: '/result',
         name: 'result',
         component: () => import('@/views/controller/result/index.vue'),

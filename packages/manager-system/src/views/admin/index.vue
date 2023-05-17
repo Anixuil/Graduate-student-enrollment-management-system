@@ -55,7 +55,7 @@ const sidebarStatus = computed(() => sidebar.sidebarStatus)
             width: 100%;
             height: 100%;
             overflow: auto;
-            padding: 10px;
+            padding: 10px 10px 100px;
             box-sizing: border-box;
             background-color: white;
             margin-top: 5px;

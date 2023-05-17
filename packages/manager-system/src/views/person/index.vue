@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="person-control">
-                <!--                <span @click="switchSystemMode">切换系统</span>-->
+                <span @click="logout">退出登录</span>
             </div>
         </div>
 
@@ -21,6 +21,17 @@
 
 <script setup lang="ts">
 import Students from '@/components/person/person.vue'
+import { useUser } from '@/store/user'
+import { usePageHeader } from '@/store/pageHeader/pageHeader'
+
+const store = useUser()
+const router = useRouter()
+const pageHeader = usePageHeader()
+const logout = () => {
+    store.logout()
+    pageHeader.changePageHeaderStatus(false)
+    router.push('login')
+}
 </script>
 
 <style scoped lang="scss">

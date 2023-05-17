@@ -8,6 +8,7 @@
         <span>
             <slot></slot>
         </span>
+        <slot name="right"></slot>
     </div>
 </template>
 
