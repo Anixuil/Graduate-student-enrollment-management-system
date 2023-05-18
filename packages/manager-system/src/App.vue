@@ -8,15 +8,21 @@ import { useUser } from './store/user'
 const system = useSystem()
 system.initSystemMode()
 const pageHeader = usePageHeader()
+const router = useRouter()
+
 onMounted(() => {
     nextTick(() => {
-        const user = useUser()
-        user.getUserInfoFromServer()
-        user.initUserInfo()
-        const admin = ['admin', 'teacher']
-        const mode = !admin.includes(user.userRole)
-        system.switchSystemMode(mode)
-        pageHeader.switchPageMode(mode)
+        if (!localStorage.getItem('token')) {
+            router.push('login')
+        } else {
+            const user = useUser()
+            user.getUserInfoFromServer()
+            user.initUserInfo()
+            const admin = ['admin', 'teacher']
+            const mode = !admin.includes(user.userRole)
+            system.switchSystemMode(mode)
+            pageHeader.switchPageMode(mode)
+        }
     })
 })
 const mode = computed(() => system.systemMode)

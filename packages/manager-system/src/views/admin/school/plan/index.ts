@@ -1,4 +1,6 @@
 const baseUrl = 'http://localhost:8080/anixuil'
+import { useUser } from '@/store/user'
+const store: any = useUser()
 export const enroPlanTableOption = {
     align: 'center',
     menuAlign: 'center',
@@ -6,6 +8,9 @@ export const enroPlanTableOption = {
     viewBtn: true,
     height: 'calc(100vh - 340px)',
     searchMenuSpan: 4,
+    addBtn: store.getUserInfo.userRole === 'admin',
+    editBtn: store.getUserInfo.userRole === 'admin',
+    delBtn: store.getUserInfo.userRole === 'admin',
     column: [
         {
             label: '序号',

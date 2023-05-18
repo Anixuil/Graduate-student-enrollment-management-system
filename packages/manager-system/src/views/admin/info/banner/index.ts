@@ -1,10 +1,15 @@
 const baseUrl = 'http://localhost:8080/anixuil'
+import { useUser } from '@/store/user'
+const store: any = useUser()
 export const indexWheelTableOption = {
     align: 'center',
     menuAlign: 'center',
     excelBtn: true,
     viewBtn: true,
     height: 'calc(100vh - 340px)',
+    addBtn: store.getUserInfo.userRole === 'admin',
+    editBtn: store.getUserInfo.userRole === 'admin',
+    delBtn: store.getUserInfo.userRole === 'admin',
     column: [
         {
             label: '序号',

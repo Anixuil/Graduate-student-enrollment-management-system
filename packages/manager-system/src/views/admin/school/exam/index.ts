@@ -1,5 +1,4 @@
 const baseUrl = 'http://localhost:8080/anixuil'
-
 export const examTableOption = {
     align: 'center',
     menuAlign: 'center',

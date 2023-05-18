@@ -1,4 +1,6 @@
 const baseUrl = 'http://localhost:8080/anixuil'
+import { useUser } from '@/store/user'
+const store: any = useUser()
 export const candidateTableOption = {
     align: 'center',
     menuAlign: 'center',
@@ -6,6 +8,9 @@ export const candidateTableOption = {
     viewBtn: true,
     height: 'calc(100vh - 445px)',
     searchMenuPosition: 'center',
+    addBtn: store.getUserInfo.userRole === 'admin',
+    editBtn: store.getUserInfo.userRole === 'admin',
+    delBtn: store.getUserInfo.userRole === 'admin',
     column: [
         {
             label: '序号',

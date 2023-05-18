@@ -33,7 +33,10 @@
                                 @selection-change="selectionChange"
                                 @filter-change="filterChange"
                             >
-                                <template #menu-left="{ size }">
+                                <template
+                                    #menu-left="{ size }"
+                                    v-if="store.getUserInfo.userRole == 'admin'"
+                                >
                                     <!--                                        <el-button type="primary" @click="downloadTemplate" :size="size" link>-->
                                     <!--                                            下载模板-->
                                     <!--                                        </el-button>-->
@@ -91,7 +94,8 @@ import { examTableOption } from './index'
 import { getCandidateList, updateCandidate } from '@/api/candidate'
 import { deleteUser, register } from '@/api/user'
 import { ElMessage, ElMessageBox } from 'element-plus'
-
+import { useUser } from '@/store/user'
+const store: any = useUser()
 //初始化效果实现--------------------------------------------------------------------------------------
 
 const activeName: Ref<string> = ref('first')

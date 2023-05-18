@@ -18,7 +18,9 @@
                         <el-button
                             type="primary"
                             @click="emailDrawerOpen(`${item.workFlowTitle}邮件通知配置`)"
-                            :disabled="!item.workFlowStatus"
+                            :disabled="
+                                !item.workFlowStatus || store.getUserInfo.userRole !== 'admin'
+                            "
                             >邮件提醒通知</el-button
                         >
                     </el-form-item>
@@ -35,7 +37,8 @@
 <script setup lang="ts">
 import EmailForm from '@/components/common/Email/index.vue'
 import { PropType } from 'vue'
-
+import { useUser } from '@/store/user'
+const store: any = useUser()
 //接收prop
 defineProps({
     workFlowList: {

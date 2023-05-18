@@ -12,7 +12,7 @@
             @row-save="rowSave"
             @row-update="rowEdit"
         >
-            <template #menu-left="{ size }">
+            <template #menu-left="{ size }" v-if="store.getUserInfo.userRole === 'admin'">
                 <el-upload :auto-upload="true" :show-file-list="false" :http-request="uploadFile">
                     <el-button type="primary" link :size="size">批量导入</el-button>
                 </el-upload>
@@ -33,6 +33,8 @@ import { importExcel } from '@/api/upload'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { Ref } from 'vue'
 import { departTableOption } from '.'
+import { useUser } from '@/store/user'
+const store: any = useUser()
 
 const page = reactive({
     currentPage: 1,

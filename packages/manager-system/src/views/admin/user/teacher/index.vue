@@ -13,7 +13,7 @@
             @size-change="sizeChange"
             @search-change="searchChange"
         >
-            <template #menu-left="{ size }">
+            <template #menu-left="{ size }" v-if="store.getUserInfo.userRole == 'admin'">
                 <el-upload :auto-upload="true" :show-file-list="false" :http-request="uploadFile">
                     <el-button type="primary" link :size="size">批量导入</el-button>
                 </el-upload>
@@ -46,6 +46,8 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { getTeacherList, updateTeacher } from '@/api/teacher'
 import { deleteUser, register } from '@/api/user'
 import { importExcel } from '@/api/upload'
+import { useUser } from '@/store/user'
+const store: any = useUser()
 
 //下载模板
 const downloadTemplate = () => {

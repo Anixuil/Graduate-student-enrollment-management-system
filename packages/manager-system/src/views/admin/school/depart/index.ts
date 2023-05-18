@@ -1,11 +1,15 @@
 //用来定义一些长方法
-
+import { useUser } from '@/store/user'
+const store: any = useUser()
 export const departTableOption = {
     align: 'center',
     menuAlign: 'center',
     excelBtn: true,
     viewBtn: true,
     height: 'calc(100vh - 300px)',
+    addBtn: store.getUserInfo.userRole === 'admin',
+    editBtn: store.getUserInfo.userRole === 'admin',
+    delBtn: store.getUserInfo.userRole === 'admin',
     column: [
         {
             label: '序号',

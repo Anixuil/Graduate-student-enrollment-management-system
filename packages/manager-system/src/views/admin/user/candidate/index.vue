@@ -13,7 +13,7 @@
             @size-change="sizeChange"
             @search-change="searchChange"
         >
-            <template #menu-left="{ size }">
+            <template #menu-left="{ size }" v-if="store.getUserInfo.userRole == 'admin'">
                 <el-button type="primary" @click="downloadTemplate" :size="size" link>
                     下载模板
                 </el-button>
@@ -54,7 +54,8 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { getCandidateList, updateCandidate } from '@/api/candidate'
 import { deleteUser, register } from '@/api/user'
 import { importExcel } from '@/api/upload'
-
+import { useUser } from '@/store/user'
+const store: any = useUser()
 //下载模板
 const downloadTemplate = () => {
     window.open('http://localhost:8080/anixuil/file/download/用户导入模板.xlsx')
