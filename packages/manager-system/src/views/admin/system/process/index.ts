@@ -97,23 +97,19 @@ export const workFlowTableOption = {
             width: 100
         },
         {
-            label: '流程图片',
-            prop: 'workFlowImage',
-            type: 'upload',
-            listType: 'picture-img',
-            hide: true,
-            span: 24,
-            propsHttp: {
-                res: 'data',
-                url: 'url'
-            },
-            props: {
-                label: 'name',
-                value: 'url'
-            },
-            action: `${baseUrl}/file/upload`,
-            tip: '只能上传jpg/png文件，且不超过500kb',
-            accept: 'image/jpeg,image/png'
+            label: '流程时间',
+            prop: 'workFlowDate',
+            type: 'datetime',
+            format: 'YYYY-MM-DD',
+            valueFormat: 'YYYY-MM-DD',
+            span: 12,
+            rules: [
+                {
+                    required: true,
+                    message: '请选择流程时间',
+                    trigger: ['blur', 'change']
+                }
+            ]
         },
         {
             label: '流程路径',

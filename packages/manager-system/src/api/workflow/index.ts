@@ -24,6 +24,7 @@ export const addWorkFlow = (data: {
     workFlowType: string
     workFlowStatus: boolean
     workFlowPath: string
+    workFlowDate: string
 }): Res<boolean> => {
     return request({
         url: '/workFlow/addWorkFlow',
@@ -40,6 +41,7 @@ export const updateWorkFlow = (data: {
     workFlowStatus: boolean
     workFlowType: string
     workFlowPath: string
+    workFlowDate: string
 }): Res<boolean> => {
     return request({
         url: '/workFlow/updateWorkFlow',
