@@ -13,8 +13,8 @@
                 </div>
             </div>
             <ul class="header-nav-right">
-                <li>学校官网</li>
-                <li>研究生招生网</li>
+                <li @click="gotoSchool">学校官网</li>
+                <li @click="gotoYZW">研究生招生网</li>
                 <li @click="gotoPerson">
                     <span>个人中心</span>
                     <!--                    <img src="swxy_xh.png" alt="" />-->
@@ -32,6 +32,12 @@ const router = useRouter()
 const gotoPerson = () => {
     if (!system.systemMode) return router.push('/admin/person')
     router.push('/person')
+}
+const gotoYZW = () => {
+    location.href = 'http://localhost:8082/'
+}
+const gotoSchool = () => {
+    location.href = 'https://swxy.csuft.edu.cn/'
 }
 </script>
 

@@ -25,6 +25,11 @@ export class BgImageAuto implements ImageClass {
 
     //
     controlImage(): void {
+        //修复图片第一加载时没有宽高导致计算错误的问题
+        if (this.img.naturalWidth == 0 || this.img.naturalHeight == 0) {
+            this.wrap.style.backgroundSize = '100% auto'
+            return
+        }
         if (
             this.wrap.offsetWidth / this.wrap.offsetHeight >=
             this.img.naturalWidth / this.img.naturalHeight
@@ -53,6 +58,11 @@ export class BgImagesAuto implements ImageClass {
 
     //
     controlImage(): void {
+        //修复图片第一加载时没有宽高导致计算错误的问题
+        if (this.img.naturalWidth == 0 || this.img.naturalHeight == 0) {
+            this.wrap.style.backgroundSize = '100% auto'
+            return
+        }
         if (
             this.wrap.offsetWidth / this.wrap.offsetHeight >=
             this.img.naturalWidth / this.img.naturalHeight

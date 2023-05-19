@@ -3,19 +3,29 @@
         <div class="person-info-box">
             <div class="user-box">
                 <div class="user-img-box">
-                    <img src="vite.svg" alt="" />
+                    <img :src="store.getUserInfo.userHeadimg" alt="" />
                 </div>
                 <div class="user-info">
-                    <span>张伞</span>
-                    <span>考生</span>
+                    <span>{{ store.getUserInfo.userName }}</span>
+                    <span>{{
+                        typeArr[typeArr.findIndex(item => item.value == store.getUserInfo.userRole)]
+                            .label
+                    }}</span>
                 </div>
             </div>
             <div class="person-control">
+                <span @click="updateDialogVisible = true">修改密码</span>
                 <span @click="logout">退出登录</span>
             </div>
         </div>
-
         <Students></Students>
+        <el-dialog v-model="updateDialogVisible" title="修改密码">
+            <avue-form
+                :option="option"
+                @submit="updatePasswordHandle"
+                v-model="formData"
+            ></avue-form>
+        </el-dialog>
     </div>
 </template>
 
@@ -23,7 +33,19 @@
 import Students from '@/components/person/person.vue'
 import { useUser } from '@/store/user'
 import { usePageHeader } from '@/store/pageHeader/pageHeader'
+import { updatePwd } from '@/api/user'
+import { ElMessage } from 'element-plus'
 
+const typeArr = ref([
+    {
+        label: '考生',
+        value: 'candidate'
+    },
+    {
+        label: '学生',
+        value: 'student'
+    }
+])
 const store = useUser()
 const router = useRouter()
 const pageHeader = usePageHeader()
@@ -31,6 +53,64 @@ const logout = () => {
     store.logout()
     pageHeader.changePageHeaderStatus(false)
     router.push('login')
+}
+const updateDialogVisible = ref(false)
+const formData = reactive({
+    password: '',
+    newPassword: '',
+    confirmPassword: ''
+})
+const option = reactive({
+    column: [
+        {
+            label: '原密码',
+            prop: 'oldPassword',
+            type: 'password',
+            rules: [
+                { required: true, message: '请输入原密码', trigger: 'blur' },
+                { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
+            ]
+        },
+        {
+            label: '新密码',
+            prop: 'newPassword',
+            type: 'password',
+            rules: [
+                { required: true, message: '请输入新密码', trigger: 'blur' },
+                { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
+            ]
+        },
+        {
+            label: '确认密码',
+            prop: 'confirmPassword',
+            type: 'password',
+            rules: [
+                { required: true, message: '请输入确认密码', trigger: 'blur' },
+                { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
+            ]
+        }
+    ]
+})
+//提交修改密码
+const updatePasswordHandle = async (form: any, done: Function) => {
+    //校验新密码和确认密码是否相等
+    if (!(form.newPassword === form.confirmPassword)) {
+        ElMessage.error('新密码与确认密码不一致')
+        updateDialogVisible.value = false
+        done()
+        return
+    }
+    try {
+        const res: any = await updatePwd({
+            oldPassword: form.oldPassword,
+            newPassword: form.newPassword
+        })
+        updateDialogVisible.value = false
+        ElMessage.success(res.msg)
+        done()
+    } catch (err) {
+        done()
+    }
 }
 </script>
 

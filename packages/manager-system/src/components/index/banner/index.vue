@@ -3,8 +3,16 @@
         <div class="banner-title">致全体考生的一封信</div>
         <div class="banner-container">
             <span
-                >距 <strong>2023</strong> 年研究生考试还有
-                <strong style="color: red">30</strong> 天</span
+                >距 <strong>{{ new Date().getFullYear() }}</strong> 年研究生考试还有
+                <strong style="color: red">{{
+                    new Date(`${new Date().getFullYear()}/12/25`) - new Date() > 0
+                        ? Math.floor(
+                              (new Date(`${new Date().getFullYear()}/12/25`) - new Date()) /
+                                  (1000 * 60 * 60 * 24)
+                          )
+                        : 0
+                }}</strong>
+                天</span
             >
             <p class="text">
                 相信能看到这封信的同学，都是坚定不移的选择了本校到了最后，先在这里祝各位考生考试顺利！！！
@@ -21,8 +29,7 @@
                 五、遵守考场、国家考试规范，严禁考试舞弊，一经发现从严处理。
             </p>
             <p class="text" style="text-indent: 4em">
-                六、本校流程为 <span style="color: red">确认报名信息</span> 、
-                <span style="color: red">网上确认</span> 、
+                六、本校流程为 <span style="color: red">确认报名信息</span> 、 、
                 <span style="color: red">下载准考证</span> 、
                 <span style="color: red">初试</span> 、
                 <span style="color: red">公布初试成绩</span> 、
@@ -38,7 +45,7 @@
             </p>
             <p class="text-footer">
                 <span>中南林业科技大学涉外学院研究生招生办</span>
-                <span>2022 年 10 月 29 日</span>
+                <span>{{ new Date().getFullYear() }} 年 10 月 29 日</span>
             </p>
         </div>
         <slot> </slot>

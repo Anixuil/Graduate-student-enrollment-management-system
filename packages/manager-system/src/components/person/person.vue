@@ -35,6 +35,12 @@ const listLabel = computed(() => store.getUserLabel as studentLabelInterface)
 //考生信息
 const candidate = computed(() => store.getCandidateInfo as studentInterface)
 const candidateKeys: Ref<string[]> = ref(Object.keys(candidate.value))
+//考生信息中去除头像、角色、姓名
+userKeys.value.forEach((item, index) => {
+    if (item == 'userHeadimg' || item == 'userRole' || item == 'userName') {
+        userKeys.value.splice(index, 1)
+    }
+})
 
 //学生信息
 const student = computed(() => store.getStudentInfo as studentInterface)

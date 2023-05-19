@@ -85,9 +85,9 @@ onMounted(() => {
         const img = new BgImageAuto('login-bg', '/bg1.jpg', page.value)
         img.controlImage()
         window.onresize = () => {
-            return () => {
+            return (() => {
                 img.controlImage()
-            }
+            })()
         }
     })
 })

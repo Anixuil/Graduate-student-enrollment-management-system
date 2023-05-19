@@ -55,3 +55,12 @@ export const deleteUser = (data: { userUuid: string }): Res<boolean> => {
         data
     })
 }
+
+//修改密码
+export const updatePwd = (data: { oldPassword: string; newPassword: string }): Res<boolean> => {
+    return request({
+        url: '/user/updatePwd',
+        method: 'put',
+        data
+    })
+}
