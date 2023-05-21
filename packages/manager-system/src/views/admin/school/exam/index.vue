@@ -71,6 +71,9 @@
                                         <el-tag v-else-if="row[item.prop] === '2'" type="danger"
                                             >调剂</el-tag
                                         >
+                                        <el-tag v-else-if="row[item.prop] === '3'" type="success"
+                                            >录取</el-tag
+                                        >
                                     </div>
                                     <div v-else>
                                         {{ row[item.prop] }}
@@ -271,6 +274,9 @@ const rowDel = (form: any) => {
 //搜素
 const searchChange = async (params: any, done: Function) => {
     try {
+        params = Object.assign(params, {
+            candidateStatus: activeName.value
+        })
         let res: any = await getCandidateList({
             pageNum: page.currentPage,
             pageSize: page.pageSize,

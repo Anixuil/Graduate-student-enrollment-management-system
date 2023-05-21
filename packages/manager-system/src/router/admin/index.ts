@@ -72,6 +72,16 @@ const adminRoutes: RouteRecordRaw[] = [
                             transition: 'slide-fade',
                             roles: ['teacher', 'admin']
                         }
+                    },
+                    {
+                        path: 'choose',
+                        name: 'adminUserChoose',
+                        component: () => import('@/views/admin/user/choose/index.vue'),
+                        meta: {
+                            title: '培养模块',
+                            transition: 'slide-fade',
+                            roles: ['teacher', 'admin']
+                        }
                     }
                 ]
             },

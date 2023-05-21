@@ -49,6 +49,7 @@ const handleClickEmit = async (form: any, done: Function) => {
         // 禁用按钮
         option.submitBtn = false
         ElMessage.success('确认信息成功')
+        await store.getUserInfoFromServer()
         done()
     } catch (e: any) {
         console.log(e)

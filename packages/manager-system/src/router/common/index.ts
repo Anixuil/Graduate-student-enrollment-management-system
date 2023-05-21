@@ -107,11 +107,11 @@ const indexRoutes: RouteRecordRaw[] = [
         }
     },
     {
-        path: '/result',
-        name: 'result',
-        component: () => import('@/views/controller/result/index.vue'),
+        path: '/choose',
+        name: 'choose',
+        component: () => import('@/views/controller/choose/index.vue'),
         meta: {
-            title: '成绩查询',
+            title: '选择导师',
             transition: 'slide-fade',
             roles: ['student', 'candidate']
         }

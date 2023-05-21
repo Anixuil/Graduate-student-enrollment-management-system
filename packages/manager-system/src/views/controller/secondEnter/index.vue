@@ -38,7 +38,7 @@ const handleClickEmit = async (form: any, done: Function) => {
         })
         await store.getUserInfoFromServer()
         await store.initUserInfo()
-        if (res.data.code != 200) {
+        if (res.code != 200) {
             ElMessage.error('复试确认失败')
             done()
             return
@@ -53,6 +53,7 @@ const handleClickEmit = async (form: any, done: Function) => {
         // 禁用按钮
         option.submitBtn = false
         ElMessage.success('复试确认成功')
+        await store.getUserInfoFromServer()
         done()
     } catch (e: any) {
         console.log(e)

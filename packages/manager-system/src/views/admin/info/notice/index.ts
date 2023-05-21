@@ -6,7 +6,7 @@ export const noticeInfoTableOption = {
     menuAlign: 'center',
     excelBtn: true,
     viewBtn: true,
-    height: 'calc(100vh - 340px)',
+    height: 'calc(100vh - 400px)',
     addBtn: store.getUserInfo.userRole === 'admin',
     editBtn: store.getUserInfo.userRole === 'admin',
     delBtn: store.getUserInfo.userRole === 'admin',

@@ -3,7 +3,7 @@
         <tab style="display: flex; justify-content: space-between">
             <span>录取通知书</span>
         </tab>
-        <div class="pdf-wrapper" ref="pdf" id="pdf">
+        <div class="pdf-wrapper" ref="pdf" id="pdf" v-if="userInfo.candidateStatus == 3">
             <img src="/录取通知书封面.png" alt="" />
             <img src="/录取通知书内页.png" alt="" />
             <span class="name">{{ userInfo.userName }}</span>
@@ -14,6 +14,9 @@
             <span class="uuid">{{ new Date().getTime() }}</span>
             <span class="id">{{ userInfo.candidateId }}</span>
             <span class="year">{{ new Date().getFullYear() }}</span>
+        </div>
+        <div v-else class="pdf-wrapper">
+            <el-empty description="您暂无资格查看通知书"></el-empty>
         </div>
     </div>
 </template>

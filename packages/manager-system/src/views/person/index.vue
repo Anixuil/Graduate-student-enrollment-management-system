@@ -15,6 +15,7 @@
             </div>
             <div class="person-control">
                 <span @click="updateDialogVisible = true">修改密码</span>
+                <span @click="getScore">成绩查询</span>
                 <span @click="logout">退出登录</span>
             </div>
         </div>
@@ -26,6 +27,35 @@
                 v-model="formData"
             ></avue-form>
         </el-dialog>
+        <el-dialog v-model="scoreDialogVisible" title="成绩查询">
+            <avue-crud :data="scoreData.records" :option="scoreOption">
+                <template
+                    v-for="item in scoreOption.column"
+                    :key="item.prop"
+                    v-slot:[item.prop]="{ row, index }"
+                >
+                    <el-tag v-if="item.prop === 'index'">{{ index + 1 }}</el-tag>
+                    <div v-else-if="item.prop === 'examType'">
+                        <el-tag v-if="row[item.prop] === '0'" type="info">初试</el-tag>
+                        <el-tag v-else-if="row[item.prop] === '1'" type="warning">复试</el-tag>
+                        <el-tag v-else-if="row[item.prop] === '2'" type="danger">调剂</el-tag>
+                    </div>
+                    <div v-else>{{ row[item.prop] }}</div>
+                </template>
+            </avue-crud>
+            <div
+                style="
+                    display: flex;
+                    justify-content: space-around;
+                    box-sizing: border-box;
+                    padding: 20px;
+                "
+            >
+                <span>初试总分：{{ scoreData.firstScore }}</span>
+                <span>复试总分：{{ scoreData.secondScore }}</span>
+                <span>调剂总分：{{ scoreData.thirdScore }}</span>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -35,6 +65,7 @@ import { useUser } from '@/store/user'
 import { usePageHeader } from '@/store/pageHeader/pageHeader'
 import { updatePwd } from '@/api/user'
 import { ElMessage } from 'element-plus'
+import { getExamScore } from '@/api/examScore'
 
 const typeArr = ref([
     {
@@ -111,6 +142,42 @@ const updatePasswordHandle = async (form: any, done: Function) => {
     } catch (err) {
         done()
     }
+}
+
+//成绩查询逻辑实现
+const scoreDialogVisible = ref(false)
+const scoreData: any = ref([])
+const scoreOption = reactive({
+    addBtn: false,
+    editBtn: false,
+    delBtn: false,
+    excelBtn: true,
+    menu: false,
+    column: [
+        {
+            label: '序号',
+            prop: 'index',
+            type: 'index',
+            width: 60
+        },
+        {
+            label: '考试类别',
+            prop: 'examType'
+        },
+        {
+            label: '考试科目',
+            prop: 'examClassName'
+        },
+        {
+            label: '考试成绩',
+            prop: 'examScore'
+        }
+    ]
+})
+const getScore = async () => {
+    scoreDialogVisible.value = true
+    const res: any = await getExamScore()
+    scoreData.value = res.data
 }
 </script>
 

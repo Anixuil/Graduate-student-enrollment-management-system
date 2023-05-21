@@ -2,14 +2,14 @@
     <div class="students-box">
         <tab>基本信息</tab>
         <infoDetail :listKeys="userKeys" :listLabel="listLabel" :listData="user"></infoDetail>
-        <tab v-if="user.userRole == '考生'">考生信息</tab>
+        <tab v-if="user.userRole == 'candidate'">考生信息</tab>
         <infoDetail
-            v-if="user.userRole == '考生'"
+            v-if="user.userRole == 'candidate'"
             :listKeys="candidateKeys"
             :listLabel="listLabel"
             :listData="candidate"
         ></infoDetail>
-        <tab v-if="user.userRole == '学生'">学生信息</tab>
+        <tab v-if="user.userRole == 'student'">学生信息</tab>
         <infoDetail
             v-if="user.userRole == '学生'"
             :listKeys="studentKeys"
@@ -33,13 +33,26 @@ const userKeys: Ref<string[]> = ref(Object.keys(user.value))
 const listLabel = computed(() => store.getUserLabel as studentLabelInterface)
 
 //考生信息
-const candidate = computed(() => store.getCandidateInfo as studentInterface)
+const candidate = computed(() => store.getCandidateInfo)
 const candidateKeys: Ref<string[]> = ref(Object.keys(candidate.value))
 //考生信息中去除头像、角色、姓名
 userKeys.value.forEach((item, index) => {
     if (item == 'userHeadimg' || item == 'userRole' || item == 'userName') {
         userKeys.value.splice(index, 1)
     }
+})
+const candidateArr = [
+    'firstScore',
+    'secondScore',
+    'thirdScore',
+    'candidateStatus',
+    'informationStatus',
+    'candidateUuid',
+    'majorUuid',
+    'examDate'
+]
+candidateKeys.value = candidateKeys.value.filter(item => {
+    return !candidateArr.includes(item)
 })
 
 //学生信息

@@ -50,6 +50,8 @@ const handleClickEmit = async (form: any, done: Function) => {
         // 禁用按钮
         option.submitBtn = false
         ElMessage.success('录取信息确认成功')
+        // 更新本地用户信息
+        await store.getUserInfoFromServer()
         done()
     } catch (e: any) {
         console.log(e)

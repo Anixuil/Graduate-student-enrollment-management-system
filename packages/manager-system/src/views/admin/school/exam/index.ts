@@ -20,7 +20,7 @@ export const examTableOption = {
             display: false
         },
         {
-            label: 'ID',
+            label: '考号',
             prop: 'candidateId',
             addDisplay: false,
             addDisabled: true,
@@ -96,21 +96,21 @@ export const examTableOption = {
                 }
             ]
         },
-        {
-            label: '密码',
-            prop: 'userPassword',
-            type: 'password',
-            hide: true,
-            rules: [
-                {
-                    required: true,
-                    message: '请输入密码',
-                    trigger: ['blur', 'change']
-                }
-            ],
-            viewDisplay: false,
-            editDisplay: false
-        },
+        // {
+        //     label: '密码',
+        //     prop: 'userPassword',
+        //     type: 'password',
+        //     hide: true,
+        //     rules: [
+        //         {
+        //             required: true,
+        //             message: '请输入密码',
+        //             trigger: ['blur', 'change']
+        //         }
+        //     ],
+        //     viewDisplay: false,
+        //     editDisplay: false
+        // },
         {
             label: '报考专业',
             prop: 'majorUuid',

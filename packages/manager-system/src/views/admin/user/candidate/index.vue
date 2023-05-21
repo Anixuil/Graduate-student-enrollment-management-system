@@ -38,6 +38,8 @@
                     <el-tag v-if="row[item.prop] === '0'" type="info">初试</el-tag>
                     <el-tag v-else-if="row[item.prop] === '1'" type="warning">复试</el-tag>
                     <el-tag v-else-if="row[item.prop] === '2'" type="danger">调剂</el-tag>
+                    <el-tag v-else-if="row[item.prop] === '3'" type="success">录取</el-tag>
+                    <el-tag v-else-if="row[item.prop] === '4'" type="success">未录取</el-tag>
                 </div>
                 <div v-else>
                     {{ row[item.prop] }}

@@ -2,11 +2,16 @@
     <div class="ticket-wrapper">
         <tab>复试准考证</tab>
         <div class="control-wrapper">
-            <el-button type="primary" :icon="Download" @click="downloadPDF" :loading="loading"
+            <el-button
+                type="primary"
+                :icon="Download"
+                @click="downloadPDF"
+                :loading="loading"
+                v-if="userInfo.candidateStatus == 1"
                 >下载</el-button
             >
         </div>
-        <div class="pdf-wrapper" ref="pdf" id="pdf">
+        <div class="pdf-wrapper" ref="pdf" id="pdf" v-if="userInfo.candidateStatus == 1">
             <table style="width: 750px">
                 <caption style="font-size: 26px">
                     中南林业科技大学涉外学院研究生招生考试复试准考证
@@ -86,6 +91,9 @@
                     </td>
                 </tr>
             </table>
+        </div>
+        <div v-else class="pdf-wrapper">
+            <el-empty description="打印时间已过"></el-empty>
         </div>
     </div>
 </template>

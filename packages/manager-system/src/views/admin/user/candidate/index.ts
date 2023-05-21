@@ -226,7 +226,9 @@ export const candidateTableOption = {
             type: 'datetime',
             format: 'YYYY-MM-DD',
             valueFormat: 'YYYY-MM-DD',
-            width: 100
+            width: 100,
+            editDisabled: true,
+            addDisplay: false
         },
         {
             label: '初试',
