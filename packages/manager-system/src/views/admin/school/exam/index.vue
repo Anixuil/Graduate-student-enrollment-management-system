@@ -46,6 +46,16 @@
                                     <el-button type="primary" @click="selectionAdmiss" :size="size"
                                         >批量录取</el-button
                                     >
+                                    <el-upload
+                                        :auto-upload="true"
+                                        :show-file-list="false"
+                                        type="primary"
+                                        :http-request="updateScore"
+                                    >
+                                        <el-button type="primary" link :size="size"
+                                            >导入成绩</el-button
+                                        >
+                                    </el-upload>
                                 </template>
                                 <template
                                     v-for="item in tableOption.column"
@@ -98,6 +108,7 @@ import { getCandidateList, updateCandidate } from '@/api/candidate'
 import { deleteUser, register } from '@/api/user'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useUser } from '@/store/user'
+import { importExcel } from '@/api/upload'
 const store: any = useUser()
 //初始化效果实现--------------------------------------------------------------------------------------
 
@@ -133,6 +144,31 @@ onMounted(() => {
     })
 })
 //初始化效果实现--------------------------------------------------------------------------------------
+//导入成绩
+const updateScore = async (file: any) => {
+    const formData = new FormData()
+    formData.append('file', file.file)
+    formData.append('className', 'ExamScoreTable')
+    try {
+        const res: any = await importExcel(formData)
+        refreshChange()
+        ElMessageBox.alert(
+            `
+            <ul>
+            <li>成功导入 <strong>${res.data.successCount}</strong> 条数据</li>
+            <li>失败 <strong>${res.data.failCount}</strong> 条数据</li>
+            <li>已存在 <strong>${res.data.existCount}</strong> 条数据</li>
+            </ul>
+        `,
+            res.msg,
+            {
+                dangerouslyUseHTMLString: true
+            }
+        )
+    } catch (e) {
+        console.log(e)
+    }
+}
 //自定义效果实现--------------------------------------------------------------------------------------
 const tableOption = reactive(examTableOption)
 
@@ -308,6 +344,12 @@ const searchChange = async (params: any, done: Function) => {
     height: 100%;
     box-sizing: border-box;
     padding: 0 20px;
+}
+
+:deep(.avue-crud__left) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .v-enter-active,

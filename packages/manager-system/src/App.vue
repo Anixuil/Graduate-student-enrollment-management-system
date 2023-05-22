@@ -11,6 +11,18 @@ const pageHeader = usePageHeader()
 const router = useRouter()
 
 onMounted(() => {
+    // 检测浏览器路由改变页面不刷新问题,hash模式的工作原理是hashchange事件
+    window.addEventListener(
+        'hashchange',
+        () => {
+            let currentPath = window.location.hash.slice(1)
+            if (router.currentRoute.value.path !== currentPath) {
+                router.push(currentPath)
+            }
+        },
+        false
+    )
+
     nextTick(() => {
         if (!localStorage.getItem('token')) {
             router.push('login')

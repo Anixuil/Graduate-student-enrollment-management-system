@@ -20,9 +20,6 @@
                 <el-upload :auto-upload="true" :show-file-list="false" :http-request="uploadFile">
                     <el-button type="primary" link :size="size">批量导入</el-button>
                 </el-upload>
-                <el-upload :auto-upload="true" :show-file-list="false" :http-request="updateScore">
-                    <el-button type="primary" link :size="size">导入成绩</el-button>
-                </el-upload>
             </template>
             <template
                 v-for="item in option.column"
@@ -72,20 +69,6 @@ const uploadFile = async (file: any) => {
         await importExcel(formData)
         refreshChange()
         ElMessage.success('导入成功')
-    } catch (e) {
-        console.log(e)
-    }
-}
-
-//导入成绩
-const updateScore = async (file: any) => {
-    const formData = new FormData()
-    formData.append('file', file.file)
-    formData.append('className', 'ExamScoreTable')
-    try {
-        await importExcel(formData)
-        refreshChange()
-        ElMessage.success('导入成绩成功')
     } catch (e) {
         console.log(e)
     }
