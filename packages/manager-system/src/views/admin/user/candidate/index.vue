@@ -66,9 +66,21 @@ const uploadFile = async (file: any) => {
     formData.append('file', file.file)
     formData.append('className', 'UserTable')
     try {
-        await importExcel(formData)
+        const res: any = await importExcel(formData)
         refreshChange()
-        ElMessage.success('导入成功')
+        ElMessageBox.alert(
+            `
+            <ul>
+            <li>成功导入 <strong>${res.data.successCount}</strong> 条数据</li>
+            <li>失败 <strong>${res.data.failCount}</strong> 条数据</li>
+            <li>已存在 <strong>${res.data.existCount}</strong> 条数据</li>
+            </ul>
+        `,
+            res.msg,
+            {
+                dangerouslyUseHTMLString: true
+            }
+        )
     } catch (e) {
         console.log(e)
     }

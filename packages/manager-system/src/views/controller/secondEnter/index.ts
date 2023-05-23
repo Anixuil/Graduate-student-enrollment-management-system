@@ -3,7 +3,7 @@ const store: any = useUser()
 const baseUrl = 'http://localhost:8080/anixuil'
 
 export const secondEnterOption = {
-    submitBtn: store.getCandidateInfo.informationStatus === '01',
+    submitBtn: store.getCandidateInfo.informationStatus === '10',
     emptyBtn: false,
     column: [
         {
@@ -43,13 +43,13 @@ export const secondEnterOption = {
             ],
             accept: 'image/jpeg,image/png',
             display: !(store.getCandidateInfo.informationStatus === '11'),
-            disabled: store.getCandidateInfo.informationStatus === '11'
+            disabled: !(store.getCandidateInfo.informationStatus === '10')
         },
         {
             label: '姓名',
             prop: 'userName',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '11',
+            disabled: !(store.getCandidateInfo.informationStatus === '10'),
             rules: [
                 {
                     required: true,
@@ -68,7 +68,7 @@ export const secondEnterOption = {
                 label: 'dictFieldLabel',
                 value: 'dictFieldValue'
             },
-            disabled: store.getCandidateInfo.informationStatus === '11',
+            disabled: !(store.getCandidateInfo.informationStatus === '10'),
             rules: [
                 {
                     required: true,
@@ -89,7 +89,7 @@ export const secondEnterOption = {
             prop: 'userAge',
             type: 'number',
             min: 18,
-            disabled: store.getCandidateInfo.informationStatus === '11',
+            disabled: !(store.getCandidateInfo.informationStatus === '10'),
             rules: [
                 {
                     required: true,
@@ -110,7 +110,7 @@ export const secondEnterOption = {
                 }
             ],
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '11',
+            disabled: !(store.getCandidateInfo.informationStatus === '10'),
             span: 24
         },
         {
@@ -130,13 +130,13 @@ export const secondEnterOption = {
                 }
             ],
             span: 12,
-            disabled: store.getCandidateInfo.informationStatus === '11'
+            disabled: !(store.getCandidateInfo.informationStatus === '10')
         },
         {
             label: '联系方式',
             prop: 'userPhone',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '11',
+            disabled: !(store.getCandidateInfo.informationStatus === '10'),
             rules: [
                 {
                     required: true,
@@ -149,7 +149,7 @@ export const secondEnterOption = {
             label: '电子邮箱',
             prop: 'userEmail',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '11',
+            disabled: !(store.getCandidateInfo.informationStatus === '10'),
             rules: [
                 {
                     required: true,
@@ -173,7 +173,7 @@ export const secondEnterOption = {
             label: '本科院校',
             prop: 'undergraduateSchool',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '11',
+            disabled: !(store.getCandidateInfo.informationStatus === '10'),
             rules: [
                 {
                     required: true,

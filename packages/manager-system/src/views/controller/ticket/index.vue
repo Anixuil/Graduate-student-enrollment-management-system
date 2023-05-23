@@ -7,11 +7,16 @@
                 :icon="Download"
                 @click="downloadPDF"
                 :loading="loading"
-                v-if="userInfo.candidateStatus == 0"
+                v-if="userInfo.candidateStatus == 0 && userInfo.informationStatus == '01'"
                 >下载</el-button
             >
         </div>
-        <div class="pdf-wrapper" ref="pdf" id="pdf" v-if="userInfo.candidateStatus == 0">
+        <div
+            class="pdf-wrapper"
+            ref="pdf"
+            id="pdf"
+            v-if="userInfo.candidateStatus == 0 && userInfo.informationStatus == '01'"
+        >
             <table style="width: 750px">
                 <caption style="font-size: 26px">
                     中南林业科技大学涉外学院研究生招生考试初试准考证
@@ -93,7 +98,7 @@
             </table>
         </div>
         <div v-else class="pdf-wrapper">
-            <el-empty description="打印时间已过"></el-empty>
+            <el-empty description="还未到或打印时间已过"></el-empty>
         </div>
     </div>
 </template>

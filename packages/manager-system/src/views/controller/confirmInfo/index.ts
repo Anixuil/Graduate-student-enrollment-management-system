@@ -43,13 +43,13 @@ export const confirmInfoOption = {
             ],
             accept: 'image/jpeg,image/png',
             display: !(store.getCandidateInfo.informationStatus === '01'),
-            disabled: store.getCandidateInfo.informationStatus === '01'
+            disabled: !(store.getCandidateInfo.informationStatus === '00')
         },
         {
             label: '姓名',
             prop: 'userName',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '01',
+            disabled: !(store.getCandidateInfo.informationStatus === '00'),
             rules: [
                 {
                     required: true,
@@ -68,7 +68,7 @@ export const confirmInfoOption = {
                 label: 'dictFieldLabel',
                 value: 'dictFieldValue'
             },
-            disabled: store.getCandidateInfo.informationStatus === '01',
+            disabled: !(store.getCandidateInfo.informationStatus === '00'),
             rules: [
                 {
                     required: true,
@@ -89,7 +89,7 @@ export const confirmInfoOption = {
             prop: 'userAge',
             type: 'number',
             min: 18,
-            disabled: store.getCandidateInfo.informationStatus === '01',
+            disabled: !(store.getCandidateInfo.informationStatus === '00'),
             rules: [
                 {
                     required: true,
@@ -110,7 +110,7 @@ export const confirmInfoOption = {
                 }
             ],
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '01',
+            disabled: !(store.getCandidateInfo.informationStatus === '00'),
             span: 24
         },
         {
@@ -130,13 +130,13 @@ export const confirmInfoOption = {
                 }
             ],
             span: 12,
-            disabled: store.getCandidateInfo.informationStatus === '01'
+            disabled: !(store.getCandidateInfo.informationStatus === '00')
         },
         {
             label: '联系方式',
             prop: 'userPhone',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '01',
+            disabled: !(store.getCandidateInfo.informationStatus === '00'),
             rules: [
                 {
                     required: true,
@@ -149,7 +149,7 @@ export const confirmInfoOption = {
             label: '电子邮箱',
             prop: 'userEmail',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '01',
+            disabled: !(store.getCandidateInfo.informationStatus === '00'),
             rules: [
                 {
                     required: true,
@@ -173,7 +173,7 @@ export const confirmInfoOption = {
             label: '本科院校',
             prop: 'undergraduateSchool',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '01',
+            disabled: !(store.getCandidateInfo.informationStatus === '00'),
             rules: [
                 {
                     required: true,

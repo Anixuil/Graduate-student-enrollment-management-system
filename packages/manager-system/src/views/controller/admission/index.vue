@@ -32,8 +32,8 @@ const handleClickEmit = async (form: any, done: Function) => {
     try {
         let res: any = await updateCandidate({
             ...Object.assign(form, {
-                informationStatus: '31',
-                candidateStatus: '3'
+                informationStatus: '31'
+                // candidateStatus: '3'
             })
         })
         await store.getUserInfoFromServer()

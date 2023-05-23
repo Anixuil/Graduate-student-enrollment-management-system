@@ -1,6 +1,7 @@
 const baseUrl = 'http://localhost:8080/anixuil'
 import { useUser } from '@/store/user'
 const store: any = useUser()
+console.log('加载', store.getUserInfo.userRole)
 export const candidateTableOption = {
     align: 'center',
     menuAlign: 'center',

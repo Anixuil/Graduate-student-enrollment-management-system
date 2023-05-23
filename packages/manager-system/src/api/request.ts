@@ -57,7 +57,7 @@ request.interceptors.response.use(
         }
         if (res.code !== 200) {
             console.log(res)
-            ElMessage.error(res.msg || 'Error')
+            ElMessage.error(res.data || 'Error')
             return Promise.reject(new Error(res.msg || 'Error'))
         } else {
             return res

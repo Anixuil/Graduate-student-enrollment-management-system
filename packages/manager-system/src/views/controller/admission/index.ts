@@ -3,7 +3,7 @@ const store: any = useUser()
 const baseUrl = 'http://localhost:8080/anixuil'
 
 export const admissOption = {
-    submitBtn: store.getCandidateInfo.informationStatus === '21',
+    submitBtn: store.getCandidateInfo.informationStatus === '30',
     emptyBtn: false,
     column: [
         {
@@ -43,13 +43,13 @@ export const admissOption = {
             ],
             accept: 'image/jpeg,image/png',
             display: !(store.getCandidateInfo.informationStatus === '31'),
-            disabled: store.getCandidateInfo.informationStatus === '31'
+            disabled: !(store.getCandidateInfo.informationStatus === '30')
         },
         {
             label: '姓名',
             prop: 'userName',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '31',
+            disabled: !(store.getCandidateInfo.informationStatus === '30'),
             rules: [
                 {
                     required: true,
@@ -68,7 +68,7 @@ export const admissOption = {
                 label: 'dictFieldLabel',
                 value: 'dictFieldValue'
             },
-            disabled: store.getCandidateInfo.informationStatus === '31',
+            disabled: !(store.getCandidateInfo.informationStatus === '30'),
             rules: [
                 {
                     required: true,
@@ -89,7 +89,7 @@ export const admissOption = {
             prop: 'userAge',
             type: 'number',
             min: 18,
-            disabled: store.getCandidateInfo.informationStatus === '31',
+            disabled: !(store.getCandidateInfo.informationStatus === '30'),
             rules: [
                 {
                     required: true,
@@ -110,7 +110,7 @@ export const admissOption = {
                 }
             ],
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '31',
+            disabled: !(store.getCandidateInfo.informationStatus === '30'),
             span: 24
         },
         {
@@ -136,7 +136,7 @@ export const admissOption = {
             label: '联系方式',
             prop: 'userPhone',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '31',
+            disabled: !(store.getCandidateInfo.informationStatus === '30'),
             rules: [
                 {
                     required: true,
@@ -149,7 +149,7 @@ export const admissOption = {
             label: '电子邮箱',
             prop: 'userEmail',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '31',
+            disabled: !(store.getCandidateInfo.informationStatus === '30'),
             rules: [
                 {
                     required: true,
@@ -173,7 +173,7 @@ export const admissOption = {
             label: '本科院校',
             prop: 'undergraduateSchool',
             type: 'input',
-            disabled: store.getCandidateInfo.informationStatus === '31',
+            disabled: !(store.getCandidateInfo.informationStatus === '30'),
             rules: [
                 {
                     required: true,

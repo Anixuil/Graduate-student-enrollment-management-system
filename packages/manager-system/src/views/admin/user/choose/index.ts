@@ -8,6 +8,8 @@ export const chooseOption = {
     editBtn: false,
     delBtn: false,
     height: 'calc(100vh - 330px)',
+    rowKey: 'userUuid',
+    rowParentKey: 'parentUuid',
     column: [
         {
             label: '序号',
@@ -15,31 +17,6 @@ export const chooseOption = {
             width: 120,
             display: false
         },
-        // {
-        //     label: '照片',
-        //     prop: 'userHeadimg',
-        //     hide: true,
-        //     type: 'upload',
-        //     listType: 'picture-img',
-        //     imgWidth: 50,
-        //     imgFullscreen: true,
-        //     action: `${baseUrl}/file/upload`,
-        //     tip: '只能上传jpg/png文件，且不超过500kb',
-        //     propsHttp: {
-        //         res: 'data',
-        //         url: 'url'
-        //     },
-        //     loadText: '正在上传...',
-        //     span: 24,
-        //     rules: [
-        //         {
-        //             required: true,
-        //             message: '请上传照片',
-        //             trigger: ['blur', 'change']
-        //         }
-        //     ],
-        //     accept: 'image/jpeg,image/png'
-        // },
         {
             label: '姓名',
             prop: 'userName',

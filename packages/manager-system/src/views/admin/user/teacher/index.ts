@@ -23,7 +23,8 @@ export const teacherTableOption = {
             addDisplay: false,
             addDisabled: true,
             editDisabled: true,
-            search: true
+            search: true,
+            overHidden: true
         },
         {
             label: '照片',
@@ -62,7 +63,8 @@ export const teacherTableOption = {
                 }
             ],
             width: 100,
-            search: true
+            search: true,
+            overHidden: true
         },
         {
             label: '性别',
@@ -94,7 +96,8 @@ export const teacherTableOption = {
             ],
             width: 120,
             search: true,
-            hide: true
+            hide: true,
+            overHidden: true
         },
         {
             label: '邮箱',
@@ -108,7 +111,8 @@ export const teacherTableOption = {
             ],
             width: 120,
             search: true,
-            hide: true
+            hide: true,
+            overHidden: true
         },
         {
             label: '年龄',
@@ -121,7 +125,8 @@ export const teacherTableOption = {
                     message: '请输入年龄',
                     trigger: ['blur', 'change']
                 }
-            ]
+            ],
+            overHidden: true
         },
         {
             label: '密码',
@@ -148,7 +153,8 @@ export const teacherTableOption = {
                     message: '请输入地址',
                     trigger: ['blur', 'change']
                 }
-            ]
+            ],
+            overHidden: true
         },
         {
             label: '本科院校',
@@ -181,7 +187,8 @@ export const teacherTableOption = {
                 }
             ],
             search: true,
-            hide: true
+            hide: true,
+            overHidden: true
         },
         {
             label: '所属院系',
@@ -208,14 +215,16 @@ export const teacherTableOption = {
                 }
             ],
             search: true,
-            hide: true
+            hide: true,
+            overHidden: true
         },
         {
             label: '教授课程',
             prop: 'className',
             span: 12,
             addDisplay: false,
-            editDisplay: false
+            editDisplay: false,
+            overHidden: true
         },
         {
             label: '教师介绍',
@@ -231,19 +240,22 @@ export const teacherTableOption = {
                 }
             ],
             minRows: 3,
-            maxRows: 5
+            maxRows: 5,
+            overHidden: true
         },
         {
             label: '创建时间',
             prop: 'createDate',
             addDisplay: false,
-            editDisabled: true
+            editDisabled: true,
+            overHidden: true
         },
         {
             label: '更新时间',
             prop: 'updateDate',
             addDisplay: false,
-            editDisabled: true
+            editDisabled: true,
+            overHidden: true
         }
     ]
 }

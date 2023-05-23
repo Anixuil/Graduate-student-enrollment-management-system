@@ -34,7 +34,8 @@ export const majorTableOption = {
                     message: '请输入专业名',
                     trigger: ['blur', 'change']
                 }
-            ]
+            ],
+            overHidden: true
         },
         {
             label: '所属院系',
@@ -53,39 +54,45 @@ export const majorTableOption = {
                     message: '请选择所属院系',
                     trigger: ['blur', 'change']
                 }
-            ]
+            ],
+            overHidden: true
         },
         {
             label: '所属院系',
             prop: 'departName',
             addDisplay: false,
-            editDisplay: false
+            editDisplay: false,
+            overHidden: true
         },
         {
             label: '专业人数',
             prop: 'studentCount',
             addDisplay: false,
             editDisabled: true,
-            hide: true
+            hide: true,
+            overHidden: true
         },
         {
             label: '创建时间',
             prop: 'createDate',
             addDisplay: false,
-            editDisabled: true
+            editDisabled: true,
+            overHidden: true
         },
         {
             label: '更新时间',
             prop: 'updateDate',
             addDisplay: false,
-            editDisabled: true
+            editDisabled: true,
+            overHidden: true
         },
         {
             label: '介绍',
             prop: 'majorIntro',
             type: 'textarea',
             span: 24,
-            minRows: 3
+            minRows: 3,
+            overHidden: true
         }
     ]
 }

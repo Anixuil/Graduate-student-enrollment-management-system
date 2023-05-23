@@ -24,7 +24,8 @@ export const studentTableOption = {
             addDisabled: true,
             editDisabled: true,
             hide: true,
-            search: true
+            search: true,
+            overHidden: true
         },
         {
             label: '照片',
@@ -63,7 +64,8 @@ export const studentTableOption = {
                 }
             ],
             width: 100,
-            search: true
+            search: true,
+            overHidden: true
         },
         {
             label: '本科院校',
@@ -108,7 +110,8 @@ export const studentTableOption = {
             ],
             width: 120,
             search: true,
-            hide: true
+            hide: true,
+            overHidden: true
         },
         {
             label: '邮箱',
@@ -122,7 +125,8 @@ export const studentTableOption = {
             ],
             width: 120,
             search: true,
-            hide: true
+            hide: true,
+            overHidden: true
         },
         {
             label: '年龄',
@@ -135,7 +139,8 @@ export const studentTableOption = {
                     message: '请输入年龄',
                     trigger: ['blur', 'change']
                 }
-            ]
+            ],
+            overHidden: true
         },
         {
             label: '密码',
@@ -162,7 +167,8 @@ export const studentTableOption = {
                     message: '请输入地址',
                     trigger: ['blur', 'change']
                 }
-            ]
+            ],
+            overHidden: true
         },
         {
             label: '所属专业',
@@ -183,14 +189,16 @@ export const studentTableOption = {
             search: true,
             viewDisplay: false,
             hide: true,
-            span: 12
+            span: 12,
+            overHidden: true
         },
         {
             label: '所属专业',
             prop: 'majorName',
             span: 12,
             addDisplay: false,
-            editDisplay: false
+            editDisplay: false,
+            overHidden: true
         },
         {
             label: '入学时间',
@@ -204,7 +212,8 @@ export const studentTableOption = {
                     trigger: ['blur', 'change']
                 }
             ],
-            span: 12
+            span: 12,
+            overHidden: true
         },
         {
             label: '毕业时间',
@@ -217,19 +226,22 @@ export const studentTableOption = {
                     trigger: ['blur', 'change']
                 }
             ],
-            span: 12
+            span: 12,
+            overHidden: true
         },
         {
             label: '创建时间',
             prop: 'createDate',
             addDisplay: false,
-            editDisabled: true
+            editDisabled: true,
+            overHidden: true
         },
         {
             label: '更新时间',
             prop: 'updateDate',
             addDisplay: false,
-            editDisabled: true
+            editDisabled: true,
+            overHidden: true
         }
     ]
 }

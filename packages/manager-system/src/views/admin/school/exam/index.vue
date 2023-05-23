@@ -43,7 +43,17 @@
                                     <!--                                        <el-upload :auto-upload="true" :show-file-list="false" :http-request="updateScore">-->
                                     <!--                                            <el-button type="primary" link :size="size">导入成绩</el-button>-->
                                     <!--                                        </el-upload>-->
-                                    <el-button type="primary" @click="selectionAdmiss" :size="size"
+                                    <el-button
+                                        type="primary"
+                                        @click="selectionAdmiss"
+                                        :size="size"
+                                        v-if="activeName != '1'"
+                                        >批量录取</el-button
+                                    >
+                                    <el-button
+                                        type="primary"
+                                        v-if="activeName == '1'"
+                                        @click="admissDialogVisible = true"
                                         >批量录取</el-button
                                     >
                                     <el-upload
@@ -95,6 +105,20 @@
                 </Transition>
             </el-tab-pane>
         </el-tabs>
+        <el-dialog v-model="admissDialogVisible" title="录取OR调剂">
+            <el-form>
+                <el-form-item label="下一步骤">
+                    <el-select v-model="admissValue">
+                        <el-option label="调剂" value="2"></el-option>
+                        <el-option label="录取" value="3"></el-option>
+                    </el-select>
+                </el-form-item>
+            </el-form>
+            <template #footer>
+                <el-button type="info" @click="admissDialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="selectionAdmiss">确 定</el-button>
+            </template>
+        </el-dialog>
     </div>
 </template>
 
@@ -238,7 +262,10 @@ const selectionAdmiss = () => {
                         userName: item.userName,
                         userUuid: item.userUuid,
                         candidateUuid: item.candidateUuid,
-                        candidateStatus: (Number(activeName.value) + 1).toString(),
+                        candidateStatus:
+                            activeName.value == '1'
+                                ? admissValue.value
+                                : (Number(activeName.value) + 1).toString(),
                         userPhone: item.userPhone,
                         userEmail: item.userEmail,
                         examPlace: item.examPlace,
@@ -247,6 +274,9 @@ const selectionAdmiss = () => {
                         userRole: item.userRole,
                         candidateId: item.candidateId
                     })
+                    if (activeName.value == '1') {
+                        admissDialogVisible.value = false
+                    }
                 })
             )
             ElMessage.success('批量录取成功')
@@ -254,6 +284,10 @@ const selectionAdmiss = () => {
         })
         .catch(() => {})
 }
+
+//批量录取 调剂弹出框
+const admissDialogVisible: Ref<boolean> = ref(false)
+const admissValue: any = ref('2')
 
 //新增
 const rowSave = async (form: any, done: Function) => {
