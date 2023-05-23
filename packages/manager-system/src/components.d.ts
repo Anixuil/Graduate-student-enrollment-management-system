@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     Container: typeof import('./components/index/container/index.vue')['default']
     CustomExam: typeof import('./components/admin/exam/CustomExam.vue')['default']
     Editor: typeof import('./components/common/Editor/index.vue')['default']
+    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCol: typeof import('element-plus/es')['ElCol']

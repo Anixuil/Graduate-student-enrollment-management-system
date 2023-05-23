@@ -1,5 +1,10 @@
 <template>
-    <div class="choose-wrapper">
+    <div
+        class="choose-wrapper"
+        v-if="
+            store.getUserInfo.candidateStatus == '3' && store.getUserInfo.informationStatus == '40'
+        "
+    >
         <tab>选择导师</tab>
         <div class="crud-wrapper">
             <avue-crud
@@ -44,6 +49,9 @@
             </avue-crud>
         </div>
     </div>
+    <template v-else>
+        <el-empty class="choose-wrapper" description="您暂无权限访问该模块"></el-empty>
+    </template>
 </template>
 
 <script setup lang="ts">
@@ -51,7 +59,10 @@ import { chooseOption } from '.'
 import { getTeacherList } from '@/api/teacher'
 import { getStuTeachList, chooseTeach } from '@/api/choose'
 import { Ref } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage } from 'element-plus'
+import { useUser } from '@/store/user'
+
+const store = useUser()
 
 const option: any = reactive(chooseOption)
 
@@ -129,6 +140,7 @@ const approve = async (row: any) => {
             teacherUuid: row.teacherUuid
         })
         ElMessage.success(res.msg)
+        refreshChange()
     } catch (err: any) {
         console.log(err)
         ElMessage.error(err)
@@ -142,6 +154,7 @@ const approve = async (row: any) => {
     max-width: 1600px;
     min-width: 1000px;
     margin: 0 auto;
+    background: white;
 
     .crud-wrapper {
         box-sizing: border-box;

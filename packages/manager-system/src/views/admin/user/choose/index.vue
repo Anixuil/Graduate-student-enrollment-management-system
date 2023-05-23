@@ -10,7 +10,16 @@
             @size-change="sizeChange"
         >
             <template #menu-left="{ size }" v-if="store.getUserInfo.userRole == 'teacher'">
-                <el-button type="primary" @click="chooseDialogVisible = true" :size="size"
+                <el-badge :value="waitStu.length" class="item" v-show="waitStu.length != 0">
+                    <el-button type="primary" @click="chooseDialogVisible = true" :size="size"
+                        >审批代办</el-button
+                    >
+                </el-badge>
+                <el-button
+                    type="primary"
+                    @click="chooseDialogVisible = true"
+                    :size="size"
+                    v-show="waitStu.length == 0"
                     >审批代办</el-button
                 >
             </template>
@@ -163,5 +172,13 @@ const refuse = async (item: any) => {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+:deep(.avue-crud__menu) {
+    overflow: inherit;
+}
+
+:deep(.el-card) {
+    overflow: inherit;
 }
 </style>
