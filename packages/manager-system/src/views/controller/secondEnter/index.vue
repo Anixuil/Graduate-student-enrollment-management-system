@@ -36,7 +36,6 @@ const handleClickEmit = async (form: any, done: Function) => {
                 // candidateStatus: '1'
             })
         })
-        await store.getUserInfoFromServer()
         await store.initUserInfo()
         if (res.code != 200) {
             ElMessage.error('复试确认失败')

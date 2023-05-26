@@ -3,7 +3,7 @@ const store: any = useUser()
 const baseUrl = 'http://localhost:8080/anixuil'
 
 export const dispenseOption = {
-    submitBtn: store.getCandidateInfo.informationStatus === '20',
+    submitBtn: store.getCandidateInfo.informationStatus === '11',
     emptyBtn: false,
     column: [
         {
@@ -43,13 +43,13 @@ export const dispenseOption = {
             ],
             accept: 'image/jpeg,image/png',
             display: !(store.getCandidateInfo.informationStatus === '21'),
-            disabled: !(store.getCandidateInfo.informationStatus === '20')
+            disabled: !(store.getCandidateInfo.informationStatus === '11')
         },
         {
             label: '姓名',
             prop: 'userName',
             type: 'input',
-            disabled: !(store.getCandidateInfo.informationStatus === '20'),
+            disabled: !(store.getCandidateInfo.informationStatus === '11'),
             rules: [
                 {
                     required: true,
@@ -68,7 +68,7 @@ export const dispenseOption = {
                 label: 'dictFieldLabel',
                 value: 'dictFieldValue'
             },
-            disabled: !(store.getCandidateInfo.informationStatus === '20'),
+            disabled: !(store.getCandidateInfo.informationStatus === '11'),
             rules: [
                 {
                     required: true,
@@ -89,7 +89,7 @@ export const dispenseOption = {
             prop: 'userAge',
             type: 'number',
             min: 18,
-            disabled: !(store.getCandidateInfo.informationStatus === '20'),
+            disabled: !(store.getCandidateInfo.informationStatus === '11'),
             rules: [
                 {
                     required: true,
@@ -110,7 +110,7 @@ export const dispenseOption = {
                 }
             ],
             type: 'input',
-            disabled: !(store.getCandidateInfo.informationStatus === '20'),
+            disabled: !(store.getCandidateInfo.informationStatus === '11'),
             span: 24
         },
         {
@@ -130,13 +130,13 @@ export const dispenseOption = {
                 }
             ],
             span: 12,
-            disabled: !(store.getCandidateInfo.informationStatus === '20')
+            disabled: !(store.getCandidateInfo.informationStatus === '11')
         },
         {
             label: '联系方式',
             prop: 'userPhone',
             type: 'input',
-            disabled: !(store.getCandidateInfo.informationStatus === '20'),
+            disabled: !(store.getCandidateInfo.informationStatus === '11'),
             rules: [
                 {
                     required: true,
@@ -149,7 +149,7 @@ export const dispenseOption = {
             label: '电子邮箱',
             prop: 'userEmail',
             type: 'input',
-            disabled: !(store.getCandidateInfo.informationStatus === '20'),
+            disabled: !(store.getCandidateInfo.informationStatus === '11'),
             rules: [
                 {
                     required: true,
@@ -173,7 +173,7 @@ export const dispenseOption = {
             label: '本科院校',
             prop: 'undergraduateSchool',
             type: 'input',
-            disabled: !(store.getCandidateInfo.informationStatus === '20'),
+            disabled: !(store.getCandidateInfo.informationStatus === '11'),
             rules: [
                 {
                     required: true,

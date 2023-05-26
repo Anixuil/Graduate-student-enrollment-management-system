@@ -32,10 +32,11 @@ const handleClickEmit = async (form: any, done: Function) => {
     try {
         let res: any = await updateCandidate({
             ...Object.assign(form, {
-                informationStatus: '21'
+                informationStatus: '21',
+                //申请调剂就自动转为调剂状态
+                candidateStatus: '2'
             })
         })
-        await store.getUserInfoFromServer()
         await store.initUserInfo()
         if (res.code != 200) {
             ElMessage.error('提交调剂信息失败')

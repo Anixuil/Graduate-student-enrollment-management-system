@@ -37,30 +37,40 @@
                                     #menu-left="{ size }"
                                     v-if="store.getUserInfo.userRole == 'admin'"
                                 >
-                                    <!--                                        <el-button type="primary" @click="downloadTemplate" :size="size" link>-->
-                                    <!--                                            下载模板-->
-                                    <!--                                        </el-button>-->
-                                    <!--                                        <el-upload :auto-upload="true" :show-file-list="false" :http-request="updateScore">-->
-                                    <!--                                            <el-button type="primary" link :size="size">导入成绩</el-button>-->
-                                    <!--                                        </el-upload>-->
                                     <el-button
                                         type="primary"
                                         @click="selectionAdmiss"
                                         :size="size"
-                                        v-if="activeName != '1'"
-                                        >批量录取</el-button
+                                        v-if="
+                                            activeName != '1' &&
+                                            activeName != '2' &&
+                                            activeName != '4'
+                                        "
+                                        >批量审批</el-button
                                     >
                                     <el-button
                                         type="primary"
-                                        v-if="activeName == '1'"
+                                        v-if="activeName == '1' || activeName == '2'"
                                         @click="admissDialogVisible = true"
-                                        >批量录取</el-button
+                                        >批量审批</el-button
                                     >
+                                    <el-button
+                                        type="primary"
+                                        @click="downloadTemplate"
+                                        :size="size"
+                                        link
+                                    >
+                                        下载模板
+                                    </el-button>
+                                    <!--                                        <el-upload :auto-upload="true" :show-file-list="false" :http-request="updateScore">-->
+                                    <!--                                            <el-button type="primary" link :size="size">导入成绩</el-button>-->
+                                    <!--                                        </el-upload>-->
                                     <el-upload
                                         :auto-upload="true"
                                         :show-file-list="false"
                                         type="primary"
                                         :http-request="updateScore"
+                                        v-if="activeName != '4'"
                                     >
                                         <el-button type="primary" link :size="size"
                                             >导入成绩</el-button
@@ -105,12 +115,13 @@
                 </Transition>
             </el-tab-pane>
         </el-tabs>
-        <el-dialog v-model="admissDialogVisible" title="录取OR调剂">
+        <el-dialog v-model="admissDialogVisible" title="录取OR调剂OR未录取">
             <el-form>
                 <el-form-item label="下一步骤">
                     <el-select v-model="admissValue">
-                        <el-option label="调剂" value="2"></el-option>
+                        <el-option label="调剂" value="2" v-show="activeName != '2'"></el-option>
                         <el-option label="录取" value="3"></el-option>
+                        <el-option label="未录取" value="4"></el-option>
                     </el-select>
                 </el-form-item>
             </el-form>
@@ -134,6 +145,10 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { useUser } from '@/store/user'
 import { importExcel } from '@/api/upload'
 const store: any = useUser()
+//下载模板
+const downloadTemplate = () => {
+    window.open('http://localhost:8080/anixuil/file/download/考生成绩导入模板.xlsx')
+}
 //初始化效果实现--------------------------------------------------------------------------------------
 
 const activeName: Ref<string> = ref('first')
@@ -147,18 +162,18 @@ const getWorkFlowList = async (type: string): Promise<any> => {
     return res.data.records
 }
 
-const typeArr = ['初试', '复试', '调剂', '录取']
+const typeArr = ['初试', '复试', '调剂', '录取', '未录取']
 //请求各个不同招生状态的流程列表
 onMounted(() => {
     new Promise<void>(resolve => {
-        ;['0', '1', '2', '3'].forEach(async (item: string) => {
+        ;['0', '1', '2', '3', '4'].forEach(async (item: string) => {
             workFlowData.value.push(
                 Object.assign(
                     { index: Number(item), type: typeArr[Number(item)] },
                     { workFlowList: await getWorkFlowList(item) }
                 )
             )
-            if (workFlowData.value.length === 4) resolve()
+            if (workFlowData.value.length === 5) resolve()
         })
     }).then(() => {
         //对流程列表进行排序
@@ -250,11 +265,15 @@ const selectionAdmiss = () => {
         ElMessage.warning('请先选择数据')
         return
     }
-    ElMessageBox.confirm('是否批量录取', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-    })
+    ElMessageBox.confirm(
+        `是否批量${activeName.value == '0' ? '允许复试' : typeArr[admissValue.value]}`,
+        '提示',
+        {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+        }
+    )
         .then(async () => {
             await Promise.all(
                 selectionData.value.map(async (item: any) => {
@@ -263,7 +282,7 @@ const selectionAdmiss = () => {
                         userUuid: item.userUuid,
                         candidateUuid: item.candidateUuid,
                         candidateStatus:
-                            activeName.value == '1'
+                            activeName.value == '1' || activeName.value == '2'
                                 ? admissValue.value
                                 : (Number(activeName.value) + 1).toString(),
                         userPhone: item.userPhone,
@@ -287,7 +306,7 @@ const selectionAdmiss = () => {
 
 //批量录取 调剂弹出框
 const admissDialogVisible: Ref<boolean> = ref(false)
-const admissValue: any = ref('2')
+const admissValue: any = ref('4')
 
 //新增
 const rowSave = async (form: any, done: Function) => {

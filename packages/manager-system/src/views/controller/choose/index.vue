@@ -1,12 +1,13 @@
 <template>
-    <div
-        class="choose-wrapper"
-        v-if="
-            store.getUserInfo.candidateStatus == '3' && store.getUserInfo.informationStatus == '40'
-        "
-    >
+    <div class="choose-wrapper">
         <tab>选择导师</tab>
-        <div class="crud-wrapper">
+        <div
+            class="crud-wrapper"
+            v-if="
+                store.getCandidateInfo.candidateStatus == '3' &&
+                store.getCandidateInfo.informationStatus == '40'
+            "
+        >
             <avue-crud
                 :option="option"
                 :data="data"
@@ -48,10 +49,8 @@
                 </template>
             </avue-crud>
         </div>
+        <el-empty class="choose-wrapper" v-else description="您暂无权限访问该模块"></el-empty>
     </div>
-    <template v-else>
-        <el-empty class="choose-wrapper" description="您暂无权限访问该模块"></el-empty>
-    </template>
 </template>
 
 <script setup lang="ts">

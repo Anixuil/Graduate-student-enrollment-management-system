@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import { login } from '@/api/user'
 import { BgImageAuto } from '@/utils/utils'
-import { ElNotification } from 'element-plus'
+import { ElNotification, ElMessage } from 'element-plus'
 import { useUser } from '@/store/user'
 import { useSystem } from '@/store/system'
 import { usePageHeader } from '@/store/pageHeader/pageHeader'
@@ -42,6 +42,8 @@ const userInfo = reactive({
 const loading = ref(false)
 const loginClick = async () => {
     try {
+        //如果表单为空则不提交
+        if (!userInfo.userName || !userInfo.userPassword) return ElMessage.error('请填写完整信息！')
         //登录前清空用户信息
         user.logout()
         loading.value = true
